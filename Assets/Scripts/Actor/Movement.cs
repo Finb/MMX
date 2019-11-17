@@ -34,7 +34,7 @@ public class Movement : MonoBehaviour
         }
     }
     public Queue<MoveStep> moveSteps = new Queue<MoveStep>();
-
+    public Vector2 lookDirection = Vector2.down;
 
     virtual protected void Start()
     {
@@ -45,14 +45,16 @@ public class Movement : MonoBehaviour
     {
         if (Mathf.Abs(direction.x) + Mathf.Abs(direction.y) > 0)
         {
-            //没有移动
             anim.SetFloat("moveX", direction.x);
             anim.SetFloat("moveY", direction.y);
+            lookDirection = direction;
             anim.enabled = true;
             rbody.MovePosition(position);
+
         }
         else
         {
+            //没有移动
             anim.enabled = false;
         }
 

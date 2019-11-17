@@ -73,7 +73,6 @@ public class MoveController : Movement
         if (other.gameObject.tag == "OffTank")
         {
             //从坦克上下来
-            Debug.Log("从坦克上下来");
             Dialog.shared.showText("从坦克上下来了!","事件提醒");
         }
     }

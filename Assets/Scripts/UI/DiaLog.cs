@@ -53,7 +53,7 @@ public class Dialog
         digLogGameObject.SetActive(true);
         var nickPanel = nickLabel.gameObject.transform.parent.gameObject;
         var nickPanelRectTransform = nickPanel.GetComponent<RectTransform>();
-        if (nick != null){
+        if (nick != null && nick.Length > 0){
             nickLabel.text = nick;
             var width = Math.Max(40 + nick.GetFontlen(30), 80);
             nickPanelRectTransform.anchoredPosition = new Vector3(width / 2, 28 ,0);
@@ -71,6 +71,7 @@ public class Dialog
     {
         digLogGameObject.SetActive(false);
         MMX.GameManager.Input.popTarget();
+        // MMX.GameManager.Input.Invoke("popTarget",0.2f);
     }
     public void continueDiglog(){
         textDisplay.continueType();
