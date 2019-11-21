@@ -10,6 +10,7 @@ TagManager:
   - BackgroundMusic
   - World
   - Dialog
+  - Finger
   layers:
   - Default
   - TransparentFX

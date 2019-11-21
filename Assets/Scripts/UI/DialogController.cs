@@ -1,22 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.Events;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
-
-public class Dialog
+public class DialogController : MonoBehaviour, InputEventInterface
 {
-    public static Dialog shared
+    // Start is called before the first frame update
+    private Text textLabel;
+    private Text nickLabel;
+    public TextDisplay textDisplay;
+    private void Awake()
     {
-        get
-        {
-            return Dialog.Instance();
-        }
+        MMX.GameManager.Dialog = this;
+        textLabel = gameObject.FindObject("Text", true).GetComponent<Text>();
+        nickLabel = gameObject.FindObject("nickText", true).GetComponent<Text>();
+        textDisplay = textLabel.GetComponent<TextDisplay>();
+    }
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
     }
     public bool isActiving {
         get {
-            return digLogGameObject.activeSelf;
+            return gameObject.activeSelf;
         }
     }
     public bool isInteroperable {
@@ -24,33 +36,25 @@ public class Dialog
             return textDisplay.arrowImage.activeSelf;
         }
     }
-    private GameObject digLogGameObject;
-    private Text textLabel;
-    private Text nickLabel;
-    public TextDisplay textDisplay;
-    private Dialog()
+    public void willOnFocus()
     {
-        digLogGameObject = GameObject.Find("UI").FindObject("Diglog");
-        textLabel = digLogGameObject.FindObject("Text", true).GetComponent<Text>();
-        nickLabel = digLogGameObject.FindObject("nickText", true).GetComponent<Text>();
-        textDisplay = textLabel.GetComponent<TextDisplay>();
-    }
 
-    private static Dialog instance;
-    public static Dialog Instance()
+    }
+    public void willLostFocus()
     {
-        if (instance == null)
+
+    }
+    public void inputAction()
+    {
+        if (isInteroperable && Input.GetKeyDown(KeyCode.J))
         {
-            instance = new Dialog();
+            continueDiglog();
         }
-
-        return instance;
     }
-
-    public void showText(string text, string nick = null)
+        public void showText(string text, string nick = null)
     {
-        MMX.GameManager.Input.pushTarget(digLogGameObject);
-        digLogGameObject.SetActive(true);
+        MMX.GameManager.Input.pushTarget(gameObject);
+        gameObject.SetActive(true);
         var nickPanel = nickLabel.gameObject.transform.parent.gameObject;
         var nickPanelRectTransform = nickPanel.GetComponent<RectTransform>();
         if (nick != null && nick.Length > 0){
@@ -69,9 +73,8 @@ public class Dialog
     }
     public void hide()
     {
-        digLogGameObject.SetActive(false);
+        gameObject.SetActive(false);
         MMX.GameManager.Input.popTarget();
-        // MMX.GameManager.Input.Invoke("popTarget",0.2f);
     }
     public void continueDiglog(){
         textDisplay.continueType();

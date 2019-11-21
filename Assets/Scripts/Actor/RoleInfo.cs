@@ -30,11 +30,13 @@ public class RoleInfo : MonoBehaviour, InputEventInterface
         anim.runtimeAnimatorController = overrideAinmator;
     }
 
-    public void willOnFocus(){
+    public void willOnFocus()
+    {
 
     }
 
-    public void willLostFocus(){
+    public void willLostFocus()
+    {
 
     }
 
@@ -44,7 +46,8 @@ public class RoleInfo : MonoBehaviour, InputEventInterface
         if (Input.GetKeyDown(KeyCode.J))
         {
             var hit = Physics2D.Raycast(gameObject.transform.position, GetComponent<Movement>().lookDirection, 3, 1 << 8);
-            if (hit.collider == null){
+            if (hit.collider == null)
+            {
                 return;
             }
             var roleInfo = hit.collider.gameObject.GetComponent<RoleInfo>();
@@ -58,9 +61,12 @@ public class RoleInfo : MonoBehaviour, InputEventInterface
             }
             if (roleInfo.dialogueText.Length > 0)
             {
-                Dialog.shared.showText(roleInfo.dialogueText, roleInfo.nick);
+                MMX.GameManager.Dialog.showText(roleInfo.dialogueText, roleInfo.nick);
             }
-
+        }
+        else if (Input.GetKeyDown(KeyCode.U))
+        {
+            MMX.GameManager.MainMenu.show();
         }
     }
 }

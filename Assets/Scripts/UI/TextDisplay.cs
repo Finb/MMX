@@ -8,7 +8,7 @@ public class TextDisplay : MonoBehaviour
     private string contentText;
     private List<string> sentences;
     private int currentDisplaySentenceIndex = 0;
-    private float letterPause = 0.02f;
+    private float letterPause = 0.01f;
     public GameObject arrowImage;
 
     private Text textLabel
@@ -75,6 +75,6 @@ public class TextDisplay : MonoBehaviour
     }
     void finished()
     {
-        Dialog.shared.hide();
+        MMX.GameManager.Dialog.hide();
     }
 }

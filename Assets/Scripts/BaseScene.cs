@@ -31,7 +31,6 @@ public class BaseScene : MonoBehaviour
 
         // 加载地图
         var obj = Instantiate(Resources.Load<GameObject>("地图/拉多"), new Vector3(0, 0, 0), Quaternion.identity);
-        Debug.Log(obj);
         if (obj.GetComponent<MapInfo>().backgroundMusic != null)
         {
             GameManager.Audio.PlayBgm(obj.GetComponent<MapInfo>().backgroundMusic);
@@ -41,6 +40,10 @@ public class BaseScene : MonoBehaviour
         var diglog = Instantiate(Resources.Load<GameObject>("UI/Dialog"), new Vector3(0, 0, 0), Quaternion.identity, GameObject.Find("UI").GetComponent<Transform>());
         diglog.name = "Diglog";
         diglog.SetActive(false);
+
+        var mainMenu = Instantiate(Resources.Load<GameObject>("UI/MainMenu"), new Vector3(0, 0, 0), Quaternion.identity, GameObject.Find("UI").GetComponent<Transform>());
+        mainMenu.name = "MainMenu";
+        mainMenu.SetActive(false);
 
         var player2 = Instantiate(Resources.Load<GameObject>("Role/角色"));
         player2.layer = 0;
@@ -54,6 +57,8 @@ public class BaseScene : MonoBehaviour
         var player4 = Instantiate(Resources.Load<GameObject>("Role/角色"));
         player4.layer = 0;
         player3.GetComponent<Movement>().followerMovement = player4.GetComponent<Movement>();
+
+        
 
     }
 
