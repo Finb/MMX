@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DiglogController : MonoBehaviour
+public class DiglogController : MonoBehaviour, InputEventInterface
 {
     // Start is called before the first frame update
     void Start()
@@ -15,7 +15,13 @@ public class DiglogController : MonoBehaviour
     {
         
     }
-    void invokeInputAction(){
+    public void willOnFocus(){
+
+    }
+    public void willLostFocus(){
+
+    }
+    public void inputAction(){
         if (Dialog.shared.isInteroperable && Input.GetKey(KeyCode.J)){
             Dialog.shared.continueDiglog();
         }

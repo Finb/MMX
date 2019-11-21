@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoleInfo : MonoBehaviour
+public class RoleInfo : MonoBehaviour, InputEventInterface
 {
     public AnimationClip downAnimation;
     public AnimationClip leftAnimation;
@@ -30,8 +30,16 @@ public class RoleInfo : MonoBehaviour
         anim.runtimeAnimatorController = overrideAinmator;
     }
 
+    public void willOnFocus(){
+
+    }
+
+    public void willLostFocus(){
+
+    }
+
     // Update is called once per frame
-    void invokeInputAction()
+    public void inputAction()
     {
         if (Input.GetKeyDown(KeyCode.J))
         {

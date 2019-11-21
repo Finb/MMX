@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveController : Movement
+public class MoveController : Movement, InputEventInterface
 {
-    
+
     TeleportController teleportController;
-    
+
     private Vector2 lastPostion;
 
     override protected void Start()
@@ -19,7 +19,18 @@ public class MoveController : Movement
     {
 
     }
-    void invokeInputAction(){
+    public void willLostFocus()
+    {
+        base.move(Vector2.zero,Vector2.zero);
+    }
+    public void willOnFocus(){
+
+    }
+    public void inputAction()
+    {
+        if (MMX.GameManager.Input.currentTarget.name != "角色"){
+            return;
+        }
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
@@ -60,12 +71,12 @@ public class MoveController : Movement
         position.y += moveY * currentSpeed * 0.03f;
 
         //走不动了，就停止行走
-        if (Vector2.Distance(position,lastPostion) <= 0.03){
+        if (Vector2.Distance(position, lastPostion) <= 0.03)
+        {
             base.move(Vector2.zero, Vector2.zero);
             return;
         }
         lastPostion = position;
-
         base.move(position, lookDirection);
     }
     private void OnTriggerEnter2D(Collider2D other)
@@ -73,7 +84,7 @@ public class MoveController : Movement
         if (other.gameObject.tag == "OffTank")
         {
             //从坦克上下来
-            Dialog.shared.showText("从坦克上下来了!","事件提醒");
+            Dialog.shared.showText("从坦克上下来了!", "事件提醒");
         }
     }
 }
