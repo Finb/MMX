@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using MMX.Input;
 public class RoleInfo : MonoBehaviour, InputEventInterface
 {
     public AnimationClip downAnimation;
@@ -43,7 +43,7 @@ public class RoleInfo : MonoBehaviour, InputEventInterface
     // Update is called once per frame
     public void inputAction()
     {
-        if (Input.GetKeyDown(KeyCode.J))
+        if (GameButtonPressRecognition.getKeyDown(GameButton.A))
         {
             var hit = Physics2D.Raycast(gameObject.transform.position, GetComponent<Movement>().lookDirection, 3, 1 << 8);
             if (hit.collider == null)
@@ -64,7 +64,7 @@ public class RoleInfo : MonoBehaviour, InputEventInterface
                 MMX.GameManager.Dialog.showText(roleInfo.dialogueText, roleInfo.nick);
             }
         }
-        else if (Input.GetKeyDown(KeyCode.U))
+        else if (GameButtonPressRecognition.getKeyDown(GameButton.X))
         {
             MMX.GameManager.MainMenu.show();
         }

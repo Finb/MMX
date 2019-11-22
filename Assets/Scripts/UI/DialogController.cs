@@ -26,13 +26,17 @@ public class DialogController : MonoBehaviour, InputEventInterface
     {
 
     }
-    public bool isActiving {
-        get {
+    public bool isActiving
+    {
+        get
+        {
             return gameObject.activeSelf;
         }
     }
-    public bool isInteroperable {
-        get {
+    public bool isInteroperable
+    {
+        get
+        {
             return textDisplay.arrowImage.activeSelf;
         }
     }
@@ -46,26 +50,28 @@ public class DialogController : MonoBehaviour, InputEventInterface
     }
     public void inputAction()
     {
-        if (isInteroperable && Input.GetKeyDown(KeyCode.J))
+        if (isInteroperable && MMX.Input.GameButtonPressRecognition.getKeyDown(MMX.Input.GameButton.A))
         {
             continueDiglog();
         }
     }
-        public void showText(string text, string nick = null)
+    public void showText(string text, string nick = null)
     {
         MMX.GameManager.Input.pushTarget(gameObject);
         gameObject.SetActive(true);
         var nickPanel = nickLabel.gameObject.transform.parent.gameObject;
         var nickPanelRectTransform = nickPanel.GetComponent<RectTransform>();
-        if (nick != null && nick.Length > 0){
+        if (nick != null && nick.Length > 0)
+        {
             nickLabel.text = nick;
             var width = Math.Max(40 + nick.GetFontlen(30), 80);
-            nickPanelRectTransform.anchoredPosition = new Vector3(width / 2, 28 ,0);
+            nickPanelRectTransform.anchoredPosition = new Vector3(width / 2, 28, 0);
             nickPanelRectTransform.sizeDelta = new Vector2(width, 64);
-            
+
             nickPanel.SetActive(true);
         }
-        else{
+        else
+        {
             nickPanel.SetActive(false);
         }
         textLabel.text = text;
@@ -76,7 +82,8 @@ public class DialogController : MonoBehaviour, InputEventInterface
         gameObject.SetActive(false);
         MMX.GameManager.Input.popTarget();
     }
-    public void continueDiglog(){
+    public void continueDiglog()
+    {
         textDisplay.continueType();
     }
 }

@@ -19,6 +19,6 @@ public class ButtonSelectionChangedController : MonoBehaviour, ISelectHandler
     public void OnSelect(BaseEventData data){
         var fingerObj = GameObject.FindGameObjectWithTag("Finger");
         var fingerImage = fingerObj.FindObject("Image", true);
-        fingerImage.transform.position = new Vector2(EventSystem.current.currentSelectedGameObject.transform.position.x - 28, EventSystem.current.currentSelectedGameObject.transform.position.y);
+        fingerImage.transform.position = new Vector2(data.selectedObject.transform.position.x - 28, data.selectedObject.transform.position.y);
     }
 }
