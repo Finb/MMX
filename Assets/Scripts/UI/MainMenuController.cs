@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEditor.UI;
+
 public class MainMenuController : MonoBehaviour, InputEventInterface
 {
 
     private void Awake()
     {
         MMX.GameManager.MainMenu = this;
-        gameObject.SetActive(false);
+        // gameObject.SetActive(true);
     }
     public void willOnFocus()
     {
@@ -32,10 +34,14 @@ public class MainMenuController : MonoBehaviour, InputEventInterface
     public void show()
     {
         MMX.GameManager.Audio.PlaySfx(Resources.Load<AudioClip>("MetalMax-SFX/0x3E-Enter"));
-        MMX.GameManager.Input.pushTarget(gameObject);
+        
         MMX.GameManager.Finger.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(gameObject.FindObject("包裹"));
+
         gameObject.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(gameObject.FindObject("包裹"));
+        // gameObject.FindObject("包裹").GetComponent<ButtonSelectionChangedController>().OnSelect(null);
+        MMX.GameManager.Input.pushTarget(gameObject);
+        
     }
     public void hide()
     {
@@ -43,5 +49,6 @@ public class MainMenuController : MonoBehaviour, InputEventInterface
         MMX.GameManager.Input.popTarget();
         MMX.GameManager.Finger.SetActive(false);
         gameObject.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
     }
 }

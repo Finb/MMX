@@ -15,8 +15,8 @@ namespace MMX
 
     public class AudioController : MonoBehaviour
     {
-        public float bgmVolume = 0.5f;
-        public float sfxVolume = 0.5f;
+        public float bgmVolume = 0.7f;
+        public float sfxVolume = 1.0f;
 
         [Tooltip("Fade-out transition time when switching BGM audio clip.")]
         public float bgmTransitionTime = 1.2f;
