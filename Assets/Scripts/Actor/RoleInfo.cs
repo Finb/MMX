@@ -66,7 +66,7 @@ public class RoleInfo : MonoBehaviour, InputEventInterface
             }
             if (roleInfo.dialogueText.Length > 0)
             {
-                MMX.GameManager.Dialog.showText(roleInfo.dialogueText, roleInfo.nick);
+                MMX.GameManager.Dialog.showText(roleInfo.dialogueText, roleInfo.nick);    
             }
         }
         else if (GameButtonPressRecognition.getKeyDown(GameButton.X))

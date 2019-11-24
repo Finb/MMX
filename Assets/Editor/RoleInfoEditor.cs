@@ -46,7 +46,7 @@ public class RoleInfoEditor : Editor
                                     foreach (RoleInfoActionTypeAttribute item in field.GetCustomAttributes(typeof(RoleInfoActionTypeAttribute), false))
                                     {
                                         if (item.getRoleInfoType() == actionType){
-                                            EditorGUILayout.PropertyField(element.FindPropertyRelative(field.Name));
+                                            EditorGUILayout.PropertyField(element.FindPropertyRelative(field.Name),true);
                                         }
                                     }
                                 }

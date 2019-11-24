@@ -12,8 +12,10 @@ public struct RoleInfoAction
     [TextArea]
     [Header("对话文本")]
     [RoleInfoActionTypeAttribute(RoleInfoActionType.dialogue)]
-    [RoleInfoActionTypeAttribute(RoleInfoActionType.humanItem)]
     public string text;
+
+    [RoleInfoActionTypeAttribute(RoleInfoActionType.dialogue)]
+    public RoleInfoAction[] childRoleInfoActions;
 
 
 }

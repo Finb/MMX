@@ -17824,7 +17824,12 @@ PrefabInstance:
     - target: {fileID: 6178589070373856627, guid: 2f8818e1613294d71b326d54775fa103,
         type: 3}
       propertyPath: roleInfoActions.Array.data[0].text
-      value: 
+      value: "\u5DF2\u5B9E\u73B0\u7684\u529F\u80FD"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178589070373856627, guid: 2f8818e1613294d71b326d54775fa103,
+        type: 3}
+      propertyPath: roleInfoActions.Array.data[1].text
+      value: "\u6B63\u5728\u5F00\u53D1\u7684\u529F\u80FD"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f8818e1613294d71b326d54775fa103, type: 3}

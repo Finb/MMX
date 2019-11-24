@@ -11,9 +11,9 @@ public class DialogController : BaseInputController
     private Text nickLabel;
     public TextDisplay textDisplay;
 
-    private Action disPlayCompletionAction;
-    private Action willDisappearAction;
-    private Action willAppearAction;
+    public Action disPlayCompletionAction;
+    public Action willDisappearAction;
+    public Action willAppearAction;
 
     private void Awake()
     {
@@ -55,6 +55,10 @@ public class DialogController : BaseInputController
     }
     public void showText(string text, string nick = null)
     {
+        if (willAppearAction != null){
+            willAppearAction();
+        }
+        
         MMX.GameManager.Input.pushTarget(gameObject);
         gameObject.SetActive(true);
         var nickPanel = nickLabel.gameObject.transform.parent.gameObject;
@@ -77,12 +81,12 @@ public class DialogController : BaseInputController
     }
     public void hide()
     {
+        gameObject.SetActive(false);
+        MMX.GameManager.Input.popTarget();
         if (willDisappearAction != null)
         {
             willDisappearAction();
         }
-        gameObject.SetActive(false);
-        MMX.GameManager.Input.popTarget();
     }
     public void continueDiglog()
     {

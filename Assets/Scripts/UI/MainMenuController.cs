@@ -46,7 +46,6 @@ public class MainMenuController : BaseInputController
     public void show()
     {
         MMX.GameManager.Audio.PlaySfx(Resources.Load<AudioClip>("MetalMax-SFX/0x3E-Enter"));
-        MMX.GameManager.Finger.SetActive(true);
         gameObject.SetActive(true);
         MMX.GameManager.Input.pushTarget(gameObject);
 
@@ -55,7 +54,6 @@ public class MainMenuController : BaseInputController
     {
         MMX.GameManager.Audio.PlaySfx(Resources.Load<AudioClip>("MetalMax-SFX/0x3E-Enter"));
         MMX.GameManager.Input.popTarget();
-        MMX.GameManager.Finger.SetActive(false);
         gameObject.SetActive(false);
         EventSystem.current.SetSelectedGameObject(null);
     }

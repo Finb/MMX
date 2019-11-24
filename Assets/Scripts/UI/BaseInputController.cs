@@ -26,12 +26,14 @@ public abstract class BaseInputController : MonoBehaviour, InputEventInterface
         foreach (var item in GetComponentsInChildren<UnityEngine.UI.Button>())
         {
             item.interactable = true;
+            MMX.GameManager.Finger.SetActive(true);
         }
     }
    public virtual void willLostFocus() {
        foreach (var item in GetComponentsInChildren<UnityEngine.UI.Button>())
         {
             item.interactable = false;
+            MMX.GameManager.Finger.SetActive(false);
         }
    }
 }
