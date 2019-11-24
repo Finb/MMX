@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using MMX.Input;
+
+
+
 public class RoleInfo : MonoBehaviour, InputEventInterface
 {
     public AnimationClip downAnimation;
@@ -16,6 +19,8 @@ public class RoleInfo : MonoBehaviour, InputEventInterface
     [Header("对话文本")]
     [TextArea]
     public string dialogueText;
+
+    public RoleInfoAction[] roleInfoActions;
 
 
     private Animator anim;
@@ -70,3 +75,4 @@ public class RoleInfo : MonoBehaviour, InputEventInterface
         }
     }
 }
+

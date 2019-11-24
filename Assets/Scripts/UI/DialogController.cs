@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class DialogController : BaseInputController
 {
     // Start is called before the first frame update
     private Text textLabel;
     private Text nickLabel;
     public TextDisplay textDisplay;
+
+    private Action disPlayCompletionAction;
+    private Action willDisappearAction;
+    private Action willAppearAction;
+
     private void Awake()
     {
         MMX.GameManager.Dialog = this;
@@ -71,6 +77,10 @@ public class DialogController : BaseInputController
     }
     public void hide()
     {
+        if (willDisappearAction != null)
+        {
+            willDisappearAction();
+        }
         gameObject.SetActive(false);
         MMX.GameManager.Input.popTarget();
     }

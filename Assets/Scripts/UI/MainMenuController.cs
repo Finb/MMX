@@ -14,7 +14,6 @@ public class MainMenuController : BaseInputController
     }
     public override void willOnFocus()
     {
-        Debug.Log("ffffff");
         base.willOnFocus();
         setSelectedButton();
     }
