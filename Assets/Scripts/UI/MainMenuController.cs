@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEditor.UI;
 
-public class MainMenuController : MonoBehaviour, InputEventInterface
+public class MainMenuController : BaseInputController 
 {
 
     private void Awake()
@@ -12,22 +12,13 @@ public class MainMenuController : MonoBehaviour, InputEventInterface
         MMX.GameManager.MainMenu = this;
         // gameObject.SetActive(true);
     }
-    public void willOnFocus()
+    public override void willOnFocus()
     {
-        foreach (var item in GetComponentsInChildren<UnityEngine.UI.Button>())
-        {
-            item.interactable = true;
-        }
+        Debug.Log("ffffff");
+        base.willOnFocus();
         setSelectedButton();
     }
-    public void willLostFocus()
-    {
-        foreach (var item in GetComponentsInChildren<UnityEngine.UI.Button>())
-        {
-            item.interactable = false;
-        }
-    }
-    public void inputAction()
+    public override void inputAction()
     {
         if (MMX.Input.GameButtonPressRecognition.getKeyDown(MMX.Input.GameButton.A))
         {

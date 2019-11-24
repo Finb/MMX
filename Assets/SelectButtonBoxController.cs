@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-public class SelectButtonBoxController : MonoBehaviour, InputEventInterface
+public class SelectButtonBoxController : BaseInputController
 {
     // Start is called before the first frame update
     void Start()
@@ -15,21 +15,7 @@ public class SelectButtonBoxController : MonoBehaviour, InputEventInterface
     {
 
     }
-    public void willOnFocus()
-    {
-        foreach (var item in GetComponentsInChildren<UnityEngine.UI.Button>())
-        {
-            item.interactable = true;
-        }
-    }
-    public void willLostFocus()
-    {
-        foreach (var item in GetComponentsInChildren<UnityEngine.UI.Button>())
-        {
-            item.interactable = false;
-        }
-    }
-    public void inputAction()
+    public override void inputAction()
     {
         if (MMX.Input.GameButtonPressRecognition.getKeyDown(MMX.Input.GameButton.A))
         {

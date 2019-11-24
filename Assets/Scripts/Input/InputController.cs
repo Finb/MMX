@@ -2,13 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface InputEventInterface
-{
-    void inputAction();
-    void willOnFocus();
-    void willLostFocus();
-}
-
 public class InputController : MonoBehaviour
 {
 
@@ -58,14 +51,16 @@ public class InputController : MonoBehaviour
             item.inputAction();
         }
     }
-    private void invokeWillLostFocus(GameObject target){
+    private void invokeWillLostFocus(GameObject target)
+    {
         var components = target.GetComponentsInChildren<InputEventInterface>();
         foreach (var item in components)
         {
             item.willLostFocus();
         }
     }
-    private void invokeWillOnFocus(GameObject target){
+    private void invokeWillOnFocus(GameObject target)
+    {
         var components = target.GetComponentsInChildren<InputEventInterface>();
         foreach (var item in components)
         {

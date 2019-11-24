@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
-public class DialogController : MonoBehaviour, InputEventInterface
+public class DialogController : BaseInputController
 {
     // Start is called before the first frame update
     private Text textLabel;
@@ -40,15 +40,7 @@ public class DialogController : MonoBehaviour, InputEventInterface
             return textDisplay.arrowImage.activeSelf;
         }
     }
-    public void willOnFocus()
-    {
-
-    }
-    public void willLostFocus()
-    {
-
-    }
-    public void inputAction()
+    public override void inputAction()
     {
         if (isInteroperable && MMX.Input.GameButtonPressRecognition.getKeyDown(MMX.Input.GameButton.A))
         {
