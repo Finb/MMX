@@ -5,11 +5,11 @@ using UnityEditor;
 public class RoleInfoEditor : Editor
 {
     private SerializedObject obj;//序列化
-    private SerializedProperty roleInfoActions;
+    private SerializedProperty action;
     void OnEnable()
     {
         obj = new SerializedObject(target);
-        roleInfoActions = obj.FindProperty("roleInfoActions");
+        action = obj.FindProperty("action");
 
     }
     public override void OnInspectorGUI()
@@ -21,55 +21,103 @@ public class RoleInfoEditor : Editor
         {
             do
             {
-                if (tProp.name == "roleInfoActions")
+                if (tProp.name == "action")
                 {
-                    tProp = roleInfoActions.Copy();
-                    EditorGUILayout.PropertyField(tProp, false);
-                    if (tProp.isArray && tProp.isExpanded)
-                    {
-
-                        EditorGUI.indentLevel++;
-                        tProp.arraySize = EditorGUILayout.DelayedIntField("Size", tProp.arraySize);
-                        for (int i = 0, size = tProp.arraySize; i < size; i++)
-                        {
-                            var element = tProp.GetArrayElementAtIndex(i);
-                            EditorGUILayout.PropertyField(element, false);
-                            if (element.isExpanded)
-                            {
-                                EditorGUI.indentLevel++;
-                                var actionTypeElement = element.FindPropertyRelative("actionType");
-                                EditorGUILayout.PropertyField(actionTypeElement);
-                                var actionType = (RoleInfoActionType)actionTypeElement.intValue;
-
-                                foreach (System.Reflection.FieldInfo field in typeof(RoleInfoAction).GetFields())
-                                {
-                                    foreach (RoleInfoActionTypeAttribute item in field.GetCustomAttributes(typeof(RoleInfoActionTypeAttribute), false))
-                                    {
-                                        if (item.getRoleInfoType() == actionType){
-                                            EditorGUILayout.PropertyField(element.FindPropertyRelative(field.Name),true);
-                                        }
-                                    }
-                                }
-
-                                
-                                EditorGUI.indentLevel--;
-                            }
-                        }
-                        EditorGUI.indentLevel--;
-                        EditorGUILayout.Space();
-                    }
+                    tProp = action.Copy();
+                    layoutRowInfoAction(tProp);
                 }
-                // DrawMyStuff(tProp.Copy());
-                // Otherwise normal draw (include the children)
                 else
                     EditorGUILayout.PropertyField(tProp, true);
-
-                // EditorGUI.EndDisabledGroup();
             }
-            // Skip the children (the draw will handle it)
             while (tProp.NextVisible(false));
         }
 
         obj.ApplyModifiedProperties();//应用
+    }
+
+    private void layoutRowInfoAction(SerializedProperty tProp)
+    {
+        EditorGUILayout.PropertyField(tProp, false);
+        if (!tProp.isExpanded)
+        {
+            return;
+        }
+
+        EditorGUI.indentLevel++;
+        var actionTypeElement = tProp.FindPropertyRelative("actionType");
+        EditorGUILayout.PropertyField(actionTypeElement);
+        var actionType = (RoleInfoActionType)actionTypeElement.intValue;
+
+        foreach (System.Reflection.FieldInfo field in typeof(RoleInfoAction).GetFields())
+        {
+            foreach (RoleInfoActionTypeAttribute item in field.GetCustomAttributes(typeof(RoleInfoActionTypeAttribute), false))
+            {
+                if (field.Name == "childRoleInfoActions")
+                {
+
+                    var childRoleInfoActions = tProp.FindPropertyRelative(field.Name);
+                    EditorGUILayout.PropertyField(childRoleInfoActions);
+                    if (childRoleInfoActions.isExpanded)
+                    {
+                        childRoleInfoActions.arraySize = EditorGUILayout.DelayedIntField("Size", childRoleInfoActions.arraySize);
+                        EditorGUI.indentLevel++;
+                        for (int i = 0, size = childRoleInfoActions.arraySize; i < size; i++)
+                        {
+
+                            var element = childRoleInfoActions.GetArrayElementAtIndex(i);
+                            layoutRowInfoAction(element);
+                        }
+                        EditorGUI.indentLevel--;
+                    }
+                    
+                }
+                else if (item.getRoleInfoType() == actionType)
+                {
+                    EditorGUILayout.PropertyField(tProp.FindPropertyRelative(field.Name), false);
+                }
+            }
+        }
+
+        EditorGUI.indentLevel--;
+
+
+        // if (tProp.isExpanded)
+        // {
+        //     EditorGUI.indentLevel++;
+        //     tProp.arraySize = EditorGUILayout.DelayedIntField("Size", tProp.arraySize);
+        //     for (int i = 0, size = tProp.arraySize; i < size; i++)
+        //     {
+        //         var element = tProp.GetArrayElementAtIndex(i);
+        //         EditorGUILayout.PropertyField(element, false);
+        //         if (element.isExpanded)
+        //         {
+        //             EditorGUI.indentLevel++;
+        //             var actionTypeElement = element.FindPropertyRelative("actionType");
+        //             EditorGUILayout.PropertyField(actionTypeElement);
+        //             var actionType = (RoleInfoActionType)actionTypeElement.intValue;
+
+        //             foreach (System.Reflection.FieldInfo field in typeof(RoleInfoAction).GetFields())
+        //             {
+        //                 foreach (RoleInfoActionTypeAttribute item in field.GetCustomAttributes(typeof(RoleInfoActionTypeAttribute), false))
+        //                 {
+        //                     if (field.Name == "childRoleInfoActions")
+        //                     {
+        //                         Debug.Log("bbbbbbb");
+        //                         layoutRowInfoAction(element.FindPropertyRelative(field.Name));
+        //                     }
+        //                     else if (item.getRoleInfoType() == actionType)
+        //                     {
+        //                         EditorGUILayout.PropertyField(element.FindPropertyRelative(field.Name), false);
+        //                     }
+        //                 }
+        //             }
+
+
+        //             EditorGUI.indentLevel--;
+        //         }
+        //     }
+        //     EditorGUI.indentLevel--;
+        //     EditorGUILayout.Space();
+        // }
     }
 }

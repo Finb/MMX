@@ -13,18 +13,15 @@ public class DialogController : BaseInputController
 
     public Action disPlayCompletionAction;
     public Action willDisappearAction;
-    public Action willAppearAction;
-
     private void Awake()
     {
-        MMX.GameManager.Dialog = this;
         textLabel = gameObject.FindObject("Text", true).GetComponent<Text>();
         nickLabel = gameObject.FindObject("nickText", true).GetComponent<Text>();
         textDisplay = textLabel.GetComponent<TextDisplay>();
     }
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -53,12 +50,9 @@ public class DialogController : BaseInputController
             continueDiglog();
         }
     }
-    public void showText(string text, string nick = null)
+    public void showText(string text, string nick = null, Action disPlayCompletionAction = null)
     {
-        if (willAppearAction != null){
-            willAppearAction();
-        }
-        
+        this.disPlayCompletionAction = disPlayCompletionAction;
         MMX.GameManager.Input.pushTarget(gameObject);
         gameObject.SetActive(true);
         var nickPanel = nickLabel.gameObject.transform.parent.gameObject;
@@ -91,5 +85,12 @@ public class DialogController : BaseInputController
     public void continueDiglog()
     {
         textDisplay.continueType();
+    }
+
+    public static DialogController create()
+    {
+        var diglog = Instantiate(Resources.Load<GameObject>("UI/Dialog"), new Vector3(0, 0, 0), Quaternion.identity, GameObject.Find("UI").GetComponent<Transform>());
+        diglog.name = "Diglog";
+        return diglog.GetComponent<DialogController>();
     }
 }

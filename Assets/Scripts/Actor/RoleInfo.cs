@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using MMX.Input;
 
 
@@ -16,11 +14,7 @@ public class RoleInfo : MonoBehaviour, InputEventInterface
     public float raycastDistance = 1f;
     [Header("角色昵称")]
     public string nick;
-    [Header("对话文本")]
-    [TextArea]
-    public string dialogueText;
-
-    public RoleInfoAction[] roleInfoActions;
+    public RoleInfoAction action;
 
 
     private Animator anim;
@@ -64,9 +58,9 @@ public class RoleInfo : MonoBehaviour, InputEventInterface
             {
                 return;
             }
-            if (roleInfo.dialogueText.Length > 0)
+            if (roleInfo.action != null)
             {
-                MMX.GameManager.Dialog.showText(roleInfo.dialogueText, roleInfo.nick);    
+                roleInfo.playAction(roleInfo.action);
             }
         }
         else if (GameButtonPressRecognition.getKeyDown(GameButton.X))
@@ -74,5 +68,36 @@ public class RoleInfo : MonoBehaviour, InputEventInterface
             MMX.GameManager.MainMenu.show();
         }
     }
+
+    public void playAction(RoleInfoAction action)
+    {
+        if (action == null)
+        {
+            return;
+        }
+        switch (action.actionType)
+        {
+            case RoleInfoActionType.dialogue:
+                var dialog = DialogController.create();
+                dialog.showText(action.dialogueText, this.nick, () =>
+                {
+                    if (action.childRoleInfoActions.Length > 0)
+                    {
+                        var boxController = SelectButtonBoxController.Create();
+                        foreach (var item in action.childRoleInfoActions)
+                        {
+                            boxController.addButton(item.text, () =>
+                            {
+                                dialog.hide();
+                                this.playAction(item);
+                            });
+                        }
+                        boxController.show();
+                    }
+                });
+                break;
+        }
+    }
+
 }
 

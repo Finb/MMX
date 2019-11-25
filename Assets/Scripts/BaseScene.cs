@@ -37,10 +37,6 @@ public class BaseScene : MonoBehaviour
         }
 
         //加载UI界面
-        var diglog = Instantiate(Resources.Load<GameObject>("UI/Dialog"), new Vector3(0, 0, 0), Quaternion.identity, GameObject.Find("UI").GetComponent<Transform>());
-        diglog.name = "Diglog";
-        diglog.SetActive(false);
-
         var mainMenu = Instantiate(Resources.Load<GameObject>("UI/MainMenu"), new Vector3(0, 0, 0), Quaternion.identity, GameObject.Find("UI").GetComponent<Transform>());
         mainMenu.name = "MainMenu";
         //强制先算一下布局（否则Virtual layout 需要在 avtice 为true 时 才布局，那时已经晚了，导致要设置手指的位置时取到的按钮postion错误）

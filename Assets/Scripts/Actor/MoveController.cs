@@ -84,7 +84,7 @@ public class MoveController : Movement, InputEventInterface
         if (other.gameObject.tag == "OffTank")
         {
             //从坦克上下来
-            MMX.GameManager.Dialog.showText("从坦克上下来了!", "事件提醒");
+            DialogController.create().showText("从坦克上下来了!", "事件提醒");
         }
     }
 }

@@ -5,14 +5,19 @@ using MMX.Input;
 
 
 [System.Serializable]
-public struct RoleInfoAction
+public class RoleInfoAction
 {
     public RoleInfoActionType actionType;
+
+    [Header("动作名称")]
+    [RoleInfoActionTypeAttribute(RoleInfoActionType.dialogue)]
+    public string text;
 
     [TextArea]
     [Header("对话文本")]
     [RoleInfoActionTypeAttribute(RoleInfoActionType.dialogue)]
-    public string text;
+    public string dialogueText;
+
 
     [RoleInfoActionTypeAttribute(RoleInfoActionType.dialogue)]
     public RoleInfoAction[] childRoleInfoActions;

@@ -11,6 +11,7 @@ public class TextDisplay : MonoBehaviour
     private float letterPause = 0.01f;
     public GameObject arrowImage;
 
+    private DialogController dialogController;
     private Text textLabel
     {
         get
@@ -20,6 +21,7 @@ public class TextDisplay : MonoBehaviour
     }
     void Start()
     {
+        dialogController = GetComponentInParent<DialogController>();
     }
     public void showText()
     {
@@ -28,15 +30,19 @@ public class TextDisplay : MonoBehaviour
 
         string line = "";
         var lines = contentText.Split('\n');
-        for (int i = 0 ; i < lines.Length; i++){
+        for (int i = 0; i < lines.Length; i++)
+        {
             line += lines[i];
-            if (i < lines.Length - 1 ){
+            if (i < lines.Length - 1)
+            {
                 line += "\n";
             }
-            else{
+            else
+            {
                 sentences.Add(line);
             }
-            if (i > 0 && (i+1) % 3 == 0) {
+            if (i > 0 && (i + 1) % 3 == 0)
+            {
                 //每次显示三行
                 sentences.Add(line);
                 line = "";
@@ -47,12 +53,16 @@ public class TextDisplay : MonoBehaviour
         startType();
 
     }
-    void startType(){
+    void startType()
+    {
         textLabel.text = "";
-        if (currentDisplaySentenceIndex < sentences.Count){
+        if (currentDisplaySentenceIndex < sentences.Count)
+        {
             StartCoroutine(TypeSentence(sentences[currentDisplaySentenceIndex]));
+            Debug.Log("fffff");
         }
-        else{
+        else
+        {
             finished();
         }
     }
@@ -64,17 +74,27 @@ public class TextDisplay : MonoBehaviour
             yield return new WaitForSeconds(letterPause);
         }
         currentDisplaySentenceIndex++;
+        if (currentDisplaySentenceIndex >= sentences.Count)
+        {
+            if (dialogController.disPlayCompletionAction != null)
+            {
+                dialogController.disPlayCompletionAction();
+            }
+        }
+        //全部显示完毕
         arrowImage.SetActive(true);
     }
-    
-    public void continueType(){
-        if (arrowImage.activeSelf){
+
+    public void continueType()
+    {
+        if (arrowImage.activeSelf)
+        {
             arrowImage.SetActive(false);
             startType();
         }
     }
     void finished()
     {
-        MMX.GameManager.Dialog.hide();
+        dialogController.hide();
     }
 }
