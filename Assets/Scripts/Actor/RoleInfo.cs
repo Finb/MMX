@@ -86,7 +86,7 @@ public class RoleInfo : MonoBehaviour, InputEventInterface
                         var boxController = SelectButtonBoxController.Create();
                         foreach (var item in action.childRoleInfoActions)
                         {
-                            boxController.addButton(item.text, () =>
+                            boxController.addButton(item.actionName, () =>
                             {
                                 dialog.hide();
                                 this.playAction(item);

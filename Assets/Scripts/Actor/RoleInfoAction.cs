@@ -9,9 +9,8 @@ public class RoleInfoAction
 {
     public RoleInfoActionType actionType;
 
-    [Header("动作名称")]
-    [RoleInfoActionTypeAttribute(RoleInfoActionType.dialogue)]
-    public string text;
+    [Header("事件名称")]
+    public string actionName;
 
     [TextArea]
     [Header("对话文本")]
@@ -20,6 +19,7 @@ public class RoleInfoAction
 
 
     [RoleInfoActionTypeAttribute(RoleInfoActionType.dialogue)]
+    [Header("子事件")]
     public RoleInfoAction[] childRoleInfoActions;
 
 
@@ -29,8 +29,9 @@ public class RoleInfoAction
 [System.Serializable]
 public enum RoleInfoActionType : int
 {
-    dialogue = 0,
-    humanItem,
+    none = 0,
+    dialogue = 1, //弹出对话
+    humanItem = 2, //人类道具店
 }
 
 

@@ -47,33 +47,45 @@ public class RoleInfoEditor : Editor
         var actionTypeElement = tProp.FindPropertyRelative("actionType");
         EditorGUILayout.PropertyField(actionTypeElement);
         var actionType = (RoleInfoActionType)actionTypeElement.intValue;
+        if (actionType == RoleInfoActionType.none)
+        {
+            return;
+        }
+
 
         foreach (System.Reflection.FieldInfo field in typeof(RoleInfoAction).GetFields())
         {
+            if (field.Name == "actionName")
+            {
+                var nameProp = tProp.FindPropertyRelative(field.Name);
+                EditorGUILayout.PropertyField(nameProp);
+            }
             foreach (RoleInfoActionTypeAttribute item in field.GetCustomAttributes(typeof(RoleInfoActionTypeAttribute), false))
             {
-                if (field.Name == "childRoleInfoActions")
+                if (item.getRoleInfoType() == actionType)
                 {
-
-                    var childRoleInfoActions = tProp.FindPropertyRelative(field.Name);
-                    EditorGUILayout.PropertyField(childRoleInfoActions);
-                    if (childRoleInfoActions.isExpanded)
+                    if (field.Name == "childRoleInfoActions")
                     {
-                        childRoleInfoActions.arraySize = EditorGUILayout.DelayedIntField("Size", childRoleInfoActions.arraySize);
-                        EditorGUI.indentLevel++;
-                        for (int i = 0, size = childRoleInfoActions.arraySize; i < size; i++)
+                        var childRoleInfoActions = tProp.FindPropertyRelative(field.Name);
+                        EditorGUILayout.PropertyField(childRoleInfoActions);
+                        if (childRoleInfoActions.isExpanded)
                         {
+                            childRoleInfoActions.arraySize = EditorGUILayout.DelayedIntField("Size", childRoleInfoActions.arraySize);
+                            EditorGUI.indentLevel++;
+                            for (int i = 0, size = childRoleInfoActions.arraySize; i < size; i++)
+                            {
 
-                            var element = childRoleInfoActions.GetArrayElementAtIndex(i);
-                            layoutRowInfoAction(element);
+                                var element = childRoleInfoActions.GetArrayElementAtIndex(i);
+                                layoutRowInfoAction(element);
+                            }
+                            EditorGUI.indentLevel--;
                         }
-                        EditorGUI.indentLevel--;
+
                     }
-                    
-                }
-                else if (item.getRoleInfoType() == actionType)
-                {
-                    EditorGUILayout.PropertyField(tProp.FindPropertyRelative(field.Name), false);
+                    else
+                    {
+                        EditorGUILayout.PropertyField(tProp.FindPropertyRelative(field.Name), true);
+                    }
                 }
             }
         }

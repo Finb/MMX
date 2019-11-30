@@ -17738,6 +17738,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6178589070373856627, guid: 2f8818e1613294d71b326d54775fa103,
         type: 3}
+      propertyPath: action.childRoleInfoActions.Array.data[0].childRoleInfoActions.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178589070373856627, guid: 2f8818e1613294d71b326d54775fa103,
+        type: 3}
       propertyPath: downAnimation
       value: 
       objectReference: {fileID: 7400000, guid: 761322b2e7f084613a54fabea92ff8ac, type: 2}
@@ -17839,7 +17844,7 @@ PrefabInstance:
     - target: {fileID: 6178589070373856627, guid: 2f8818e1613294d71b326d54775fa103,
         type: 3}
       propertyPath: action.actionType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6178589070373856627, guid: 2f8818e1613294d71b326d54775fa103,
         type: 3}
@@ -17849,7 +17854,7 @@ PrefabInstance:
     - target: {fileID: 6178589070373856627, guid: 2f8818e1613294d71b326d54775fa103,
         type: 3}
       propertyPath: action.childRoleInfoActions.Array.data[0].actionType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6178589070373856627, guid: 2f8818e1613294d71b326d54775fa103,
         type: 3}
@@ -17869,7 +17874,7 @@ PrefabInstance:
     - target: {fileID: 6178589070373856627, guid: 2f8818e1613294d71b326d54775fa103,
         type: 3}
       propertyPath: action.childRoleInfoActions.Array.data[1].actionType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6178589070373856627, guid: 2f8818e1613294d71b326d54775fa103,
         type: 3}
@@ -17879,7 +17884,27 @@ PrefabInstance:
     - target: {fileID: 6178589070373856627, guid: 2f8818e1613294d71b326d54775fa103,
         type: 3}
       propertyPath: action.childRoleInfoActions.Array.data[1].dialogueText
-      value: "\u5546\u5E97\u7CFB\u7EDF"
+      value: "\u7269\u54C1\u7CFB\u7EDF"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178589070373856627, guid: 2f8818e1613294d71b326d54775fa103,
+        type: 3}
+      propertyPath: action.childRoleInfoActions.Array.data[0].childRoleInfoActions.Array.data[0].actionType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178589070373856627, guid: 2f8818e1613294d71b326d54775fa103,
+        type: 3}
+      propertyPath: action.childRoleInfoActions.Array.data[0].actionName
+      value: "\u5DF2\u5B8C\u6210\u7684\u529F\u80FD"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178589070373856627, guid: 2f8818e1613294d71b326d54775fa103,
+        type: 3}
+      propertyPath: action.childRoleInfoActions.Array.data[0].childRoleInfoActions.Array.data[1].actionType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178589070373856627, guid: 2f8818e1613294d71b326d54775fa103,
+        type: 3}
+      propertyPath: action.childRoleInfoActions.Array.data[1].actionName
+      value: "\u6B63\u5728\u5F00\u53D1\u7684\u529F\u80FD"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f8818e1613294d71b326d54775fa103, type: 3}
@@ -18136,6 +18161,16 @@ PrefabInstance:
         type: 3}
       propertyPath: roleInfoActions.Array.data[0].actionType
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3051801512824485432, guid: 4391a234a5fa942f5859628d1f88157d,
+        type: 3}
+      propertyPath: action.actionType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3051801512824485432, guid: 4391a234a5fa942f5859628d1f88157d,
+        type: 3}
+      propertyPath: action.dialogueText
+      value: "\u53D1\u65AF\u8482\u82AC"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4391a234a5fa942f5859628d1f88157d, type: 3}
