@@ -12,5 +12,7 @@ namespace MMX
         public static MainMenuController MainMenu;
         public static GameObject Finger = GameObject.Find("UI").FindObject("Finger");
 
+        public static TeamQueue Queue = TeamQueue.shared;
+
     }
 }

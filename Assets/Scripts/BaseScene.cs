@@ -43,21 +43,6 @@ public class BaseScene : MonoBehaviour
         UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(mainMenu.FindObject("Image").GetComponent<RectTransform>());
         mainMenu.SetActive(false);
 
-        var player2 = Instantiate(Resources.Load<GameObject>("Role/角色"));
-        player2.layer = 0;
-        var player = GameObject.FindGameObjectWithTag("Player");
-        player.GetComponent<Movement>().followerMovement = player2.GetComponent<Movement>();
-
-        var player3 = Instantiate(Resources.Load<GameObject>("Role/角色"));
-        player3.layer = 0;
-        player2.GetComponent<Movement>().followerMovement = player3.GetComponent<Movement>();
-
-        var player4 = Instantiate(Resources.Load<GameObject>("Role/角色"));
-        player4.layer = 0;
-        player3.GetComponent<Movement>().followerMovement = player4.GetComponent<Movement>();
-
-        
-
     }
 
     // Update is called once per frame

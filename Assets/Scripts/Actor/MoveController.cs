@@ -79,12 +79,4 @@ public class MoveController : Movement, InputEventInterface
         lastPostion = position;
         base.move(position, lookDirection);
     }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "OffTank")
-        {
-            //从坦克上下来
-            DialogController.create().showText("从坦克上下来了!", "事件提醒");
-        }
-    }
 }

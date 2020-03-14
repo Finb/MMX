@@ -6,7 +6,7 @@ public class InputController : MonoBehaviour
 {
 
     [Tooltip("接受输入操作的目标，数组最后一位就是当前接收操作的Target")]
-    public List<GameObject> targets;
+    public List<GameObject> targets = new List<GameObject>();
     public GameObject currentTarget
     {
         get
@@ -35,8 +35,6 @@ public class InputController : MonoBehaviour
     }
     private void Start()
     {
-        targets = new List<GameObject>();
-        targets.Add(GameObject.FindGameObjectWithTag("Player"));
     }
     private void Update()
     {
@@ -45,6 +43,9 @@ public class InputController : MonoBehaviour
 
     private void invokeInputAction(GameObject target)
     {
+        if (target == null){
+            return;
+        }
         var components = target.GetComponentsInChildren<InputEventInterface>();
         foreach (var item in components)
         {
@@ -53,6 +54,9 @@ public class InputController : MonoBehaviour
     }
     private void invokeWillLostFocus(GameObject target)
     {
+        if (target == null){
+            return;
+        }
         var components = target.GetComponentsInChildren<InputEventInterface>();
         foreach (var item in components)
         {
@@ -61,6 +65,9 @@ public class InputController : MonoBehaviour
     }
     private void invokeWillOnFocus(GameObject target)
     {
+        if (target == null){
+            return;
+        }
         var components = target.GetComponentsInChildren<InputEventInterface>();
         foreach (var item in components)
         {
