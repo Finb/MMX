@@ -32,6 +32,8 @@ public enum RoleInfoActionType : int
     none = 0,
     dialogue = 1, //弹出对话
     humanItem = 2, //人类道具店
+
+    follow = 79, //进入队列
 }
 
 

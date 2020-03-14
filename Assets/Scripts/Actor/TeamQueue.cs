@@ -6,7 +6,7 @@ public class TeamQueue: MonoBehaviour
 {
     public static TeamQueue shared = new TeamQueue();
     //当前队列对象
-    List<GameObject> queue;
+    List<GameObject> queue = new List<GameObject>();
 
     //当前队列人类
     GameObject[] humans;
@@ -22,7 +22,9 @@ public class TeamQueue: MonoBehaviour
     public void buildFolloweChain()
     {
         var player = Instantiate(Resources.Load<GameObject>("Role/主角"));
+        enqueue(player);
         player.AddComponent<TeleportController>();
+        player.name = "no1";
         MMX.GameManager.Input.pushTarget(player);
         var mainCamera = GameObject.FindWithTag("MainCamera");
         mainCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().Follow = player.transform;
@@ -30,9 +32,13 @@ public class TeamQueue: MonoBehaviour
         GameObject.FindWithTag("ScreenFader").GetComponent<TransitionController>().messageReceiver = player;
 
         var player2 = Instantiate(Resources.Load<GameObject>("Role/主角"));
-        player.GetComponent<MoveController>().followerMovement = player2.GetComponent<MoveController>();
+        enqueue(player2);
     }
     //进队
+    public bool enqueue(GameObject obj)
+    {
+        return enqueue(queue.Count,obj);
+    }
     public bool enqueue(int index, GameObject obj)
     {
         var movement = obj.GetComponent<Movement>();
@@ -41,23 +47,21 @@ public class TeamQueue: MonoBehaviour
             return false;
         }
         
-        index = System.Math.Max(0, System.Math.Min(index, queue.Count-1));
+        index = System.Math.Max(0, System.Math.Min(index, queue.Count));
         
         if (queue.Count <= 0)
         {
             queue.Insert(0,obj);
         }
         else if (index == 0){
-            
             movement = queue[0].GetComponent<Movement>();
             queue.Insert(0,obj);
+            
         }
         else {
             queue[index - 1].GetComponent<Movement>().followerMovement = movement;
             queue.Insert(index,obj);
         }
-
-        queue.Insert(index,obj);
 
         return true;
     }

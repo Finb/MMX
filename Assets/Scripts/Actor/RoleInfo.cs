@@ -96,6 +96,10 @@ public class RoleInfo : MonoBehaviour, InputEventInterface
                     }
                 });
                 break;
+            case RoleInfoActionType.follow:
+            MMX.GameManager.Queue.enqueue(this.gameObject);
+            Debug.Log("跟随");
+            break;
         }
     }
 
