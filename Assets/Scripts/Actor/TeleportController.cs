@@ -57,7 +57,7 @@ public class TeleportController : MonoBehaviour
             GameManager.Audio.PlayBgm(teleport.backgroundMusic);
         }
 
-        var cameraConfiner = teleport.dropZone.GetComponent<TeleportPortal>().cameraConfiner;
+        var cameraConfiner = teleport.GetComponent<TeleportPortal>().cameraConfiner;
         var mainCamera = GameObject.FindWithTag("MainCamera");
         var cinemachineConfiner = mainCamera.GetComponent<CinemachineConfiner>();
         var shape2D = (PolygonCollider2D)cinemachineConfiner.m_BoundingShape2D;

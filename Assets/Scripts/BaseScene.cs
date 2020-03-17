@@ -30,7 +30,7 @@ public class BaseScene : MonoBehaviour
         collider.points = pointsList.ToArray();
 
         // 加载地图
-        var obj = Instantiate(Resources.Load<GameObject>("地图/拉多"), new Vector3(0, 0, 0), Quaternion.identity);
+        var obj = Instantiate(Resources.Load<GameObject>("地图/拉多1"), new Vector3(0, 0, 0), Quaternion.identity);
         if (obj.GetComponent<MapInfo>().backgroundMusic != null)
         {
             GameManager.Audio.PlayBgm(obj.GetComponent<MapInfo>().backgroundMusic);
