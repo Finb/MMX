@@ -51,3 +51,16 @@ namespace MMX
         }
     }
 }
+
+
+public static class ExtendGameObject {
+    public static T GetComponentInParentIncludeInactive<T>(this GameObject gameObject) {
+        for (var transform = gameObject.transform; transform != null; transform = transform.parent){
+            T t = transform.GetComponent<T>();
+            if (t != null){
+                return t;
+            }
+        }
+        return default(T);
+    }
+}

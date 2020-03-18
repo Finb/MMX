@@ -6,7 +6,7 @@ public class TeamQueue : MonoBehaviour
 {
     public static TeamQueue shared = new TeamQueue();
     //当前队列对象
-    List<GameObject> queue = new List<GameObject>();
+    public List<GameObject> queue = new List<GameObject>();
 
     //当前队列人类
     List<GameObject> humans = new List<GameObject>();

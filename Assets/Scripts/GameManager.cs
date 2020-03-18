@@ -14,5 +14,7 @@ namespace MMX
 
         public static TeamQueue Queue = TeamQueue.shared;
 
+        public static GameObject map;
+
     }
 }

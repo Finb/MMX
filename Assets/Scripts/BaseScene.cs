@@ -31,6 +31,7 @@ public class BaseScene : MonoBehaviour
 
         // 加载地图
         var obj = Instantiate(Resources.Load<GameObject>("地图/拉多1"), new Vector3(0, 0, 0), Quaternion.identity);
+        MMX.GameManager.map = obj;
         if (obj.GetComponent<MapInfo>().backgroundMusic != null)
         {
             GameManager.Audio.PlayBgm(obj.GetComponent<MapInfo>().backgroundMusic);

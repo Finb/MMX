@@ -21,7 +21,7 @@ public class TextDisplay : MonoBehaviour
     }
     void Start()
     {
-        dialogController = GetComponentInParent<DialogController>();
+        dialogController = gameObject.GetComponentInParentIncludeInactive<DialogController>();
     }
     public void showText()
     {

@@ -8,17 +8,22 @@ public class TeleportPortal : MonoBehaviour
         public AudioClip soundEffect;
         public AudioClip backgroundMusic {
             get {
-                return dropZone.gameObject.GetComponentInParent<RoomInfo>().backgroundMusic;
+                var music = gameObject.GetComponentInParentIncludeInactive<RoomInfo>().backgroundMusic;
+                if (music == null){
+                    music = gameObject.GetComponentInParentIncludeInactive<MapInfo>().backgroundMusic;
+                }
+                return music;
             }
         }
         public Transform dropZone;
         public Vector2 dropZoneOffset;
         public int dropZoneSteps;
         public GameButton dropZoneLookAt = GameButton.None;
+        public TeleportInfo teleportInfo;
 
         public Vector2[] cameraConfiner {
             get {
-                return dropZone.gameObject.GetComponentInParent<RoomInfo>().cameraConfiner;
+                return gameObject.GetComponentInParentIncludeInactive<RoomInfo>().cameraConfiner;
             }
         }
 
