@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a81753098f0624a4484c5669b07f2116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundMusic: {fileID: 0}
+  backgroundMusic: {fileID: 8300000, guid: faa3d980e3d0f4ecc804d321af819fa7, type: 3}
   cameraConfiner:
   - {x: 15, y: 9}
   - {x: -15, y: 9}
@@ -6870,6 +6870,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7346778100923090393, guid: 0f82d66805ac04c8eaacfa0d52b8b71b,
+        type: 3}
+      propertyPath: teleportInfo.mapName
+      value: "\u62C9\u591A1"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7346778100923090393, guid: 0f82d66805ac04c8eaacfa0d52b8b71b,
+        type: 3}
+      propertyPath: teleportInfo.roomName
+      value: "\u5BB6"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7346778100923090393, guid: 0f82d66805ac04c8eaacfa0d52b8b71b,
+        type: 3}
+      propertyPath: teleportInfo.teleportPortalName
+      value: "\u4F20\u9001\u70B9-\u5BB6"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f82d66805ac04c8eaacfa0d52b8b71b, type: 3}

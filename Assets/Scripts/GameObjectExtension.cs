@@ -9,13 +9,13 @@ namespace MMX
         {
             return obj.TryGetComponent(typeof(T), out _);
         }
-        
+
         public static GameObject SetParent(this GameObject obj, GameObject newParent)
         {
             obj.transform.parent = newParent.transform;
             return obj;
         }
-        
+
         public static GameObject SetParent(this GameObject obj, Component newParent)
         {
             obj.transform.parent = newParent.transform;
@@ -53,14 +53,29 @@ namespace MMX
 }
 
 
-public static class ExtendGameObject {
-    public static T GetComponentInParentIncludeInactive<T>(this GameObject gameObject) {
-        for (var transform = gameObject.transform; transform != null; transform = transform.parent){
+public static class ExtendGameObject
+{
+    public static T GetComponentInParentIncludeInactive<T>(this GameObject gameObject)
+    {
+        for (var transform = gameObject.transform; transform != null; transform = transform.parent)
+        {
             T t = transform.GetComponent<T>();
-            if (t != null){
+            if (t != null)
+            {
                 return t;
             }
         }
         return default(T);
+    }
+}
+
+public static class ExtenVector2
+{
+    public static bool containsPoint(this Vector2[] rect, Vector2 point)
+    {
+        if (rect.Length != 4) {
+            return false;
+        }
+        return point.x >= rect[1].x && point.y >= rect[1].y && point.x <= rect[3].x && point.y <= rect[3].y;
     }
 }

@@ -14,6 +14,15 @@ public class TeamQueue : MonoBehaviour
     // 拖车
     GameObject trailer;
 
+    public GameObject captain {
+        get {
+            if (queue.Count > 0 ){
+                return queue[0];
+            }
+            return null;
+        }
+    }
+
     private TeamQueue()
     {
 
