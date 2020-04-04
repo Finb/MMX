@@ -10,13 +10,16 @@ public class TeamQueue : MonoBehaviour
 
     //当前队列人类
     List<GameObject> humans = new List<GameObject>();
-
+    
     // 拖车
     GameObject trailer;
 
-    public GameObject captain {
-        get {
-            if (queue.Count > 0 ){
+    public GameObject captain
+    {
+        get
+        {
+            if (queue.Count > 0)
+            {
                 return queue[0];
             }
             return null;
@@ -25,27 +28,38 @@ public class TeamQueue : MonoBehaviour
 
     private TeamQueue()
     {
-
-        // humans.Add(Instantiate(Resources.Load<GameObject>("Role/主角")));
-        buildFolloweChain();
+        humans.Add(Instantiate(Resources.Load<GameObject>("Role/主角")));
+        humans.Add(Instantiate(Resources.Load<GameObject>("Role/主角")));
+        humans.Add(Instantiate(Resources.Load<GameObject>("Role/主角")));
+        humans.Add(Instantiate(Resources.Load<GameObject>("Role/主角")));
+        buildFollowChain();
     }
     //构建队伍follow链
-    public void buildFolloweChain()
+    public void buildFollowChain()
     {
-        humans.Add(Instantiate(Resources.Load<GameObject>("Role/主角")));
-        humans.Add(Instantiate(Resources.Load<GameObject>("Role/主角")));
-        humans.Add(Instantiate(Resources.Load<GameObject>("Role/主角")));
-        humans.Add(Instantiate(Resources.Load<GameObject>("Role/主角")));
+        resetQueue();
         foreach (GameObject player in humans)
         {
             enqueue(player);
         }
     }
+    public void resetQueue(){
+        //重置queue队列中的数据
+
+        //清空 TeleportController 
+        foreach(var item in queue){
+            Destroy(item.GetComponent<TeleportController>());
+        }
+        //移除所有队员
+        queue.RemoveRange(0,queue.Count);
+    }
 
     public void setupCaptain(GameObject player)
     {
         player.AddComponent<TeleportController>();
-        MMX.GameManager.Input.pushTarget(player);
+
+        MMX.GameManager.Input.setRootTarget(player);
+
         var mainCamera = GameObject.FindWithTag("MainCamera");
         mainCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().Follow = player.transform;
         GameObject.FindWithTag("ScreenFader").GetComponent<TransitionController>().messageReceiver = player;
@@ -101,7 +115,8 @@ public class TeamQueue : MonoBehaviour
                 queue[index - 1].GetComponent<Movement>().followerMovement = queue[index + 1].GetComponent<Movement>();
             }
         }
-        else{
+        else
+        {
             setupCaptain(queue[index + 1]);
         }
         queue.Remove(obj);

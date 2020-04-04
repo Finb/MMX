@@ -31,6 +31,10 @@ public class MainMenuController : BaseInputController
 
 
             }
+            else if (EventSystem.current.currentSelectedGameObject.name == "乘降"){
+                Collider2D[] colliders = Physics2D.OverlapCircleAll(MMX.GameManager.Queue.captain.transform.position, 2, 1 << 8);
+                Debug.Log(colliders.Length);
+            }
             Debug.Log(EventSystem.current.currentSelectedGameObject.name);
         }
         else if (MMX.Input.GameButtonPressRecognition.getKeyDown(MMX.Input.GameButton.B))

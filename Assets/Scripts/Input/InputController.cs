@@ -18,7 +18,14 @@ public class InputController : MonoBehaviour
             return null;
         }
     }
-
+    public void setRootTarget(GameObject target)
+    {
+        if (targets.Count > 0)
+        {
+            targets.RemoveAt(0);
+        }
+        targets.Insert(0, target);
+    }
     public void pushTarget(GameObject target)
     {
         var oldTarget = currentTarget;
@@ -43,7 +50,8 @@ public class InputController : MonoBehaviour
 
     private void invokeInputAction(GameObject target)
     {
-        if (target == null){
+        if (target == null)
+        {
             return;
         }
         var components = target.GetComponentsInChildren<InputEventInterface>();
@@ -54,7 +62,8 @@ public class InputController : MonoBehaviour
     }
     private void invokeWillLostFocus(GameObject target)
     {
-        if (target == null){
+        if (target == null)
+        {
             return;
         }
         var components = target.GetComponentsInChildren<InputEventInterface>();
@@ -65,7 +74,8 @@ public class InputController : MonoBehaviour
     }
     private void invokeWillOnFocus(GameObject target)
     {
-        if (target == null){
+        if (target == null)
+        {
             return;
         }
         var components = target.GetComponentsInChildren<InputEventInterface>();

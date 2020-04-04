@@ -48,9 +48,3 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: gasdg
-    uniqueID: 2311958081
-    locked: 0
-  - name: New Layer
-    uniqueID: 1188295611
-    locked: 0
