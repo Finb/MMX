@@ -33,7 +33,18 @@ public class MainMenuController : BaseInputController
             }
             else if (EventSystem.current.currentSelectedGameObject.name == "乘降"){
                 Collider2D[] colliders = Physics2D.OverlapCircleAll(MMX.GameManager.Queue.captain.transform.position, 2, 1 << 8);
-                Debug.Log(colliders.Length);
+                
+                List<VehicleInfo> vehicles = new List<VehicleInfo>();
+                foreach ( var collider in colliders){
+                    var info = collider.GetComponent<VehicleInfo>();
+                    if (info != null){
+                        vehicles.Add(info);
+                    }
+                }
+
+                // vehicles[0].gameObject.GetComponent<SpriteRenderer>().sprite.texture
+
+                Debug.Log(vehicles.Count);
             }
             Debug.Log(EventSystem.current.currentSelectedGameObject.name);
         }
