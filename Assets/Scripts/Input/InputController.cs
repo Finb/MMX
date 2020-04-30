@@ -25,6 +25,7 @@ public class InputController : MonoBehaviour
             targets.RemoveAt(0);
         }
         targets.Insert(0, target);
+        invokeWillOnFocus(targets[0]);
     }
     public void pushTarget(GameObject target)
     {
@@ -42,23 +43,7 @@ public class InputController : MonoBehaviour
     }
     private void Start()
     {
-    }
-    private void Update()
-    {
-        invokeInputAction(currentTarget);
-    }
-
-    private void invokeInputAction(GameObject target)
-    {
-        if (target == null)
-        {
-            return;
-        }
-        var components = target.GetComponentsInChildren<InputEventInterface>();
-        foreach (var item in components)
-        {
-            item.inputAction();
-        }
+        
     }
     private void invokeWillLostFocus(GameObject target)
     {

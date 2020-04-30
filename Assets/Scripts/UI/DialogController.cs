@@ -4,20 +4,24 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogController : BaseInputController
+public class DialogController : BaseUIInputController
 {
-    // Start is called before the first frame update
     private Text textLabel;
     private Text nickLabel;
     public TextDisplay textDisplay;
 
     public Action disPlayCompletionAction;
     public Action willDisappearAction;
-    private void Awake()
-    {
+    public override void Awake(){
+        base.Awake();
+        needsShowFinger = false;
+               
         textLabel = gameObject.FindObject("Text", true).GetComponent<Text>();
         nickLabel = gameObject.FindObject("nickText", true).GetComponent<Text>();
         textDisplay = textLabel.GetComponent<TextDisplay>();
+ 
+        
+        inputs.UI.A.performed += ctx => {if (isInteroperable) continueDiglog();};  
     }
     void Start()
     {
@@ -41,13 +45,6 @@ public class DialogController : BaseInputController
         get
         {
             return textDisplay.arrowImage.activeSelf;
-        }
-    }
-    public override void inputAction()
-    {
-        if (isInteroperable && MMX.Input.GameButtonPressRecognition.getKeyDown(MMX.Input.GameButton.A))
-        {
-            continueDiglog();
         }
     }
     public void showText(string text, string nick = null, Action disPlayCompletionAction = null)

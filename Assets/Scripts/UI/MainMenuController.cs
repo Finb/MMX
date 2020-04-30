@@ -3,22 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MainMenuController : BaseInputController 
+public class MainMenuController : BaseUIInputController
 {
 
-    private void Awake()
-    {
+     public override void Awake(){
+        base.Awake();
         MMX.GameManager.MainMenu = this;
-        // gameObject.SetActive(true);
-    }
-    public override void willOnFocus()
-    {
-        base.willOnFocus();
-        setSelectedButton();
-    }
-    public override void inputAction()
-    {
-        if (MMX.Input.GameButtonPressRecognition.getKeyDown(MMX.Input.GameButton.A))
+
+        inputs.UI.A.performed += ctx =>
         {
             if (EventSystem.current.currentSelectedGameObject.name == "包裹")
             {
@@ -31,13 +23,16 @@ public class MainMenuController : BaseInputController
 
 
             }
-            else if (EventSystem.current.currentSelectedGameObject.name == "乘降"){
+            else if (EventSystem.current.currentSelectedGameObject.name == "乘降")
+            {
                 Collider2D[] colliders = Physics2D.OverlapCircleAll(MMX.GameManager.Queue.captain.transform.position, 2, 1 << 8);
-                
+
                 List<VehicleInfo> vehicles = new List<VehicleInfo>();
-                foreach ( var collider in colliders){
+                foreach (var collider in colliders)
+                {
                     var info = collider.GetComponent<VehicleInfo>();
-                    if (info != null){
+                    if (info != null)
+                    {
                         vehicles.Add(info);
                     }
                 }
@@ -47,11 +42,14 @@ public class MainMenuController : BaseInputController
                 Debug.Log(vehicles.Count);
             }
             Debug.Log(EventSystem.current.currentSelectedGameObject.name);
-        }
-        else if (MMX.Input.GameButtonPressRecognition.getKeyDown(MMX.Input.GameButton.B))
-        {
-            hide();
-        }
+        };
+
+        inputs.UI.B.performed += ctx => hide();
+    }
+    public override void willOnFocus()
+    {
+        base.willOnFocus();
+        setSelectedButton();
     }
     public void setSelectedButton()
     {

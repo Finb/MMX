@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TeamQueue : MonoBehaviour
+public class TeamQueue 
 {
     public static TeamQueue shared = new TeamQueue();
     //当前队列对象
@@ -28,10 +28,10 @@ public class TeamQueue : MonoBehaviour
 
     private TeamQueue()
     {
-        humans.Add(Instantiate(Resources.Load<GameObject>("Role/主角")));
-        humans.Add(Instantiate(Resources.Load<GameObject>("Role/主角")));
-        humans.Add(Instantiate(Resources.Load<GameObject>("Role/主角")));
-        humans.Add(Instantiate(Resources.Load<GameObject>("Role/主角")));
+        humans.Add(MonoBehaviour.Instantiate(Resources.Load<GameObject>("Role/主角")));
+        humans.Add(MonoBehaviour.Instantiate(Resources.Load<GameObject>("Role/主角")));
+        humans.Add(MonoBehaviour.Instantiate(Resources.Load<GameObject>("Role/主角")));
+        humans.Add(MonoBehaviour.Instantiate(Resources.Load<GameObject>("Role/主角")));
         buildFollowChain();
     }
     //构建队伍follow链
@@ -48,7 +48,7 @@ public class TeamQueue : MonoBehaviour
 
         //清空 TeleportController 
         foreach(var item in queue){
-            Destroy(item.GetComponent<TeleportController>());
+            MonoBehaviour.Destroy(item.GetComponent<TeleportController>());
         }
         //移除所有队员
         queue.RemoveRange(0,queue.Count);
@@ -67,7 +67,7 @@ public class TeamQueue : MonoBehaviour
     public void setupMember(GameObject player)
     {
         //清空传送脚本
-        Destroy(player.GetComponent<TeleportController>());
+        MonoBehaviour.Destroy(player.GetComponent<TeleportController>());
     }
 
     //进队

@@ -3,7 +3,7 @@ using MMX.Input;
 
 
 
-public class RoleInfo : MonoBehaviour, InputEventInterface
+public class RoleInfo : MonoBehaviour
 {
     public AnimationClip downAnimation;
     public AnimationClip leftAnimation;
@@ -27,46 +27,6 @@ public class RoleInfo : MonoBehaviour, InputEventInterface
         if (rightAnimation != null) overrideAinmator["主角1_move_right"] = rightAnimation;
         if (upAnimation != null) overrideAinmator["主角1_move_up"] = upAnimation;
         anim.runtimeAnimatorController = overrideAinmator;
-    }
-
-    public void willOnFocus()
-    {
-
-    }
-
-    public void willLostFocus()
-    {
-
-    }
-
-    // Update is called once per frame
-    public void inputAction()
-    {
-        if (GameButtonPressRecognition.getKeyDown(GameButton.A))
-        {
-            var hit = Physics2D.Raycast(gameObject.transform.position, GetComponent<Movement>().lookDirection, 3, 1 << 8);
-            if (hit.collider == null)
-            {
-                return;
-            }
-            var roleInfo = hit.collider.gameObject.GetComponent<RoleInfo>();
-            if (roleInfo == null)
-            {
-                return;
-            }
-            if (hit.distance > roleInfo.raycastDistance)
-            {
-                return;
-            }
-            if (roleInfo.action != null)
-            {
-                roleInfo.playAction(roleInfo.action);
-            }
-        }
-        else if (GameButtonPressRecognition.getKeyDown(GameButton.X))
-        {
-            MMX.GameManager.MainMenu.show();
-        }
     }
 
     public void playAction(RoleInfoAction action)
