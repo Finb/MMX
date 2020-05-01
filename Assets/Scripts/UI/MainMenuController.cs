@@ -25,23 +25,11 @@ public class MainMenuController : BaseUIInputController
             }
             else if (EventSystem.current.currentSelectedGameObject.name == "乘降")
             {
-                Collider2D[] colliders = Physics2D.OverlapCircleAll(MMX.GameManager.Queue.captain.transform.position, 2, 1 << 8);
-
-                List<VehicleInfo> vehicles = new List<VehicleInfo>();
-                foreach (var collider in colliders)
-                {
-                    var info = collider.GetComponent<VehicleInfo>();
-                    if (info != null)
-                    {
-                        vehicles.Add(info);
-                    }
-                }
-
-                // vehicles[0].gameObject.GetComponent<SpriteRenderer>().sprite.texture
-
-                Debug.Log(vehicles.Count);
+                hide();
+                StationMenuController stationMenu = StationMenuController.Create();
+                stationMenu.show();
             }
-            Debug.Log(EventSystem.current.currentSelectedGameObject.name);
+    
         };
 
         inputs.UI.B.performed += ctx => hide();

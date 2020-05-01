@@ -5,38 +5,46 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 
-public interface InputEventInterface {
+public interface InputEventInterface
+{
     // 将要获得焦点
     void willOnFocus();
     // 失去焦点
     void willLostFocus();
 }
 
-public interface PresentViewInterface {
+public interface PresentViewInterface
+{
     void show();
     void hide();
 }
 
 public abstract class BaseUIInputController : MonoBehaviour, InputEventInterface
 {
-    public InputControls inputs ;
+    public InputControls inputs;
     public bool needsShowFinger = true;
-    public bool fingerActive {
-        set {
-            if (!needsShowFinger ){
+    public bool fingerActive
+    {
+        set
+        {
+            if (!needsShowFinger)
+            {
                 return;
             }
             MMX.GameManager.Finger.SetActive(value);
         }
-        get {
+        get
+        {
             return MMX.GameManager.Finger.activeSelf;
         }
     }
-    public virtual void Awake() {
+    public virtual void Awake()
+    {
         inputs = new InputControls();
         inputs.Disable();
     }
-   public virtual void willOnFocus(){
+    public virtual void willOnFocus()
+    {
         foreach (var item in GetComponentsInChildren<UnityEngine.UI.Button>())
         {
             item.interactable = true;
@@ -44,12 +52,13 @@ public abstract class BaseUIInputController : MonoBehaviour, InputEventInterface
         fingerActive = true;
         inputs.Enable();
     }
-   public virtual void willLostFocus() {
-       foreach (var item in GetComponentsInChildren<UnityEngine.UI.Button>())
+    public virtual void willLostFocus()
+    {
+        foreach (var item in GetComponentsInChildren<UnityEngine.UI.Button>())
         {
-            item.interactable = false;            
+            item.interactable = false;
         }
         fingerActive = false;
         inputs.Disable();
-   }
+    }
 }

@@ -13,12 +13,14 @@ public class MoveController : Movement, InputEventInterface
 
     Vector2? moveVect = Vector2.zero;
 
-    private void Awake() {
+    private void Awake()
+    {
         inputs = new InputControls();
         inputs.Player.Move.performed += ctx => moveVect = ctx.ReadValue<Vector2>();
         inputs.Player.Move.canceled += ctx => moveVect = Vector2.zero;
 
-        inputs.Player.A.performed += ctx => {
+        inputs.Player.A.performed += ctx =>
+        {
             var hit = Physics2D.Raycast(gameObject.transform.position, GetComponent<Movement>().lookDirection, 3, 1 << 8);
             if (hit.collider == null)
             {
@@ -40,6 +42,12 @@ public class MoveController : Movement, InputEventInterface
         };
 
         inputs.Player.X.performed += ctx => MMX.GameManager.MainMenu.show();
+
+        inputs.Player.Y.performed += ctx =>
+        {
+            StationMenuController stationMenu = StationMenuController.Create();
+            stationMenu.show();
+        };
     }
     override protected void Start()
     {
@@ -48,30 +56,35 @@ public class MoveController : Movement, InputEventInterface
 
     // Update is called once per frame
     void Update()
-    {   
-        if (moveVect == null){
+    {
+        if (moveVect == null)
+        {
             return;
         }
-        else if (moveVect == Vector2.zero){
+        else if (moveVect == Vector2.zero)
+        {
             moveVect = null;
-            base.move(Vector2.zero,Vector2.zero);
+            base.move(Vector2.zero, Vector2.zero);
         }
-        else{
+        else
+        {
             move();
         }
-        
+
     }
     public void willLostFocus()
     {
-        base.move(Vector2.zero,Vector2.zero);
+        base.move(Vector2.zero, Vector2.zero);
         inputs.Disable();
     }
-    public void willOnFocus(){
+    public void willOnFocus()
+    {
         inputs.Enable();
     }
-    public void move(){
-        
-        Vector2 move = moveVect ?? Vector2.zero ;
+    public void move()
+    {
+
+        Vector2 move = moveVect ?? Vector2.zero;
         float moveX = move.x;
         float moveY = move.y;
 
@@ -122,6 +135,6 @@ public class MoveController : Movement, InputEventInterface
     public void inputAction()
     {
 
-        
+
     }
 }

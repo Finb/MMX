@@ -20,8 +20,7 @@ public class DialogController : BaseUIInputController
         nickLabel = gameObject.FindObject("nickText", true).GetComponent<Text>();
         textDisplay = textLabel.GetComponent<TextDisplay>();
  
-        
-        inputs.UI.A.performed += ctx => {if (isInteroperable) continueDiglog();};  
+        inputs.UI.ContinueButton.performed += ctx => {if (isInteroperable) continueDiglog();};  
     }
     void Start()
     {
