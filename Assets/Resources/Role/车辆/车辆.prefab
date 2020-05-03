@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab5db7127542640f8b1af957457a5114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
+  busload: 0
+  vehicleName: 
 --- !u!1001 &4810428596583641843
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23,11 +26,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: "\u8F66\u8F86"
-      objectReference: {fileID: 0}
-    - target: {fileID: 751989742903072842, guid: 2f8818e1613294d71b326d54775fa103,
-        type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.046875
       objectReference: {fileID: 0}
     - target: {fileID: 751989742903072847, guid: 2f8818e1613294d71b326d54775fa103,
         type: 3}
@@ -83,6 +81,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 751989742903072842, guid: 2f8818e1613294d71b326d54775fa103,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.046875
+      objectReference: {fileID: 0}
+    - target: {fileID: 751989742903072842, guid: 2f8818e1613294d71b326d54775fa103,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 751989742903072842, guid: 2f8818e1613294d71b326d54775fa103,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.2734958
+      objectReference: {fileID: 0}
+    - target: {fileID: 751989742903072842, guid: 2f8818e1613294d71b326d54775fa103,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.516717
+      objectReference: {fileID: 0}
+    - target: {fileID: 751989742903072842, guid: 2f8818e1613294d71b326d54775fa103,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.3733084
       objectReference: {fileID: 0}
     - target: {fileID: 751989742903072844, guid: 2f8818e1613294d71b326d54775fa103,
         type: 3}

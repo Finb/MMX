@@ -12,7 +12,7 @@ public class SelectButtonBoxController : BaseUIInputController
         base.Awake();
         inputs.UI.A.performed += ctx =>
         {
-            var index = buttons.IndexOf(EventSystem.current.currentSelectedGameObject);
+            var index = buttons.IndexOf(MMX.GameManager.Input.currentSelectedGameObject);
             if (index >= 0)
             {
                 hide();
@@ -36,6 +36,16 @@ public class SelectButtonBoxController : BaseUIInputController
         var button = Resources.Load<GameObject>("UI/按钮");
         button.GetComponentInChildren<UnityEngine.UI.Text>().text = text;
 
+        buttons.Add(Instantiate(button, Vector3.zero, Quaternion.identity, gameObject.FindObject("ImageBox").transform));
+        onClicks.Add(onClick);
+    }
+    public void addButton(string text, UnityEngine.Sprite sprite = null,  Action onClick = null)
+    {
+        var button = Resources.Load<GameObject>("UI/prefabs/IconButton");
+        button.GetComponentInChildren<UnityEngine.UI.Text>().text = text;
+        button.FindObject("Image").GetComponent<UnityEngine.UI.Image>().sprite = sprite;
+        button.FindObject("Image").GetComponent<UnityEngine.UI.Image>().enabled = sprite != null;
+        
         buttons.Add(Instantiate(button, Vector3.zero, Quaternion.identity, gameObject.FindObject("ImageBox").transform));
         onClicks.Add(onClick);
     }

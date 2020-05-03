@@ -16,6 +16,7 @@ public class ButtonSelectionChangedController : MonoBehaviour, ISelectHandler
     }
     public void OnSelect(BaseEventData data){
         MMX.GameManager.Audio.PlaySfx(Resources.Load<AudioClip>("MetalMax-SFX/0x4D-Shift"));
+        MMX.GameManager.Input.currentSelectedGameObject = gameObject;
         placeFinger();
     }
     public void placeFinger(){

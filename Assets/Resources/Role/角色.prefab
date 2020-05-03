@@ -169,6 +169,12 @@ MonoBehaviour:
   rightAnimation: {fileID: 0}
   upAnimation: {fileID: 0}
   raycastDistance: 1
+  nick: 
+  action:
+    actionType: 0
+    actionName: 
+    dialogueText: 
+    childRoleInfoActions: []
 --- !u!114 &1426781916172615711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,3 +188,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
+  lookDirection: {x: 0, y: -1}

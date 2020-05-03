@@ -15,10 +15,10 @@ public class MainMenuController : BaseUIInputController
             if (EventSystem.current.currentSelectedGameObject.name == "包裹")
             {
                 var boxController = SelectButtonBoxController.Create();
-                boxController.addButton("道具");
-                boxController.addButton("回复道具");
-                boxController.addButton("战斗道具");
-                boxController.addButton("装备");
+                boxController.addButton("道具",null);
+                boxController.addButton("回复道具",null);
+                boxController.addButton("战斗道具",null);
+                boxController.addButton("装备",null);
                 boxController.show();
 
 

@@ -322,6 +322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targets: []
+  currentSelectedGameObject: {fileID: 0}
 --- !u!60 &736458099 stripped
 PolygonCollider2D:
   m_CorrespondingSourceObject: {fileID: 2716181270184736199, guid: 049dbe191eddd4449a7a6cde44ee7072,

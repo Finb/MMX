@@ -18,6 +18,7 @@ public class InputController : MonoBehaviour
             return null;
         }
     }
+    public GameObject currentSelectedGameObject;
     public void setRootTarget(GameObject target)
     {
         if (targets.Count > 0)

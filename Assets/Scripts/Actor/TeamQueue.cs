@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TeamQueue 
+public class TeamQueue
 {
     public static TeamQueue shared = new TeamQueue();
     //当前队列对象
     public List<GameObject> queue = new List<GameObject>();
 
     //当前队列人类
-    List<GameObject> humans = new List<GameObject>();
-    
+    public List<GameObject> humans = new List<GameObject>();
+
     // 拖车
     GameObject trailer;
 
@@ -43,15 +43,53 @@ public class TeamQueue
             enqueue(player);
         }
     }
-    public void resetQueue(){
+    public void resetQueue()
+    {
         //重置queue队列中的数据
 
         //清空 TeleportController 
-        foreach(var item in queue){
+        foreach (var item in queue)
+        {
             MonoBehaviour.Destroy(item.GetComponent<TeleportController>());
         }
         //移除所有队员
-        queue.RemoveRange(0,queue.Count);
+        queue.RemoveRange(0, queue.Count);
+    }
+
+    public void enterVehicle(List<VehicleInfo> vehicles)
+    {
+        var lastCaptainPostion = captain.transform.position;
+        var firstVehicle = vehicles.Find(item => item != null);
+
+        resetQueue();
+        for (int i = 0; i < vehicles.Count; i++)
+        {
+            if (vehicles[i] != null)
+            {
+                if (!queue.Contains(vehicles[i].gameObject))
+                {
+                    enqueue(vehicles[i].gameObject);
+                }
+                humans[i].GetComponent<SpriteRenderer>().enabled = false;
+            }
+            else
+            {
+                enqueue(humans[i]);
+                humans[i].GetComponent<SpriteRenderer>().enabled = true;
+            }
+        }
+        queue.ForEach(item =>
+        {
+            if (firstVehicle != null)
+            {
+                item.transform.position = firstVehicle.gameObject.transform.position;
+            }
+            else{
+                item.transform.position = lastCaptainPostion;
+            }
+            
+        });
+        setupCaptain(captain);
     }
 
     public void setupCaptain(GameObject player)
