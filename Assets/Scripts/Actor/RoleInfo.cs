@@ -15,27 +15,7 @@ public class RoleInfo : MonoBehaviour
     [Header("角色昵称")]
     public string nick;
     public RoleInfoAction action;
-
-    private VehicleInfo _currentTakeVehicle;
-    public VehicleInfo currentTakeVehicle
-    {
-        set
-        {
-            if (_currentTakeVehicle != null)
-            {
-                _currentTakeVehicle.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
-            }
-            _currentTakeVehicle = value;
-            if (_currentTakeVehicle != null)
-            {
-                _currentTakeVehicle.gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
-            }
-        }
-        get
-        {
-            return _currentTakeVehicle;
-        }
-    }
+    public VehicleInfo currentTakedVehicle;
 
     private Animator anim;
     void Start()

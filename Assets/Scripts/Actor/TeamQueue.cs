@@ -69,31 +69,40 @@ public class TeamQueue
                 if (!queue.Contains(vehicles[i].gameObject))
                 {
                     enqueue(vehicles[i].gameObject);
+                    if (i == 0) //第一位需要有碰撞
+                    {
+                        vehicles[i].gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
+                    }
                 }
 
                 humans[i].GetComponent<SpriteRenderer>().enabled = false;
-                humans[i].GetComponent<RoleInfo>().currentTakeVehicle = vehicles[i];
+                humans[i].GetComponent<RoleInfo>().currentTakedVehicle = vehicles[i];
             }
             else
             {
                 enqueue(humans[i]);
 
                 humans[i].GetComponent<SpriteRenderer>().enabled = true;
-                humans[i].GetComponent<RoleInfo>().currentTakeVehicle = null;
+                var takedVehicle = humans[i].GetComponent<RoleInfo>().currentTakedVehicle;
+                if (takedVehicle != null){
+                    //下车后，车辆需要取消碰撞
+                    takedVehicle.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+                    humans[i].GetComponent<RoleInfo>().currentTakedVehicle = null;
+                }
             }
         }
         queue.ForEach(item =>
-        {
-            if (firstVehicle != null)
             {
-                item.transform.position = firstVehicle.gameObject.transform.position;
-            }
-            else
-            {
-                item.transform.position = lastCaptainPostion;
-            }
+                if (firstVehicle != null)
+                {
+                    item.transform.position = firstVehicle.gameObject.transform.position;
+                }
+                else
+                {
+                    item.transform.position = lastCaptainPostion;
+                }
 
-        });
+            });
         setupCaptain(captain);
 
         resetQueueSteps();
@@ -102,13 +111,15 @@ public class TeamQueue
     public void setupCaptain(GameObject player)
     {
         //如果队列第一位不是 排第一位的 human, 则需要让Human不发生碰撞
-        if (player != humans[0]){
+        if (player != humans[0])
+        {
             humans[0].GetComponent<BoxCollider2D>().isTrigger = true;
         }
-        else{
+        else
+        {
             humans[0].GetComponent<BoxCollider2D>().isTrigger = false;
         }
-        
+
         player.AddComponent<TeleportController>();
 
         MMX.GameManager.Input.setRootTarget(player);
@@ -127,7 +138,7 @@ public class TeamQueue
     public void resetQueueSteps()
     {
         queue.ForEach(item =>
-        {   
+        {
             var movement = item.GetComponent<Movement>();
             if (movement != null)
             {
