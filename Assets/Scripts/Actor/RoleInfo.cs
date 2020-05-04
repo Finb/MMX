@@ -16,6 +16,26 @@ public class RoleInfo : MonoBehaviour
     public string nick;
     public RoleInfoAction action;
 
+    private VehicleInfo _currentTakeVehicle;
+    public VehicleInfo currentTakeVehicle
+    {
+        set
+        {
+            if (_currentTakeVehicle != null)
+            {
+                _currentTakeVehicle.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+            }
+            _currentTakeVehicle = value;
+            if (_currentTakeVehicle != null)
+            {
+                _currentTakeVehicle.gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
+            }
+        }
+        get
+        {
+            return _currentTakeVehicle;
+        }
+    }
 
     private Animator anim;
     void Start()
@@ -57,9 +77,9 @@ public class RoleInfo : MonoBehaviour
                 });
                 break;
             case RoleInfoActionType.follow:
-            MMX.GameManager.Queue.enqueue(this.gameObject);
-            Debug.Log("跟随");
-            break;
+                MMX.GameManager.Queue.enqueue(this.gameObject);
+                Debug.Log("跟随");
+                break;
         }
     }
 

@@ -120,13 +120,6 @@ public class StationMenuController : BaseUIInputController
             }
         }
 
-        aboardVehicles.ForEach(vehicle =>
-        {
-            if (vehicle != null)
-            {
-                vehicle.gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
-            }
-        });
         TeamQueue.shared.enterVehicle(aboardVehicles);
         // DialogController.create().showText("只有狗\n是无法驾驶战车的");
         hide();

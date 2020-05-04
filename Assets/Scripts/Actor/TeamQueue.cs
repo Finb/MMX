@@ -70,12 +70,16 @@ public class TeamQueue
                 {
                     enqueue(vehicles[i].gameObject);
                 }
+
                 humans[i].GetComponent<SpriteRenderer>().enabled = false;
+                humans[i].GetComponent<RoleInfo>().currentTakeVehicle = vehicles[i];
             }
             else
             {
                 enqueue(humans[i]);
+
                 humans[i].GetComponent<SpriteRenderer>().enabled = true;
+                humans[i].GetComponent<RoleInfo>().currentTakeVehicle = null;
             }
         }
         queue.ForEach(item =>
@@ -84,16 +88,27 @@ public class TeamQueue
             {
                 item.transform.position = firstVehicle.gameObject.transform.position;
             }
-            else{
+            else
+            {
                 item.transform.position = lastCaptainPostion;
             }
-            
+
         });
         setupCaptain(captain);
+
+        resetQueueSteps();
     }
 
     public void setupCaptain(GameObject player)
     {
+        //如果队列第一位不是 排第一位的 human, 则需要让Human不发生碰撞
+        if (player != humans[0]){
+            humans[0].GetComponent<BoxCollider2D>().isTrigger = true;
+        }
+        else{
+            humans[0].GetComponent<BoxCollider2D>().isTrigger = false;
+        }
+        
         player.AddComponent<TeleportController>();
 
         MMX.GameManager.Input.setRootTarget(player);
@@ -108,6 +123,18 @@ public class TeamQueue
         MonoBehaviour.Destroy(player.GetComponent<TeleportController>());
     }
 
+    //清空队列中角色的 setps 信息
+    public void resetQueueSteps()
+    {
+        queue.ForEach(item =>
+        {   
+            var movement = item.GetComponent<Movement>();
+            if (movement != null)
+            {
+                movement.moveSteps = new Queue<MoveStep>();
+            }
+        });
+    }
     //进队
     public bool enqueue(GameObject obj)
     {
