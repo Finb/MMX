@@ -15,7 +15,6 @@ public class RoleInfo : MonoBehaviour
     [Header("角色昵称")]
     public string nick;
     public RoleInfoAction action;
-    public VehicleInfo currentTakedVehicle;
 
     private Animator anim;
     void Start()

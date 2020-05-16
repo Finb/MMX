@@ -18099,6 +18099,27 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\u9646\u4EC1\u8D3E"
       objectReference: {fileID: 0}
+    - target: {fileID: 751989742903072845, guid: 2f8818e1613294d71b326d54775fa103,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 751989742903072844, guid: 2f8818e1613294d71b326d54775fa103,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: eb909222332c0417cae893c734995b67,
+        type: 3}
+    - target: {fileID: 751989742903072844, guid: 2f8818e1613294d71b326d54775fa103,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 751989742903072844, guid: 2f8818e1613294d71b326d54775fa103,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 751989742903072847, guid: 2f8818e1613294d71b326d54775fa103,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -18334,27 +18355,6 @@ PrefabInstance:
       propertyPath: action.childRoleInfoActions.Array.data[1].actionName
       value: "\u6B63\u5728\u5F00\u53D1\u7684\u529F\u80FD"
       objectReference: {fileID: 0}
-    - target: {fileID: 751989742903072844, guid: 2f8818e1613294d71b326d54775fa103,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: eb909222332c0417cae893c734995b67,
-        type: 3}
-    - target: {fileID: 751989742903072844, guid: 2f8818e1613294d71b326d54775fa103,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 751989742903072844, guid: 2f8818e1613294d71b326d54775fa103,
-        type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 751989742903072845, guid: 2f8818e1613294d71b326d54775fa103,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f8818e1613294d71b326d54775fa103, type: 3}
 --- !u!1 &5208790916336613448 stripped
@@ -18374,6 +18374,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: "\u7EA2\u72FC\u6218\u8F66 (1)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848362345650412783, guid: 1b23c11967999484b822b27b7ea32a63,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4848362345650412776, guid: 1b23c11967999484b822b27b7ea32a63,
         type: 3}

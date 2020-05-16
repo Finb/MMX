@@ -76,18 +76,18 @@ public class TeamQueue
                 }
 
                 humans[i].GetComponent<SpriteRenderer>().enabled = false;
-                humans[i].GetComponent<RoleInfo>().currentTakedVehicle = vehicles[i];
+                humans[i].GetComponent<HumanInfo>().currentTakedVehicle = vehicles[i];
             }
             else
             {
                 enqueue(humans[i]);
 
                 humans[i].GetComponent<SpriteRenderer>().enabled = true;
-                var takedVehicle = humans[i].GetComponent<RoleInfo>().currentTakedVehicle;
+                var takedVehicle = humans[i].GetComponent<HumanInfo>().currentTakedVehicle;
                 if (takedVehicle != null){
-                    //下车后，车辆需要取消碰撞
-                    takedVehicle.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
-                    humans[i].GetComponent<RoleInfo>().currentTakedVehicle = null;
+                    // //下车后，车辆需要取消碰撞
+                    // takedVehicle.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+                    humans[i].GetComponent<HumanInfo>().currentTakedVehicle = null;
                 }
             }
         }

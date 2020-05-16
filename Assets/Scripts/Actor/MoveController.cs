@@ -21,7 +21,7 @@ public class MoveController : Movement, InputEventInterface
 
         inputs.Player.A.performed += ctx =>
         {
-            var hit = Physics2D.Raycast(gameObject.transform.position, GetComponent<Movement>().lookDirection, 3, 1 << 8);
+            var hit = Physics2D.Raycast(gameObject.transform.position, GetComponent<Movement>().lookDirection, 3, 1 << 10 | 1 << 8);
             if (hit.collider == null)
             {
                 return;

@@ -232,7 +232,7 @@ public class StationMenuController : BaseUIInputController
 
 
         //查找周围的车辆信息
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(MMX.GameManager.Queue.captain.transform.position, 2, 1 << 8);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(MMX.GameManager.Queue.captain.transform.position, 2, 1 << 11);
         foreach (var collider in colliders)
         {
             var info = collider.GetComponent<VehicleInfo>();
