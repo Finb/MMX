@@ -187,5 +187,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bcdb4c51de9c43dbb9507ed12cd1040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
+  anim: {fileID: 751989742903072846}
   lookDirection: {x: 0, y: -1}

@@ -12,6 +12,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\u552E\u8D27\u5458_\u7EA2"
       objectReference: {fileID: 0}
+    - target: {fileID: 751989742903072844, guid: 2f8818e1613294d71b326d54775fa103,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 4234225077532965862, guid: a5863774173664272a9a865eafa01902,
+        type: 3}
     - target: {fileID: 751989742903072847, guid: 2f8818e1613294d71b326d54775fa103,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -67,12 +73,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 751989742903072844, guid: 2f8818e1613294d71b326d54775fa103,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 4234225077532965862, guid: a5863774173664272a9a865eafa01902,
-        type: 3}
     - target: {fileID: 6178589070373856627, guid: 2f8818e1613294d71b326d54775fa103,
         type: 3}
       propertyPath: downAnimation

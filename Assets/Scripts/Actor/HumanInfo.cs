@@ -1,6 +1,8 @@
 using UnityEngine;
+using System.Collections.Generic;
 
-public class HumanInfo: MonoBehaviour
+[HideInInspector]
+public class HumanInfo : MonoBehaviour
 {
     //等级
     public int level;
@@ -33,6 +35,15 @@ public class HumanInfo: MonoBehaviour
 
     //career
     //SecondaryCareer
+
+    public ItemInfo itemInfo = new ItemInfo();
+}
+
+public class ItemInfo
+{
+    List<MMX.HumanItem> humanItems = new List<MMX.HumanItem>();
+    List<MMX.RecoverItem> recoverItems = new List<MMX.RecoverItem>();
+    List<MMX.FightItem> fightItems = new List<MMX.FightItem>();
 }
 
 

@@ -30,7 +30,7 @@ public class BaseScene : MonoBehaviour
         collider.points = pointsList.ToArray();
 
         // 加载地图
-        GameManager.Queue.captain.GetComponent<TeleportController>()?.teleport(new TeleportTargetInfo("拉多1","拉多镇",new Vector2(0.5f,-2.5f),null));
+        GameManager.Queue.captain.GetComponent<TeleportController>()?.teleport(new TeleportTargetInfo("拉多1", "拉多镇", new Vector2(0.5f, -2.5f), null));
 
         //加载UI界面
         var mainMenu = Instantiate(Resources.Load<GameObject>("UI/MainMenu"), new Vector3(0, 0, 0), Quaternion.identity, GameObject.Find("UI").GetComponent<Transform>());
@@ -38,6 +38,9 @@ public class BaseScene : MonoBehaviour
         //强制先算一下布局（否则Virtual layout 需要在 avtice 为true 时 才布局，那时已经晚了，导致要设置手指的位置时取到的按钮postion错误）
         UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(mainMenu.FindObject("Image").GetComponent<RectTransform>());
         mainMenu.SetActive(false);
+
+        var jsonStr = Resources.Load<TextAsset>("Items/HumanItem");
+        ItemStorage.shared.addItems(jsonStr.text);
 
     }
 
@@ -68,7 +71,7 @@ public static class Extension
     /// </summary>
     /// <param name="str">文本</param>
     /// <returns></returns>
-    public static int GetFontlen(this string str, int fontSize , string fontName = "Arial")
+    public static int GetFontlen(this string str, int fontSize, string fontName = "Arial")
     {
         var font = Font.CreateDynamicFontFromOSFont(fontName, fontSize);
         int len = 0;

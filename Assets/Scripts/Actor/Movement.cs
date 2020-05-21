@@ -17,7 +17,7 @@ public class Movement : MonoBehaviour
 {
     protected float speed = 5f;
     protected Rigidbody2D rbody;
-    [HideInInspector] public Animator anim;
+    public Animator anim;
     /// 跟随者
     private Movement _followerMovement;
     public Movement followerMovement
@@ -39,7 +39,6 @@ public class Movement : MonoBehaviour
     virtual protected void Start()
     {
         rbody = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
     }
     public void move(Vector2 position, Vector2 direction)
     {

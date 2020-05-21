@@ -54,10 +54,9 @@ public class MoveController : Movement, InputEventInterface
         base.Start();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        if (moveVect == null)
+        if (moveVect == null || anim == null)
         {
             return;
         }
@@ -70,7 +69,6 @@ public class MoveController : Movement, InputEventInterface
         {
             move();
         }
-
     }
     public void willLostFocus()
     {
@@ -120,8 +118,8 @@ public class MoveController : Movement, InputEventInterface
             lookDirection = new Vector2(moveX, moveY);
         }
 
-        position.x += moveX * currentSpeed * 0.03f;
-        position.y += moveY * currentSpeed * 0.03f;
+        position.x += moveX * currentSpeed * Time.deltaTime * 1.5f;
+        position.y += moveY * currentSpeed * Time.deltaTime * 1.5f;
 
         //走不动了，就停止行走
         if (Vector2.Distance(position, lastPostion) <= 0.03)

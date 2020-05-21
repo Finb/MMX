@@ -7,4 +7,10 @@ public class VehicleInfo : MonoBehaviour
     public int busload = 0;
 
     public string vehicleName;
+
+    public UnityEngine.Sprite avatar {
+        get {
+            return gameObject.GetComponent<SpriteRenderer>().sprite;
+        }
+    }
 }
