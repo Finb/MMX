@@ -61,4 +61,12 @@ public abstract class BaseUIInputController : MonoBehaviour, InputEventInterface
         fingerActive = false;
         inputs.Disable();
     }
+    public void WaifForEndOfFrameAction(System.Action action)
+    {
+        StartCoroutine(DoWaifForEndOfFrameAction(action));
+    }
+    public IEnumerator DoWaifForEndOfFrameAction(System.Action action){
+        yield return new WaitForEndOfFrame();
+        action();
+    }
 }

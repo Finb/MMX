@@ -9,7 +9,7 @@ public class PackageMenuController : BaseUIInputController
         base.Awake();
         inputs.UI.A.performed += ctx =>
         {
-
+            ItemsListViewController.Create().show();
         };
         inputs.UI.B.performed += ctx => hide();
 

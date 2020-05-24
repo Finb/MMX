@@ -232,6 +232,22 @@
                     "interactions": ""
                 },
                 {
+                    "name": "Left",
+                    "type": "Button",
+                    "id": "91ecc2a5-d487-4123-8c21-e76e032b514f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Right",
+                    "type": "Button",
+                    "id": "48b47cf3-ad29-4d8c-8f47-9b4eb576d935",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "ContinueButton",
                     "type": "Button",
                     "id": "6e7c2939-4262-4b7a-aa94-4112da4cb4bf",
@@ -526,6 +542,50 @@
                     "action": "ContinueButton",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "35a988a8-ead3-42f5-a32b-8df72924dabe",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3729de59-91b5-4382-885e-a08d2940a202",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "80331ce9-aea3-494c-8fae-8f2b4115e709",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "68842f34-2cc4-4b6c-a050-3d8824a22afc",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

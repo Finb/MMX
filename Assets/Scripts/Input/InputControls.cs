@@ -245,6 +245,22 @@ public class @InputControls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""Left"",
+                    ""type"": ""Button"",
+                    ""id"": ""91ecc2a5-d487-4123-8c21-e76e032b514f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Right"",
+                    ""type"": ""Button"",
+                    ""id"": ""48b47cf3-ad29-4d8c-8f47-9b4eb576d935"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""ContinueButton"",
                     ""type"": ""Button"",
                     ""id"": ""6e7c2939-4262-4b7a-aa94-4112da4cb4bf"",
@@ -539,6 +555,50 @@ public class @InputControls : IInputActionCollection, IDisposable
                     ""action"": ""ContinueButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""35a988a8-ead3-42f5-a32b-8df72924dabe"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3729de59-91b5-4382-885e-a08d2940a202"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""80331ce9-aea3-494c-8fae-8f2b4115e709"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""68842f34-2cc4-4b6c-a050-3d8824a22afc"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -557,6 +617,8 @@ public class @InputControls : IInputActionCollection, IDisposable
         m_UI_Move = m_UI.FindAction("Move", throwIfNotFound: true);
         m_UI_A = m_UI.FindAction("A", throwIfNotFound: true);
         m_UI_B = m_UI.FindAction("B", throwIfNotFound: true);
+        m_UI_Left = m_UI.FindAction("Left", throwIfNotFound: true);
+        m_UI_Right = m_UI.FindAction("Right", throwIfNotFound: true);
         m_UI_ContinueButton = m_UI.FindAction("ContinueButton", throwIfNotFound: true);
     }
 
@@ -675,6 +737,8 @@ public class @InputControls : IInputActionCollection, IDisposable
     private readonly InputAction m_UI_Move;
     private readonly InputAction m_UI_A;
     private readonly InputAction m_UI_B;
+    private readonly InputAction m_UI_Left;
+    private readonly InputAction m_UI_Right;
     private readonly InputAction m_UI_ContinueButton;
     public struct UIActions
     {
@@ -683,6 +747,8 @@ public class @InputControls : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_UI_Move;
         public InputAction @A => m_Wrapper.m_UI_A;
         public InputAction @B => m_Wrapper.m_UI_B;
+        public InputAction @Left => m_Wrapper.m_UI_Left;
+        public InputAction @Right => m_Wrapper.m_UI_Right;
         public InputAction @ContinueButton => m_Wrapper.m_UI_ContinueButton;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
@@ -702,6 +768,12 @@ public class @InputControls : IInputActionCollection, IDisposable
                 @B.started -= m_Wrapper.m_UIActionsCallbackInterface.OnB;
                 @B.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnB;
                 @B.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnB;
+                @Left.started -= m_Wrapper.m_UIActionsCallbackInterface.OnLeft;
+                @Left.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnLeft;
+                @Left.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnLeft;
+                @Right.started -= m_Wrapper.m_UIActionsCallbackInterface.OnRight;
+                @Right.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnRight;
+                @Right.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnRight;
                 @ContinueButton.started -= m_Wrapper.m_UIActionsCallbackInterface.OnContinueButton;
                 @ContinueButton.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnContinueButton;
                 @ContinueButton.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnContinueButton;
@@ -718,6 +790,12 @@ public class @InputControls : IInputActionCollection, IDisposable
                 @B.started += instance.OnB;
                 @B.performed += instance.OnB;
                 @B.canceled += instance.OnB;
+                @Left.started += instance.OnLeft;
+                @Left.performed += instance.OnLeft;
+                @Left.canceled += instance.OnLeft;
+                @Right.started += instance.OnRight;
+                @Right.performed += instance.OnRight;
+                @Right.canceled += instance.OnRight;
                 @ContinueButton.started += instance.OnContinueButton;
                 @ContinueButton.performed += instance.OnContinueButton;
                 @ContinueButton.canceled += instance.OnContinueButton;
@@ -738,6 +816,8 @@ public class @InputControls : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnA(InputAction.CallbackContext context);
         void OnB(InputAction.CallbackContext context);
+        void OnLeft(InputAction.CallbackContext context);
+        void OnRight(InputAction.CallbackContext context);
         void OnContinueButton(InputAction.CallbackContext context);
     }
 }
