@@ -12,6 +12,11 @@ public interface InputEventInterface
     // 失去焦点
     void willLostFocus();
 }
+public interface InputButtonEventInterface
+{
+    //当前页面按钮切换事件
+    void selectedButtonChanged();
+}
 
 public interface PresentViewInterface
 {

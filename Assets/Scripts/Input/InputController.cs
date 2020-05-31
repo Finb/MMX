@@ -70,4 +70,8 @@ public class InputController : MonoBehaviour
             item.willOnFocus();
         }
     }
+
+    public void selectedButtonChanged(){
+        currentTarget.GetComponentInChildren<InputButtonEventInterface>()?.selectedButtonChanged();
+    }
 }
