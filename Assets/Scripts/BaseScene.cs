@@ -39,8 +39,9 @@ public class BaseScene : MonoBehaviour
         UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(mainMenu.FindObject("Image").GetComponent<RectTransform>());
         mainMenu.SetActive(false);
 
-        var jsonStr = Resources.Load<TextAsset>("Items/HumanItem");
-        ItemStorage.shared.addItems(jsonStr.text);
+        ItemStorage.shared.addItems<HumanItem>(Resources.Load<TextAsset>("Items/HumanItem").text);
+        ItemStorage.shared.addItems<RecoverItem>(Resources.Load<TextAsset>("Items/RecoverItem").text);
+        ItemStorage.shared.addItems<FightItem>(Resources.Load<TextAsset>("Items/FightItem").text);
 
     }
 

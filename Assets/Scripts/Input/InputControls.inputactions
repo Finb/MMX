@@ -380,6 +380,17 @@
                 },
                 {
                     "name": "",
+                    "id": "db3b028e-8ad2-43da-8222-34255431bf71",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "A",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "ff341f1a-dc05-4fe5-92e8-8afc32edd0a4",
                     "path": "<Keyboard>/k",
                     "interactions": "",

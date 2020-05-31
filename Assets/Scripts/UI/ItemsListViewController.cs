@@ -4,6 +4,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 public class ItemsListViewController : BaseUIInputController, IListViewDataSource, IListViewDelegate
 {
+    public enum ItemsListType
+    {
+        humanItems = 0,
+        recoverItems,
+        fightItem
+    }
+    public ItemsListType type = ItemsListType.humanItems;
     // Start is called before the first frame update
     public ListView listView;
     public UnityEngine.UI.Text pageText;
@@ -32,10 +39,27 @@ public class ItemsListViewController : BaseUIInputController, IListViewDataSourc
             refreshView();
             EventSystem.current.SetSelectedGameObject(gameObject.GetComponentInChildren<UnityEngine.UI.Button>().gameObject);
         };
+        Debug.Log("awake");
+
         listView.pageCount = 10;
         listView.dataSource = this;
         listView.listViewDelegate = this;
-        listView.reloadData();
+    }
+    private void Start()
+    {
+        Debug.Log("start");
+        var colors = new[]{
+            new UnityEngine.Color(0f/255, 49f/255, 97f/255, 230f/255),
+            new UnityEngine.Color(0f/255, 97f/255, 7f/255, 230f/255),
+            new UnityEngine.Color(97f/255, 19f/255, 0f/255, 230f/255)
+            };
+        var titles = new[]{
+            "人类用道具",
+            "回复用道具",
+            "战斗用道具"};
+
+        titleText.text = titles[(int)type];
+        titlePanelImage.color = colors[(int)type];
     }
     private void refreshView()
     {
@@ -43,18 +67,20 @@ public class ItemsListViewController : BaseUIInputController, IListViewDataSourc
         UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.FindObject("ListView", true).GetComponent<RectTransform>());
         UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.FindObject("BorderImage", true).GetComponent<RectTransform>());
     }
-
+    List<MMX.NormalItem> items;
     public int numberOfNodes()
     {
-        return 27;
+        return items.Count;
+
     }
     public GameObject nodeForIndex(ListView listView, int index)
     {
-        var button = Resources.Load<GameObject>("UI/prefabs/IconButton");
-        button.GetComponentInChildren<UnityEngine.UI.Text>().text = "test " + index;
+        var button = Instantiate(Resources.Load<GameObject>("UI/prefabs/IconButton2"), Vector3.zero, Quaternion.identity, listView.gameObject.transform);
+        button.GetComponentInChildren<UnityEngine.UI.Text>().text = this.items[index].name;
         button.GetComponent<UnityEngine.UI.LayoutElement>().preferredWidth = 200;
-        button.GetComponent<UnityEngine.UI.LayoutElement>().preferredHeight = 25;
-        return Instantiate(button, Vector3.zero, Quaternion.identity, listView.gameObject.transform);
+        button.GetComponent<UnityEngine.UI.LayoutElement>().preferredHeight = 30;
+        button.FindObject("RightText", true).GetComponent<UnityEngine.UI.Text>().text = "" + this.items[index].count;
+        return button;
     }
     public void didSelectedNode(int index)
     {
@@ -62,8 +88,9 @@ public class ItemsListViewController : BaseUIInputController, IListViewDataSourc
     }
     public void didScrollToNode(GameObject node, int index)
     {
-        this.ItemNameText.text = "超强回复胶囊" + index;
-        this.ItemDescriptionText.text = "T博士研发的回复胶囊，一枚可以回复"+index+"%的血量，有严重的副作用。";
+        this.ItemNameText.text = this.items[index].name;
+        this.ItemDescriptionText.text = this.items[index].desc;
+        UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.FindObject("PanelBorderImage", true).GetComponent<RectTransform>());
     }
     public static ItemsListViewController Create()
     {
@@ -73,6 +100,13 @@ public class ItemsListViewController : BaseUIInputController, IListViewDataSourc
     public void show()
     {
         MMX.GameManager.Input.pushTarget(gameObject);
+        switch (type)
+        {
+            case ItemsListType.humanItems: items = new List<MMX.NormalItem>(ItemPack.shared.humanItems); break;
+            case ItemsListType.recoverItems: items = new List<MMX.NormalItem>(ItemPack.shared.recoverItems); break;
+            case ItemsListType.fightItem: items = new List<MMX.NormalItem>(ItemPack.shared.fightItems); break;
+        }
+        listView.reloadData();
         refreshView();
         EventSystem.current.SetSelectedGameObject(gameObject.GetComponentInChildren<UnityEngine.UI.Button>().gameObject);
     }

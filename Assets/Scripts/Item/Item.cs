@@ -4,11 +4,11 @@ using System.IO;
 using Newtonsoft.Json;
 namespace MMX
 {
-    class ItemStorage
+    public class ItemStorage
     {
         static public ItemStorage shared = new ItemStorage();
 
-        public Dictionary<int, Item> items = new Dictionary<int, Item>();
+        public Dictionary<string, Item> items = new Dictionary<string, Item>();
 
         private ItemStorage()
         {
@@ -17,21 +17,25 @@ namespace MMX
 
             Debug.Log(items.Count);
         }
-        public void addItems(string json)
+        public void addItems<T>(string json) where T:NormalItem
         {
-            var itemArray = JsonConvert.DeserializeObject<List<HumanItem>>(json);
-            foreach(var item in itemArray) {
-                if (items.ContainsKey(item.id)) {
+            var itemArray = JsonConvert.DeserializeObject<List<T>>(json);
+            foreach (var item in itemArray)
+            {
+                if (items.ContainsKey(item.id))
+                {
                     Debug.LogError("重复的Item");
                 }
+                item.orderNumber = items.Count;
                 items.Add(item.id, item);
             }
         }
     }
 
-    class Item
+    public class Item
     {
-        public int id;
+        public string id;
+        public int orderNumber;
 
         public string name;
 
@@ -49,78 +53,81 @@ namespace MMX
 
         }
     }
-
-    //人类道具
-    class HumanItem : Item
+    public class NormalItem : Item
     {
 
         //剩余数量
         public int count;
     }
+    //人类道具
+    public class HumanItem : NormalItem
+    {
+
+    }
 
     //回复道具
-    class RecoverItem : HumanItem
+    public class RecoverItem : NormalItem
     {
 
     }
 
     //战斗道具
-    class FightItem : HumanItem
+    public class FightItem : NormalItem
     {
 
     }
 
     //战车道具
-    class VehicleItem : Item
+    public class VehicleItem : Item
     {
 
     }
 
 
     //装备
-    class EquipmentItem : Item
+    public class EquipmentItem : Item
     {
 
     }
 
     //人类装备
-    class HumanEquipment : EquipmentItem
+    public class HumanEquipment : EquipmentItem
     {
 
     }
 
     //人类武器装备
-    class HumanWeaponEquipment : HumanEquipment
+    public class HumanWeaponEquipment : HumanEquipment
     {
 
     }
     //人类防具装备
-    class HumanArmorEquipment : HumanEquipment
+    public class HumanArmorEquipment : HumanEquipment
     {
 
     }
 
 
     //战车装备
-    class VehicleEquipment : EquipmentItem
+    public class VehicleEquipment : EquipmentItem
     {
 
     }
 
     //战车武器
-    class VehicleWeaponEquipment : VehicleEquipment
+    public class VehicleWeaponEquipment : VehicleEquipment
     {
 
     }
 
     //战车C装置
-    class VehicleCEquipment : VehicleEquipment
+    public class VehicleCEquipment : VehicleEquipment
     {
 
     }
 
     // 战车引擎
-    class VehicleEngineEquipment : VehicleEquipment
+    public class VehicleEngineEquipment : VehicleEquipment
     {
 
     }

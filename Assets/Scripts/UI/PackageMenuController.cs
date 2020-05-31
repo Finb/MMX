@@ -9,7 +9,14 @@ public class PackageMenuController : BaseUIInputController
         base.Awake();
         inputs.UI.A.performed += ctx =>
         {
-            ItemsListViewController.Create().show();
+
+            var index = EventSystem.current.currentSelectedGameObject.transform.GetSiblingIndex();
+            if (index >= 0 && index < 3)
+            {
+                var controller = ItemsListViewController.Create();
+                controller.type = (ItemsListViewController.ItemsListType)index;
+                controller.show();
+            }
         };
         inputs.UI.B.performed += ctx => hide();
 
@@ -28,7 +35,7 @@ public class PackageMenuController : BaseUIInputController
         for (int i = 0; i < 4; i++)
         {
             var vehicleButton = vehiclePanel.GetChild(i);
-            
+
             if (vehicles.ContainsKey(i))
             {
                 var vehicle = vehicles[i];

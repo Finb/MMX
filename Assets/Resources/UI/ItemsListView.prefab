@@ -271,7 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.38039216, b: 0.02745098, a: 0.9019608}
+  m_Color: {r: 0.38039216, g: 0.058139395, b: 0, a: 0.9019608}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -485,6 +485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needsShowFinger: 1
+  type: 0
   listView: {fileID: 4982767271663853228}
   pageText: {fileID: 6939437272534507205}
   titlePanelImage: {fileID: 1041743493255949333}
