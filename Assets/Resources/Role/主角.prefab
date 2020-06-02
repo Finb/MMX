@@ -64,6 +64,21 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 751989742903072842, guid: 2f8818e1613294d71b326d54775fa103,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.2734958
+      objectReference: {fileID: 0}
+    - target: {fileID: 751989742903072842, guid: 2f8818e1613294d71b326d54775fa103,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.516717
+      objectReference: {fileID: 0}
+    - target: {fileID: 751989742903072842, guid: 2f8818e1613294d71b326d54775fa103,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.3733084
+      objectReference: {fileID: 0}
     - target: {fileID: 751989742903072847, guid: 2f8818e1613294d71b326d54775fa103,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -119,29 +134,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 751989742903072842, guid: 2f8818e1613294d71b326d54775fa103,
+    - target: {fileID: 1426781916172615711, guid: 2f8818e1613294d71b326d54775fa103,
         type: 3}
-      propertyPath: m_Offset.y
-      value: -0.2734958
-      objectReference: {fileID: 0}
-    - target: {fileID: 751989742903072842, guid: 2f8818e1613294d71b326d54775fa103,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 0.516717
-      objectReference: {fileID: 0}
-    - target: {fileID: 751989742903072842, guid: 2f8818e1613294d71b326d54775fa103,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 0.3733084
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6178589070373856627, guid: 2f8818e1613294d71b326d54775fa103,
         type: 3}
       propertyPath: raycastDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1426781916172615711, guid: 2f8818e1613294d71b326d54775fa103,
-        type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
