@@ -13,6 +13,7 @@ public class HumanInfo : MonoBehaviour
 
     //HP
     public int hp;
+    public int maxHp;
 
     //腕力
     public int wrist;
@@ -36,14 +37,13 @@ public class HumanInfo : MonoBehaviour
     //career
     //SecondaryCareer
 
-    public ItemInfo itemInfo = new ItemInfo();
+    public EquipmentInfo equipments = new EquipmentInfo();
 }
 
-public class ItemInfo
+public class EquipmentInfo
 {
-    List<MMX.HumanItem> humanItems = new List<MMX.HumanItem>();
-    List<MMX.RecoverItem> recoverItems = new List<MMX.RecoverItem>();
-    List<MMX.FightItem> fightItems = new List<MMX.FightItem>();
+    List<MMX.HumanWeaponEquipment> weapons = new List<MMX.HumanWeaponEquipment>();
+    Dictionary<MMX.HumanArmorEquipment.HumanArmorEquipmentType, MMX.HumanArmorEquipment> armors = new Dictionary<MMX.HumanArmorEquipment.HumanArmorEquipmentType, MMX.HumanArmorEquipment>();
 }
 
 

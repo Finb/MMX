@@ -10,6 +10,7 @@ class ItemPack
     public List<RecoverItem> recoverItems = new List<RecoverItem>();
     //战斗道具
     public List<FightItem> fightItems = new List<FightItem>();
+    public List<EquipmentItem> equipmentItems = new List<EquipmentItem>();
     private ItemPack()
     {
         Debug.Log("human pack " + humanItems.Count);
@@ -29,6 +30,10 @@ class ItemPack
             {
                 (item as FightItem).count = System.Convert.ToInt32(Random.Range(1, 99));
                 fightItems.Add(item as FightItem);
+            }
+            else if (item is HumanWeaponEquipment) {
+                (item as HumanWeaponEquipment).count = System.Convert.ToInt32(Random.Range(1, 99));
+                equipmentItems.Add(item as HumanWeaponEquipment);
             }
         }
     }

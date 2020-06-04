@@ -17,6 +17,9 @@ public class PackageMenuController : BaseUIInputController
                 controller.type = (ItemsListViewController.ItemsListType)index;
                 controller.show();
             }
+            else if(index == 3) {
+                EquipmentListViewController.Create().show();
+            }
         };
         inputs.UI.B.performed += ctx => hide();
 

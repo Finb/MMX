@@ -1,0 +1,23 @@
+[
+    {
+        "id": "laserGun",
+        "name": "激光枪",
+        "damage": 95,
+        "attackRangeType": 2,
+        "attackProperty": 1
+    },
+    {
+        "id": "sonicGun",
+        "name": "音波枪",
+        "damage": 55,
+        "attackRangeType": 0,
+        "attackProperty": 6
+    },
+    {
+        "id": "insecticidalGun",
+        "name": "杀虫枪",
+        "damage": 95,
+        "attackRangeType": 5,
+        "attackProperty": 5
+    }
+]

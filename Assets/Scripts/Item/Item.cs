@@ -17,7 +17,7 @@ namespace MMX
 
             Debug.Log(items.Count);
         }
-        public void addItems<T>(string json) where T:NormalItem
+        public void addItems<T>(string json) where T : Item
         {
             var itemArray = JsonConvert.DeserializeObject<List<T>>(json);
             foreach (var item in itemArray)
@@ -84,8 +84,57 @@ namespace MMX
     }
 
 
+    public enum AttackRangeType
+    {
+        //全体
+        all = 0,
+        //单体伤害
+        single = 1,
+        //小贯通
+        smallThrough = 2,
+        //大贯通
+        bigThrough = 3,
+        //扇形小
+        smallSector = 4,
+        //扇形大
+        bigSector = 5,
+        //扇形可调节
+        adjustableSector = 6,
+    }
+    public static class AttackRangeTypeExtension {
+        public static string getName(this AttackRangeType type){
+            switch (type){
+                case AttackRangeType.all: return "全体";
+                case AttackRangeType.single: return "单体";
+                case AttackRangeType.smallThrough: return "贯通小";
+                case AttackRangeType.bigThrough: return "贯通大";
+                case AttackRangeType.smallSector: return "扇形小";
+                case AttackRangeType.bigSector: return "扇形大";
+                case AttackRangeType.adjustableSector: return "扇形可调节";
+            }
+            return "";
+        }
+    }
+    public enum AttackProperty
+    {
+        //通常
+        normal = 0,
+        //光束
+        beam = 1,
+        //火炎
+        fire = 2,
+        //冰
+        ice = 3,
+        //电
+        electric = 4,
+        //毒气
+        gas = 5,
+        //音波
+        sonic = 6
+    }
+
     //装备
-    public class EquipmentItem : Item
+    public class EquipmentItem : NormalItem
     {
 
     }
@@ -100,11 +149,34 @@ namespace MMX
     public class HumanWeaponEquipment : HumanEquipment
     {
 
+        //攻击力
+        public int damage;
+        //攻击范围
+        public AttackRangeType attackRangeType;
+        ///攻击次数
+        public int attacksNum;
+        //攻击伤害属性
+        public AttackProperty attackProperty;
+
     }
     //人类防具装备
     public class HumanArmorEquipment : HumanEquipment
     {
+        public enum HumanArmorEquipmentType : int
+        {
+            //头用防具
+            head = 0,
+            //体用防具
+            body,
+            //手用防具
+            hand,
+            //足用防具
+            foot,
+            //装饰品
+            decoration,
+        }
 
+        HumanArmorEquipmentType type;
     }
 
 
