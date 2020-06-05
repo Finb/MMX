@@ -1,0 +1,32 @@
+[
+    {
+        "id": "虎纹帽",
+        "name": "虎纹帽",
+        "type": 0,
+        "damage": 0,
+        "defense": 8,
+        "velocity": 0,
+        "macho": 10,
+        "fireResistance": 10,
+        "iceResistance": 10,
+        "electricResistance": 0,
+        "sonicResistance": 0,
+        "gasResistance": 0,
+        "laserResistance": 0
+    },
+    {
+        "id": "便衣",
+        "name": "便衣",
+        "type": 1,
+        "damage": 4,
+        "defense": 0,
+        "velocity": 0,
+        "macho": 0,
+        "fireResistance": 0,
+        "iceResistance": 0,
+        "electricResistance": 0,
+        "sonicResistance": 0,
+        "gasResistance": 0,
+        "laserResistance": 0
+    }
+]

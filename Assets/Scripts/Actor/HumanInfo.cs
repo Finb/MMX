@@ -22,7 +22,7 @@ public class HumanInfo : MonoBehaviour
     //速度
     public int dex;
     //男子气概值
-    public int manValue;
+    public int macho;
 
 
     //当前乘坐的车辆
@@ -43,7 +43,7 @@ public class HumanInfo : MonoBehaviour
 public class EquipmentInfo
 {
     List<MMX.HumanWeaponEquipment> weapons = new List<MMX.HumanWeaponEquipment>();
-    Dictionary<MMX.HumanArmorEquipment.HumanArmorEquipmentType, MMX.HumanArmorEquipment> armors = new Dictionary<MMX.HumanArmorEquipment.HumanArmorEquipmentType, MMX.HumanArmorEquipment>();
+    Dictionary<MMX.HumanArmorEquipmentType, MMX.HumanArmorEquipment> armors = new Dictionary<MMX.HumanArmorEquipmentType, MMX.HumanArmorEquipment>();
 }
 
 

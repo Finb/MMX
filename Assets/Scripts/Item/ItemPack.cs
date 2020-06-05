@@ -31,9 +31,15 @@ class ItemPack
                 (item as FightItem).count = System.Convert.ToInt32(Random.Range(1, 99));
                 fightItems.Add(item as FightItem);
             }
-            else if (item is HumanWeaponEquipment) {
+            else if (item is HumanWeaponEquipment)
+            {
                 (item as HumanWeaponEquipment).count = System.Convert.ToInt32(Random.Range(1, 99));
                 equipmentItems.Add(item as HumanWeaponEquipment);
+            }
+            else if (item is HumanArmorEquipment)
+            {
+                (item as HumanArmorEquipment).count = System.Convert.ToInt32(Random.Range(1, 99));
+                equipmentItems.Add(item as HumanArmorEquipment);
             }
         }
     }
