@@ -71,7 +71,7 @@ public class ListView : MonoBehaviour, InputButtonEventInterface
     }
     void addItem(GameObject obj)
     {
-        obj.transform.parent = gameObject.transform;
+        obj.transform.SetParent(gameObject.transform);
     }
 
     public void selectedButtonChanged()

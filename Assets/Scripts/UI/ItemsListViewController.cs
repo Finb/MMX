@@ -81,6 +81,7 @@ public class ItemsListViewController : BaseUIInputController, IListViewDataSourc
         button.GetComponent<UnityEngine.UI.LayoutElement>().preferredWidth = 200;
         button.GetComponent<UnityEngine.UI.LayoutElement>().preferredHeight = 30;
         button.FindObject("RightText", true).GetComponent<UnityEngine.UI.Text>().text = "" + (this.items[index] as MMX.NormalItem).count;
+        button.FindObject("Image", true).GetComponent<UnityEngine.UI.Image>().sprite = Resources.Load<UnityEngine.Sprite>("Icon/Item");
         return button;
     }
     public void didSelectedNode(int index)

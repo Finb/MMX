@@ -31,6 +31,10 @@ public class InputController : MonoBehaviour
     public void pushTarget(GameObject target)
     {
         var oldTarget = currentTarget;
+        var canvas = target.GetComponentInChildren<UnityEngine.Canvas>();
+        if (canvas != null) {
+            canvas.sortingOrder = targets.Count;
+        }
         targets.Add(target);
         invokeWillLostFocus(oldTarget);
         invokeWillOnFocus(currentTarget);
