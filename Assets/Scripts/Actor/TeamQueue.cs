@@ -29,8 +29,28 @@ public class TeamQueue
     {
         humans.Add(MonoBehaviour.Instantiate(Resources.Load<GameObject>("Role/主角")));
         humans.Add(MonoBehaviour.Instantiate(Resources.Load<GameObject>("Role/主角")));
-        humans.Add(MonoBehaviour.Instantiate(Resources.Load<GameObject>("Role/主角")));
-        humans.Add(MonoBehaviour.Instantiate(Resources.Load<GameObject>("Role/主角")));
+        var roleInfo = humans[0].GetComponentInChildren<HumanInfo>();
+        roleInfo.level = 1;
+        roleInfo.currentExp = 0;
+        roleInfo.exp = 0;
+        roleInfo.baseProperty.hp = 80;
+        roleInfo.baseProperty.maxHp = 100;
+        roleInfo.baseProperty.wrist = 10;
+        roleInfo.baseProperty.con = 5;
+        roleInfo.baseProperty.velocity = 5;
+        roleInfo.baseProperty.macho = 1;
+
+        roleInfo = humans[1].GetComponentInChildren<HumanInfo>();
+        roleInfo.level = 2;
+        roleInfo.currentExp = 10;
+        roleInfo.exp = 110;
+        roleInfo.baseProperty.hp = 100;
+        roleInfo.baseProperty.maxHp = 120;
+        roleInfo.baseProperty.wrist = 15;
+        roleInfo.baseProperty.con = 10;
+        roleInfo.baseProperty.velocity = 10;
+        roleInfo.baseProperty.macho = 5;
+
         buildFollowChain();
     }
     //构建队伍follow链

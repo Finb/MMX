@@ -34,7 +34,7 @@ class EquipmentListViewController : ItemsListViewController
             var weaponItem = this.items[index] as MMX.HumanWeaponEquipment;
             this.DamageText.text = "攻击力: " + weaponItem.damage;
             this.RangeText.text = "范围: " + weaponItem.attackRangeType.getName();
-            this.PropertyText.text = "属性: " + "通常";
+            this.PropertyText.text = "属性: " + weaponItem.attackProperty.getName();
         }
         else
         {

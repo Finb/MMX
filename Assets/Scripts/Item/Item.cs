@@ -142,6 +142,20 @@ namespace MMX
             }
             return "";
         }
+        public static string getName(this AttackProperty type)
+        {
+            switch (type)
+            {
+                case AttackProperty.normal: return "通常";
+                case AttackProperty.beam: return "光束";
+                case AttackProperty.fire: return "火炎";
+                case AttackProperty.ice: return "冰冻";
+                case AttackProperty.electric: return "电气";
+                case AttackProperty.gas: return "瓦斯";
+                case AttackProperty.sonic: return "音波";
+            }
+            return "";
+        }
     }
     public enum AttackProperty
     {
