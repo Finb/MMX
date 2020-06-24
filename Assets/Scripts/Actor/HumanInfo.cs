@@ -44,7 +44,7 @@ public class HumanInfo : MonoBehaviour
 }
 public class EquipmentInfo
 {
-    public List<MMX.HumanWeaponEquipment> weapons = new List<MMX.HumanWeaponEquipment>();
+    public MMX.HumanWeaponEquipment[] weapons = new MMX.HumanWeaponEquipment[3];
     public Dictionary<MMX.HumanArmorEquipmentType, MMX.HumanArmorEquipment> armors = new Dictionary<MMX.HumanArmorEquipmentType, MMX.HumanArmorEquipment>();
 }
 

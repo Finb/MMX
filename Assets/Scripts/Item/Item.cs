@@ -53,6 +53,7 @@ namespace MMX
 
         }
     }
+    //CriticalHitChance
     public class NormalItem : Item
     {
 
@@ -184,7 +185,8 @@ namespace MMX
     //人类装备
     public class HumanEquipment : EquipmentItem
     {
-
+        //职业要求
+        public int CareerRequirements;
     }
 
     //人类武器装备
@@ -253,5 +255,14 @@ namespace MMX
     public class VehicleEngineEquipment : VehicleEquipment
     {
 
+    }
+}
+
+
+namespace MMX
+{
+    public class AttackEffect
+    {
+        
     }
 }
