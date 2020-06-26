@@ -83,38 +83,6 @@ namespace MMX
     {
 
     }
-
-
-    public enum AttackRangeType
-    {
-        //全体
-        all = 0,
-        //单体伤害
-        single = 1,
-        //小贯通
-        smallThrough = 2,
-        //大贯通
-        bigThrough = 3,
-        //扇形小
-        smallSector = 4,
-        //扇形大
-        bigSector = 5,
-        //扇形可调节
-        adjustableSector = 6,
-    }
-    public enum HumanArmorEquipmentType : int
-    {
-        //头用防具
-        head = 0,
-        //体用防具
-        body,
-        //手用防具
-        hand,
-        //足用防具
-        foot,
-        //装饰品
-        decoration,
-    }
     public static class TypeExtension
     {
         public static string getName(this AttackRangeType type)
@@ -236,33 +204,125 @@ namespace MMX
     //战车装备
     public class VehicleEquipment : EquipmentItem
     {
+        //当前重量
+        public int weight;
+        //最大重量
+        public int maxWeight;
+        //最小重量
+        public int minWeight;
+        //总改造次数
+        public virtual int modifiedCount { get; }
 
+        //防御力
+        public int defense;
+        //最大防御力
+        public int maxDefense;
+        //最小防御力
+        public int minDefense;
+        //防御力改造次数
+        public int defenseModifiedCount;
+
+        //改造一次的价格
+        public int modifiedPrice;
     }
 
     //战车武器
     public class VehicleWeaponEquipment : VehicleEquipment
     {
+        public enum VehicleWeaponEquipmentType : int
+        {
+            //主炮
+            artillery = 0,
+            //副炮
+            machineGun = 1,
+            //SE
+            se = 2
+        }
+        public VehicleWeaponEquipmentType equipmentType;
+        //攻击范围
+        public AttackRangeType attackRangeType;
+        //攻击属性
+        public AttackProperty attackProperty;
+        //弹药价格
+        public int ammoPrice;
 
+        //攻击力
+        public int damage;
+        //最大攻击力
+        public int maxDamage;
+        //最小攻击力
+        public int minDamage;
+        //攻击力改造次数
+        public int damageModifiedCount;
+
+        //弹仓
+        public int magazine;
+        //最大弹仓
+        public int maxMagazine;
+        //最小弹仓
+        public int minMagazine;
+        //弹仓改造次数
+        public int magazineModifiedCount;
     }
 
     //战车C装置
     public class VehicleCEquipment : VehicleEquipment
     {
+        //命中
+        public int hit;
+        public int maxHit;
+        public int minHit;
+        public int hitModifiedCount;
 
+        //闪避
+        public int dodge;
+        public int maxDodge;
+        public int minDodge;
+        public int dodgeModifiedCount;
     }
 
     // 战车引擎
     public class VehicleEngineEquipment : VehicleEquipment
     {
-
+        //载重量
+        public float capacity;
+        //引擎改造升级费用
+        public int upgradePrice;
     }
 }
 
 
 namespace MMX
 {
-    public class AttackEffect
+
+    public enum AttackRangeType
     {
-        
+        //全体
+        all = 0,
+        //单体伤害
+        single = 1,
+        //小贯通
+        smallThrough = 2,
+        //大贯通
+        bigThrough = 3,
+        //扇形小
+        smallSector = 4,
+        //扇形大
+        bigSector = 5,
+        //扇形可调节
+        adjustableSector = 6,
+    }
+    public enum HumanArmorEquipmentType : int
+    {
+        //头用防具
+        head = 0,
+        //体用防具
+        body,
+        //手用防具
+        hand,
+        //足用防具
+        foot,
+        //装饰品
+        decoration,
     }
 }

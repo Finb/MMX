@@ -7,6 +7,7 @@ namespace MMX
         //命中率
         public int hitRate;
         //闪避率
+        public int dodgeRate;
         public AttackProperty attackProperty;
         //攻击特效
         public AttackEffect attackEffect;
