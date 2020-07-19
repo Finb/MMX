@@ -58,6 +58,7 @@ public class SelectButtonBoxController : BaseUIInputController
 
     public void show()
     {
+        // LayoutRebuilder.MarkLayoutForRebuild
         MMX.GameManager.Input.pushTarget(gameObject);
         UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.FindObject("ImageBox").GetComponent<RectTransform>());
         EventSystem.current.SetSelectedGameObject(gameObject.GetComponentInChildren<UnityEngine.UI.Button>().gameObject);

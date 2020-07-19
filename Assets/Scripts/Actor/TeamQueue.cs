@@ -29,6 +29,9 @@ public class TeamQueue
     {
         humans.Add(MonoBehaviour.Instantiate(Resources.Load<GameObject>("Role/主角")));
         humans.Add(MonoBehaviour.Instantiate(Resources.Load<GameObject>("Role/主角")));
+        humans[0].GetComponentInChildren<RoleInfo>().nick = "Fin";
+        humans[1].GetComponentInChildren<RoleInfo>().nick = "小明";
+        
         var roleInfo = humans[0].GetComponentInChildren<HumanInfo>();
         roleInfo.level = 1;
         roleInfo.currentExp = 0;

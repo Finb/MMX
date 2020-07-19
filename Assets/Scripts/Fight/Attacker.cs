@@ -10,6 +10,6 @@ namespace MMX
         public int dodgeRate;
         public AttackProperty attackProperty;
         //攻击特效
-        public AttackEffect attackEffect;
+        // public AttackEffect attackEffect;
     }
 }

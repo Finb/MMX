@@ -6,24 +6,30 @@ using UnityEngine.EventSystems;
 public class MainMenuController : BaseUIInputController
 {
 
-     public override void Awake(){
+    public override void Awake()
+    {
         base.Awake();
         MMX.GameManager.MainMenu = this;
 
         inputs.UI.A.performed += ctx =>
         {
-            if (EventSystem.current.currentSelectedGameObject.name == "包裹")
+            switch (EventSystem.current.currentSelectedGameObject.name)
             {
-                var packageController = PackageMenuController.Create();
-                packageController.show();
+                case "包裹":
+                    var packageController = PackageMenuController.Create();
+                    packageController.show();
+                    break;
+                case "装备":
+                    var roleMenu = RoleMenuController.Create();
+                    roleMenu.show();
+                    break;
+                case "乘降":
+                    hide();
+                    StationMenuController stationMenu = StationMenuController.Create();
+                    stationMenu.show();
+                    break;
             }
-            else if (EventSystem.current.currentSelectedGameObject.name == "乘降")
-            {
-                hide();
-                StationMenuController stationMenu = StationMenuController.Create();
-                stationMenu.show();
-            }
-    
+
         };
 
         inputs.UI.B.performed += ctx => hide();

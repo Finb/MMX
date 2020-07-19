@@ -71,7 +71,7 @@ public abstract class BaseUIInputController : MonoBehaviour, InputEventInterface
         StartCoroutine(DoWaifForEndOfFrameAction(action));
     }
     public IEnumerator DoWaifForEndOfFrameAction(System.Action action){
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForFixedUpdate();
         action();
     }
 }

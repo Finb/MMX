@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 [HideInInspector]
-public class HumanInfo : MonoBehaviour
+public partial class HumanInfo : MonoBehaviour
 {
     //等级
     public int level;
@@ -28,6 +28,7 @@ public class HumanInfo : MonoBehaviour
     //SecondaryCareer
 
     public EquipmentInfo equipments = new EquipmentInfo();
+    public List<MMX.Effect> effects;
     ///根据当前装备，重新计算属性值
     public void refreshProperty()
     {
@@ -40,15 +41,33 @@ public class HumanInfo : MonoBehaviour
             property.velocity += item.velocity;
             property.macho += item.macho;
         }
+
+        //应用特效
+        effects.ForEach(item =>
+        {
+            if (item is MMX.HumanAbilityPassiveEffect)
+            {
+                (item as MMX.HumanAbilityPassiveEffect).take(this);
+            }
+        });
     }
 }
+
+//支持能力提升特效
+public partial class HumanInfo: MMX.IHumanAbilityPassiveEffect {
+    public HumanProperty propertyForIncrease() {
+        return this.property;
+    }
+
+}
+
 public class EquipmentInfo
 {
     public MMX.HumanWeaponEquipment[] weapons = new MMX.HumanWeaponEquipment[3];
     public Dictionary<MMX.HumanArmorEquipmentType, MMX.HumanArmorEquipment> armors = new Dictionary<MMX.HumanArmorEquipmentType, MMX.HumanArmorEquipment>();
 }
 
-public struct HumanProperty
+public struct HumanProperty : MMX.IEffect
 {
     //HP
     public int hp;

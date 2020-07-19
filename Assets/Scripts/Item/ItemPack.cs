@@ -4,16 +4,18 @@ using MMX;
 class ItemPack
 {
     static public ItemPack shared = new ItemPack();
+    //有多少钱
+    public int money;
     //人类道具
     public List<HumanItem> humanItems = new List<HumanItem>();
     //回复道具
     public List<RecoverItem> recoverItems = new List<RecoverItem>();
     //战斗道具
     public List<FightItem> fightItems = new List<FightItem>();
+    //人类装备
     public List<EquipmentItem> equipmentItems = new List<EquipmentItem>();
     private ItemPack()
     {
-        Debug.Log("human pack " + humanItems.Count);
         foreach (var item in ItemStorage.shared.items.Values)
         {
             if (item is HumanItem)
