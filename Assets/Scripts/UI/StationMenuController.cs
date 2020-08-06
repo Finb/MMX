@@ -34,6 +34,8 @@ public class StationMenuController : BaseUIInputController
     public override void Awake()
     {
         base.Awake();
+        this.needsResetLastSelectedGameObject = false;
+        
         inputs.UI.B.performed += ctx => hide();
         inputs.UI.A.performed += ctx =>
         {

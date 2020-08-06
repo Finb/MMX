@@ -58,20 +58,13 @@ public class PackageMenuController : BaseUIInputController
             Destroy(vehiclePanel.gameObject);
         }
     }
-    GameObject selectedGameObjectAtLostFocus;
     public override void willOnFocus()
     {
         base.willOnFocus();
-        if (selectedGameObjectAtLostFocus != null)
-        {
-            EventSystem.current.SetSelectedGameObject(selectedGameObjectAtLostFocus);
-            selectedGameObjectAtLostFocus = null;
-        }
     }
     public override void willLostFocus()
     {
         base.willLostFocus();
-        selectedGameObjectAtLostFocus = MMX.GameManager.Input.currentSelectedGameObject;
     }
     public static PackageMenuController Create()
     {

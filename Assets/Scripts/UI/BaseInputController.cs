@@ -28,6 +28,11 @@ public abstract class BaseUIInputController : MonoBehaviour, InputEventInterface
 {
     public InputControls inputs;
     public bool needsShowFinger = true;
+
+    //失去焦点时，当前选中的按钮
+    public GameObject currentSelectedGameObjectWhenLostFocus;
+    //是否自动在回到焦点时，指针恢复选中上次选中的按钮
+    public bool needsResetLastSelectedGameObject = true;
     public bool fingerActive
     {
         set
@@ -56,6 +61,11 @@ public abstract class BaseUIInputController : MonoBehaviour, InputEventInterface
         }
         fingerActive = true;
         inputs.Enable();
+        if (needsResetLastSelectedGameObject && currentSelectedGameObjectWhenLostFocus != null)
+        {
+            EventSystem.current.SetSelectedGameObject(currentSelectedGameObjectWhenLostFocus);
+            currentSelectedGameObjectWhenLostFocus = null;
+        }
     }
     public virtual void willLostFocus()
     {
@@ -65,13 +75,24 @@ public abstract class BaseUIInputController : MonoBehaviour, InputEventInterface
         }
         fingerActive = false;
         inputs.Disable();
+        if (needsResetLastSelectedGameObject)
+        {
+            foreach (var button in this.gameObject.GetComponentsInChildren<UnityEngine.UI.Button>())
+            {
+                if (button.gameObject == MMX.GameManager.Input.currentSelectedGameObject)
+                {
+                    currentSelectedGameObjectWhenLostFocus = button.gameObject;
+                }
+            }
+        }
     }
     public void WaifForEndOfFrameAction(System.Action action)
     {
         StartCoroutine(DoWaifForEndOfFrameAction(action));
     }
-    public IEnumerator DoWaifForEndOfFrameAction(System.Action action){
-        yield return new WaitForFixedUpdate();
+    public IEnumerator DoWaifForEndOfFrameAction(System.Action action)
+    {
+        yield return new WaitForEndOfFrame();
         action();
     }
 }
