@@ -1255,6 +1255,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needsShowFinger: 1
+  currentSelectedGameObjectWhenLostFocus: {fileID: 0}
+  needsResetLastSelectedGameObject: 1
   type: 3
   listView: {fileID: 3563267901777823859}
   pageText: {fileID: 1448127486905141274}

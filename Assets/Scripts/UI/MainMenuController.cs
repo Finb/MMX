@@ -19,6 +19,10 @@ public class MainMenuController : BaseUIInputController
                     var packageController = PackageMenuController.Create();
                     packageController.show();
                     break;
+                case "强度":
+                    var controller = HumanStatusController.Create();
+                    controller.show();
+                    break;
                 case "装备":
                     var roleMenu = RoleMenuController.Create();
                     roleMenu.show();

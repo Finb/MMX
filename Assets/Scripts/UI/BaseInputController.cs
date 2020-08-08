@@ -92,7 +92,7 @@ public abstract class BaseUIInputController : MonoBehaviour, InputEventInterface
     }
     public IEnumerator DoWaifForEndOfFrameAction(System.Action action)
     {
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(1);
         action();
     }
 }
