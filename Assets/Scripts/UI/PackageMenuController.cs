@@ -71,14 +71,10 @@ public class PackageMenuController : BaseUIInputController
         var obj = Instantiate(Resources.Load<GameObject>("UI/PackageMenu"), new Vector3(0, 0, 0), Quaternion.identity, GameObject.Find("UI").GetComponent<Transform>());
         return obj.GetComponent<PackageMenuController>();
     }
+    bool first = true;
     public void show()
     {
         MMX.GameManager.Input.pushTarget(gameObject);
-        UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.FindObject("Human").GetComponent<RectTransform>());
-        UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.FindObject("Vehicle").GetComponent<RectTransform>());
-        UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.FindObject("BorderImage").GetComponent<RectTransform>());
-        UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.FindObject("Panel").GetComponent<RectTransform>());
-        EventSystem.current.SetSelectedGameObject(gameObject.GetComponentInChildren<UnityEngine.UI.Button>().gameObject);
     }
     public void hide()
     {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 
 public interface InputEventInterface
@@ -48,6 +49,79 @@ public abstract class BaseUIInputController : MonoBehaviour, InputEventInterface
             return MMX.GameManager.Finger.activeSelf;
         }
     }
+
+    //界面第一次出现时，默认选中的按钮
+    GameObject _defaultSelectedGameObjecteAtFirst;
+    GameObject defaultSelectedGameObjecteAtFirst
+    {
+        get
+        {
+            if (_defaultSelectedGameObjecteAtFirst != null)
+            {
+                return _defaultSelectedGameObjecteAtFirst;
+            }
+            var obj = gameObject.GetComponentInChildren<ButtonSelectionChangedController>().gameObject;
+            return obj;
+        }
+        set
+        {
+            if (_defaultSelectedGameObjecteAtFirst != value)
+            {
+                _defaultSelectedGameObjecteAtFirst = value;
+            }
+        }
+    }
+    //UI是否第一次出现
+    bool isFirstAppear = true;
+    private void OnGUI()
+    {
+        if (isFirstAppear)
+        {
+            isFirstAppear = false;
+            layout();
+        }
+    }
+    public void layout()
+    {
+        //处理好所有的 layout group 布局.
+        List<Transform> transList = GetAllLayoutGroupChilds(gameObject.transform);
+        transList.Reverse();
+        foreach (Transform trans in transList)
+        {
+            RectTransform rectTrans = trans.GetComponent<RectTransform>();
+            if (null != rectTrans)
+            {
+                Debug.Log("relayout");
+                LayoutRebuilder.ForceRebuildLayoutImmediate(rectTrans);
+            }
+        }
+        var selectedGameobject = this.defaultSelectedGameObjecteAtFirst;
+        if (selectedGameobject != null)
+        {
+            EventSystem.current.SetSelectedGameObject(selectedGameobject);
+        }
+    }
+    List<Transform> GetAllLayoutGroupChilds(Transform trans, List<Transform> transList = null)
+    {
+        if (null == transList)
+        {
+            transList = new List<Transform>();
+        }
+        if (null != trans)
+        {
+            for (int i = 0; i < trans.childCount; i++)
+            {
+                Transform child = trans.GetChild(i);
+                if (null != child.GetComponent<LayoutGroup>())
+                {
+                    transList.Add(child);
+                }
+                GetAllLayoutGroupChilds(child, transList);
+            }
+        }
+        return transList;
+    }
+
     public virtual void Awake()
     {
         inputs = new InputControls();
@@ -92,7 +166,7 @@ public abstract class BaseUIInputController : MonoBehaviour, InputEventInterface
     }
     public IEnumerator DoWaifForEndOfFrameAction(System.Action action)
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForEndOfFrame();
         action();
     }
 }

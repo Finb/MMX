@@ -197,12 +197,6 @@ public class StationMenuController : BaseUIInputController
     public void show()
     {
         MMX.GameManager.Input.pushTarget(gameObject);
-        UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.FindObject("LeftPanel").GetComponent<RectTransform>());
-        UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.FindObject("RightPanel").GetComponent<RectTransform>());
-        UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.FindObject("BorderImage").GetComponent<RectTransform>());
-        UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.FindObject("Panel").GetComponent<RectTransform>());
-
-        EventSystem.current.SetSelectedGameObject(confirmButton);
     }
     public void hide()
     {

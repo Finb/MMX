@@ -55,8 +55,6 @@ class EquipmentListViewController : ItemsListViewController
             propertyTexts[4].text = "" + armorItem.gasResistance;
             propertyTexts[5].text = "" + armorItem.laserResistance;
         }
-
-        UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.FindObject("PanelBorderImage", true).GetComponent<RectTransform>());
     }
     public new static EquipmentListViewController Create()
     {

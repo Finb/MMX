@@ -66,13 +66,6 @@ public class RoleMenuController : BaseUIInputController
     public void show()
     {
         MMX.GameManager.Input.pushTarget(gameObject);
-        UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.FindObject("Human").GetComponent<RectTransform>());
-        if (vehiclePanel != null)
-        {
-            UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.FindObject("Vehicle").GetComponent<RectTransform>());
-        }
-        UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.FindObject("BorderImage").GetComponent<RectTransform>());
-        EventSystem.current.SetSelectedGameObject(gameObject.GetComponentInChildren<UnityEngine.UI.Button>().gameObject);
     }
     public void hide()
     {
