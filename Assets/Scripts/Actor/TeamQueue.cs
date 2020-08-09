@@ -91,10 +91,7 @@ public class TeamQueue
                 if (!queue.Contains(vehicles[i].gameObject))
                 {
                     enqueue(vehicles[i].gameObject);
-                    if (i == 0) //第一位需要有碰撞
-                    {
-                        vehicles[i].gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
-                    }
+                    vehicles[i].gameObject.GetComponent<SpriteRenderer>().sortingOrder = 20;
                 }
 
                 humans[i].GetComponent<SpriteRenderer>().enabled = false;
@@ -107,8 +104,8 @@ public class TeamQueue
                 humans[i].GetComponent<SpriteRenderer>().enabled = true;
                 var takedVehicle = humans[i].GetComponent<HumanInfo>().currentTakedVehicle;
                 if (takedVehicle != null){
-                    // //下车后，车辆需要取消碰撞
-                    // takedVehicle.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+                    // //下车
+                    takedVehicle.GetComponent<SpriteRenderer>().sortingOrder = 19;
                     humans[i].GetComponent<HumanInfo>().currentTakedVehicle = null;
                 }
             }
