@@ -85,6 +85,7 @@ public abstract class BaseUIInputController : MonoBehaviour, InputEventInterface
     {
         //处理好所有的 layout group 布局.
         List<Transform> transList = GetAllLayoutGroupChilds(gameObject.transform);
+        //Unity 必须从 子控件 往 父控件方向 重建布局。
         transList.Reverse();
         foreach (Transform trans in transList)
         {
@@ -95,6 +96,7 @@ public abstract class BaseUIInputController : MonoBehaviour, InputEventInterface
                 LayoutRebuilder.ForceRebuildLayoutImmediate(rectTrans);
             }
         }
+        //设置默认选中按钮
         var selectedGameobject = this.defaultSelectedGameObjecteAtFirst;
         if (selectedGameobject != null)
         {
