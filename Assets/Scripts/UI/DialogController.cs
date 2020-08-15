@@ -77,6 +77,7 @@ public class DialogController : BaseUIInputController
         {
             willDisappearAction();
         }
+        Destroy(gameObject);
     }
     public void continueDiglog()
     {

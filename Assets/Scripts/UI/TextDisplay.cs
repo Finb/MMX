@@ -59,7 +59,6 @@ public class TextDisplay : MonoBehaviour
         if (currentDisplaySentenceIndex < sentences.Count)
         {
             StartCoroutine(TypeSentence(sentences[currentDisplaySentenceIndex]));
-            Debug.Log("fffff");
         }
         else
         {

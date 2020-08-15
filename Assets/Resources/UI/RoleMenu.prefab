@@ -132,6 +132,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needsShowFinger: 1
+  currentSelectedGameObjectWhenLostFocus: {fileID: 0}
+  needsResetLastSelectedGameObject: 1
   humanPanel: {fileID: 8876909808368097393}
   vehiclePanel: {fileID: 8876909808652750837}
 --- !u!1 &8876909807963532371

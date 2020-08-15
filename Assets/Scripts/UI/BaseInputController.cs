@@ -60,7 +60,7 @@ public abstract class BaseUIInputController : MonoBehaviour, InputEventInterface
             {
                 return _defaultSelectedGameObjecteAtFirst;
             }
-            var obj = gameObject.GetComponentInChildren<ButtonSelectionChangedController>().gameObject;
+            var obj = gameObject.GetComponentInChildren<ButtonSelectionChangedController>()?.gameObject;
             return obj;
         }
         set
@@ -100,6 +100,8 @@ public abstract class BaseUIInputController : MonoBehaviour, InputEventInterface
         var selectedGameobject = this.defaultSelectedGameObjecteAtFirst;
         if (selectedGameobject != null)
         {
+            Debug.Log("default selected");
+            Debug.Log(selectedGameobject);
             EventSystem.current.SetSelectedGameObject(selectedGameobject);
         }
     }
