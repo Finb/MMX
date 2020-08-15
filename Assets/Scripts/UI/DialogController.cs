@@ -58,7 +58,7 @@ public class DialogController : BaseUIInputController
             nickLabel.text = nick;
             var width = Math.Max(40 + nick.GetFontlen(30), 80);
             nickPanelRectTransform.anchoredPosition = new Vector3(width / 2, 28, 0);
-            nickPanelRectTransform.sizeDelta = new Vector2(width, 64);
+            nickPanelRectTransform.sizeDelta = new Vector2(width, 54);
 
             nickPanel.SetActive(true);
         }
