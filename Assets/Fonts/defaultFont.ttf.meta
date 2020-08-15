@@ -8,9 +8,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: IPix
+  fontName: Sarasa Mono SC
   fontNames:
-  - IPix
+  - Sarasa Mono SC
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class TextDisplay : MonoBehaviour
 {
@@ -56,32 +57,30 @@ public class TextDisplay : MonoBehaviour
     void startType()
     {
         textLabel.text = "";
+
+
+
         if (currentDisplaySentenceIndex < sentences.Count)
         {
-            StartCoroutine(TypeSentence(sentences[currentDisplaySentenceIndex]));
+            Tweener tweener = textLabel.DOText(sentences[currentDisplaySentenceIndex], 1, true);
+            tweener.OnComplete(delegate ()
+            {
+                currentDisplaySentenceIndex++;
+                if (currentDisplaySentenceIndex >= sentences.Count)
+                {
+                    if (dialogController.disPlayCompletionAction != null)
+                    {
+                        dialogController.disPlayCompletionAction();
+                    }
+                }
+                //全部显示完毕
+                arrowImage.SetActive(true);
+            });
         }
         else
         {
             finished();
         }
-    }
-    IEnumerator TypeSentence(string sentence)
-    {
-        foreach (char letter in sentence.ToCharArray())
-        {
-            textLabel.text += letter;
-            yield return new WaitForSeconds(letterPause);
-        }
-        currentDisplaySentenceIndex++;
-        if (currentDisplaySentenceIndex >= sentences.Count)
-        {
-            if (dialogController.disPlayCompletionAction != null)
-            {
-                dialogController.disPlayCompletionAction();
-            }
-        }
-        //全部显示完毕
-        arrowImage.SetActive(true);
     }
 
     public void continueType()
