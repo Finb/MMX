@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System.Text.RegularExpressions;
 
 public class TextDisplay : MonoBehaviour
 {
@@ -62,8 +63,9 @@ public class TextDisplay : MonoBehaviour
 
         if (currentDisplaySentenceIndex < sentences.Count)
         {
-            Tweener tweener = textLabel.DOText(sentences[currentDisplaySentenceIndex], 1, true);
-            tweener.OnComplete(delegate ()
+            var sentence = sentences[currentDisplaySentenceIndex];
+            var sentenceLength = Regex.Replace(sentence, "/<[^>]+>/g","").Length;
+            textLabel.DOText(sentence, sentenceLength * 0.01f, true).OnComplete(delegate ()
             {
                 currentDisplaySentenceIndex++;
                 if (currentDisplaySentenceIndex >= sentences.Count)
