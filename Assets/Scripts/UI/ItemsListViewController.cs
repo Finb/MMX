@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using MMX;
+using System;
+public enum ItemsListType
+{
+    humanItems = 0,
+    recoverItems,
+    fightItem,
+    equipment,
+}
 public class ItemsListViewController : BaseUIInputController, IListViewDataSource, IListViewDelegate
 {
-    public enum ItemsListType
-    {
-        humanItems = 0,
-        recoverItems,
-        fightItem,
-        equipment,
-    }
+
     public ItemsListType type = ItemsListType.humanItems;
     // Start is called before the first frame update
     public ListView listView;
@@ -20,13 +22,27 @@ public class ItemsListViewController : BaseUIInputController, IListViewDataSourc
     public UnityEngine.UI.Text titleText;
     public UnityEngine.UI.Text ItemNameText;
     public UnityEngine.UI.Text ItemDescriptionText;
+
+    protected List<MMX.Item> items;
+
+    //点击item时，执行的事件，默认是弹出使用道具对话框
+    public Action<MMX.Item> clickAction;
+
     public override void Awake()
     {
         base.Awake();
 
         inputs.UI.A.performed += ctx =>
         {
-
+            if (clickAction != null)
+            {
+                var index = currentSelectedGameObject.GetComponent<ButtonSelectionChangedController>()?.tag;
+                if (index != null)
+                {
+                    clickAction(items[index.Value]);
+                }
+                hide();
+            }
         };
         inputs.UI.B.performed += ctx => hide();
         inputs.UI.Left.performed += ctx =>
@@ -41,7 +57,6 @@ public class ItemsListViewController : BaseUIInputController, IListViewDataSourc
             refreshView();
             EventSystem.current.SetSelectedGameObject(gameObject.GetComponentInChildren<UnityEngine.UI.Button>().gameObject);
         };
-        Debug.Log("awake");
 
         listView.pageCount = 10;
         listView.dataSource = this;
@@ -68,7 +83,7 @@ public class ItemsListViewController : BaseUIInputController, IListViewDataSourc
         UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.FindObject("ListView", true).GetComponent<RectTransform>());
         UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.FindObject("BorderImage", true).GetComponent<RectTransform>());
     }
-    protected List<MMX.Item> items;
+
     public int numberOfNodes()
     {
         return items.Count;
@@ -82,6 +97,7 @@ public class ItemsListViewController : BaseUIInputController, IListViewDataSourc
         button.GetComponent<UnityEngine.UI.LayoutElement>().preferredHeight = 30;
         button.FindObject("RightText", true).GetComponent<UnityEngine.UI.Text>().text = "" + (this.items[index] as MMX.NormalItem).count;
         button.FindObject("Image", true).GetComponent<UnityEngine.UI.Image>().sprite = Resources.Load<UnityEngine.Sprite>("Icon/Item");
+        button.GetComponent<ButtonSelectionChangedController>().tag = index;
         return button;
     }
     public void didSelectedNode(int index)

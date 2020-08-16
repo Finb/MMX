@@ -30,6 +30,12 @@ public abstract class BaseUIInputController : MonoBehaviour, InputEventInterface
     public InputControls inputs;
     public bool needsShowFinger = true;
 
+    public GameObject currentSelectedGameObject {
+        get {
+            return EventSystem.current.currentSelectedGameObject;
+        }
+    }
+
     //失去焦点时，当前选中的按钮
     public GameObject currentSelectedGameObjectWhenLostFocus;
     //是否自动在回到焦点时，指针恢复选中上次选中的按钮
@@ -92,7 +98,6 @@ public abstract class BaseUIInputController : MonoBehaviour, InputEventInterface
             RectTransform rectTrans = trans.GetComponent<RectTransform>();
             if (null != rectTrans)
             {
-                Debug.Log("relayout");
                 LayoutRebuilder.ForceRebuildLayoutImmediate(rectTrans);
             }
         }
@@ -100,8 +105,6 @@ public abstract class BaseUIInputController : MonoBehaviour, InputEventInterface
         var selectedGameobject = this.defaultSelectedGameObjecteAtFirst;
         if (selectedGameobject != null)
         {
-            Debug.Log("default selected");
-            Debug.Log(selectedGameobject);
             EventSystem.current.SetSelectedGameObject(selectedGameobject);
         }
     }
@@ -133,9 +136,12 @@ public abstract class BaseUIInputController : MonoBehaviour, InputEventInterface
     }
     public virtual void willOnFocus()
     {
-        foreach (var item in GetComponentsInChildren<UnityEngine.UI.Button>())
+        foreach (var item in GetComponentsInChildren<ButtonSelectionChangedController>())
         {
-            item.interactable = true;
+            if  (item.active ){
+                item.gameObject.GetComponent<UnityEngine.UI.Button>().interactable = true;
+            }
+            
         }
         fingerActive = true;
         inputs.Enable();

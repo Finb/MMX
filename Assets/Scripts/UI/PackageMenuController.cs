@@ -14,7 +14,7 @@ public class PackageMenuController : BaseUIInputController
             if (index >= 0 && index < 3)
             {
                 var controller = ItemsListViewController.Create();
-                controller.type = (ItemsListViewController.ItemsListType)index;
+                controller.type = (ItemsListType)index;
                 controller.show();
             }
             else if (index == 3)

@@ -67,13 +67,32 @@ public static class ExtendGameObject
         }
         return default(T);
     }
+
+    public static void setButtonActive(this GameObject gameObject, bool active)
+    {
+         foreach (var item in gameObject.GetComponentsInChildren<ButtonSelectionChangedController>())
+         {
+             item.active = active;
+         }
+    }
+    public static bool getButtonActive(this GameObject gameObject)
+    {
+         foreach (var item in gameObject.GetComponentsInChildren<ButtonSelectionChangedController>())
+         {
+             if (item.active) {
+                 return true;
+             }
+         }
+         return false;
+    }
 }
 
 public static class ExtenVector2
 {
     public static bool containsPoint(this Vector2[] rect, Vector2 point)
     {
-        if (rect.Length != 4) {
+        if (rect.Length != 4)
+        {
             return false;
         }
         return point.x >= rect[1].x && point.y >= rect[1].y && point.x <= rect[3].x && point.y <= rect[3].y;
