@@ -36,7 +36,7 @@ public class ItemsListViewController : BaseUIInputController, IListViewDataSourc
         {
             if (clickAction != null)
             {
-                var index = currentSelectedGameObject.GetComponent<ButtonSelectionChangedController>()?.tag;
+                var index = currentSelectedGameObject.GetComponent<ButtonController>()?.viewTag;
                 if (index != null)
                 {
                     clickAction(items[index.Value]);
@@ -80,8 +80,8 @@ public class ItemsListViewController : BaseUIInputController, IListViewDataSourc
     private void refreshView()
     {
         pageText.text = (listView.currentPage + 1) + "/" + listView.totalPage;
-        UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.FindObject("ListView", true).GetComponent<RectTransform>());
-        UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.FindObject("BorderImage", true).GetComponent<RectTransform>());
+        UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.FindObject("ListView").GetComponent<RectTransform>());
+        UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.FindObject("BorderImage").GetComponent<RectTransform>());
     }
 
     public int numberOfNodes()
@@ -97,7 +97,7 @@ public class ItemsListViewController : BaseUIInputController, IListViewDataSourc
         button.GetComponent<UnityEngine.UI.LayoutElement>().preferredHeight = 30;
         button.FindObject("RightText", true).GetComponent<UnityEngine.UI.Text>().text = "" + (this.items[index] as MMX.NormalItem).count;
         button.FindObject("Image", true).GetComponent<UnityEngine.UI.Image>().sprite = Resources.Load<UnityEngine.Sprite>("Icon/Item");
-        button.GetComponent<ButtonSelectionChangedController>().tag = index;
+        button.GetComponent<ButtonController>().viewTag = index;
         return button;
     }
     public void didSelectedNode(int index)
@@ -108,7 +108,7 @@ public class ItemsListViewController : BaseUIInputController, IListViewDataSourc
     {
         this.ItemNameText.text = this.items[index].name;
         this.ItemDescriptionText.text = this.items[index].desc;
-        UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.FindObject("PanelBorderImage", true).GetComponent<RectTransform>());
+        UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.FindObject("PanelBorderImage").GetComponent<RectTransform>());
     }
     public static ItemsListViewController Create()
     {

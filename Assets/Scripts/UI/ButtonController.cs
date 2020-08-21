@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System;
+public class ButtonController : MonoBehaviour, ISelectHandler
+{   
+    public int viewTag = 0;
 
-public class ButtonSelectionChangedController : MonoBehaviour, ISelectHandler
-{
-    public int tag = 0;
+    //按钮点击事件
+    public Action clickEvent;
+
 
     private bool _active = true;
+    //按钮是否激活，是则可选择，否则不能被选择
     public bool active
     {
         set
@@ -25,16 +30,6 @@ public class ButtonSelectionChangedController : MonoBehaviour, ISelectHandler
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
     public void OnSelect(BaseEventData data)
     {
         MMX.GameManager.Audio.PlaySfx(Resources.Load<AudioClip>("MetalMax-SFX/0x4D-Shift"));
@@ -45,7 +40,7 @@ public class ButtonSelectionChangedController : MonoBehaviour, ISelectHandler
     public void placeFinger()
     {
         var fingerObj = MMX.GameManager.Finger;
-        var fingerImage = fingerObj.FindObject("Image", true);
+        var fingerImage = fingerObj.FindObject("Image", true); 
         var selectedData = EventSystem.current.currentSelectedGameObject;
         var selectedDataRectTransform = selectedData.GetComponent<RectTransform>();
         var fingerImageRectTransform = fingerImage.GetComponent<RectTransform>();

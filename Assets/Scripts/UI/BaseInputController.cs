@@ -66,7 +66,7 @@ public abstract class BaseUIInputController : MonoBehaviour, InputEventInterface
             {
                 return _defaultSelectedGameObjecteAtFirst;
             }
-            var obj = gameObject.GetComponentInChildren<ButtonSelectionChangedController>()?.gameObject;
+            var obj = gameObject.GetComponentInChildren<ButtonController>()?.gameObject;
             return obj;
         }
         set
@@ -136,7 +136,7 @@ public abstract class BaseUIInputController : MonoBehaviour, InputEventInterface
     }
     public virtual void willOnFocus()
     {
-        foreach (var item in GetComponentsInChildren<ButtonSelectionChangedController>())
+        foreach (var item in GetComponentsInChildren<ButtonController>())
         {
             if  (item.active ){
                 item.gameObject.GetComponent<UnityEngine.UI.Button>().interactable = true;

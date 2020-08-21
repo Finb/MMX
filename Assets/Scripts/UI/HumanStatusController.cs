@@ -58,6 +58,23 @@ public class HumanStatusController : BaseUIInputController, InputButtonEventInte
         inputs.UI.B.performed += ctx => hide();
         inputs.UI.A.performed += ctx => buttonClick();
 
+        //装备按钮
+        gameObject.FindObject("EquipmentSelectedButton").GetComponent<ButtonController>().clickEvent = () =>
+        {
+            equipmentPanel.SetActive(true);
+            skillsPanel.SetActive(false);
+            layoutMiddlePanel();
+            gameObject.FindObject("SelectedButtonText").GetComponent<UnityEngine.UI.Text>().text = "装备";
+        };
+        //技能按钮
+        gameObject.FindObject("SkillsSelectedButton").GetComponent<ButtonController>().clickEvent = () =>
+        {
+
+            equipmentPanel.SetActive(false);
+            skillsPanel.SetActive(true);
+            layoutMiddlePanel();
+            gameObject.FindObject("SelectedButtonText").GetComponent<UnityEngine.UI.Text>().text = "技能";
+        };
     }
     public static HumanStatusController Create()
     {
@@ -99,27 +116,12 @@ public class HumanStatusController : BaseUIInputController, InputButtonEventInte
     {
         if (selectButtonPanel.getButtonActive())
         {
-            if (currentSelectedGameObject.name == "EquipmentSelectedButton")
-            {
-                //装备按钮
-                equipmentPanel.SetActive(true);
-                skillsPanel.SetActive(false);
-                layoutMiddlePanel();
-                gameObject.FindObject("SelectedButtonText").GetComponent<UnityEngine.UI.Text>().text = "装备";
-            }
-            else if (currentSelectedGameObject.name == "SkillsSelectedButton")
-            {
-                //技能按钮
-                equipmentPanel.SetActive(false);
-                skillsPanel.SetActive(true);
-                layoutMiddlePanel();
-                gameObject.FindObject("SelectedButtonText").GetComponent<UnityEngine.UI.Text>().text = "技能";
-            }
+            currentSelectedGameObject.GetComponent<ButtonController>().clickEvent();
         }
         else if (equipmentPanel.getButtonActive())
         {
             var index = 0;
-            var buttons = equipmentPanel.GetComponentsInChildren<ButtonSelectionChangedController>();
+            var buttons = equipmentPanel.GetComponentsInChildren<ButtonController>();
             for (int i = 0; i < buttons.Length; i++)
             {
                 if (buttons[i].gameObject == currentSelectedGameObject)
@@ -205,7 +207,7 @@ public class HumanStatusController : BaseUIInputController, InputButtonEventInte
         else if (equipmentPanel.getButtonActive())
         {
             var index = 0;
-            var buttons = equipmentPanel.GetComponentsInChildren<ButtonSelectionChangedController>();
+            var buttons = equipmentPanel.GetComponentsInChildren<ButtonController>();
             for (int i = 0; i < buttons.Length; i++)
             {
                 if (buttons[i].gameObject == currentSelectedGameObject)
@@ -263,7 +265,7 @@ public class HumanStatusController : BaseUIInputController, InputButtonEventInte
         equipmentPanel.setButtonActive(true);
         skillsPanel.setButtonActive(false);
         selectButtonPanel.setButtonActive(false);
-        EventSystem.current.SetSelectedGameObject(equipmentPanel.GetComponentInChildren<ButtonSelectionChangedController>()?.gameObject);
+        EventSystem.current.SetSelectedGameObject(equipmentPanel.GetComponentInChildren<ButtonController>()?.gameObject);
     }
     //进入技能
     private void enterSkillsPanel()
@@ -272,7 +274,7 @@ public class HumanStatusController : BaseUIInputController, InputButtonEventInte
         skillsPanel.setButtonActive(true);
         selectButtonPanel.setButtonActive(false);
         leftPanelFields.IntroducePanel.GetComponent<UnityEngine.CanvasGroup>().alpha = 0;
-        EventSystem.current.SetSelectedGameObject(skillsPanel.GetComponentInChildren<ButtonSelectionChangedController>()?.gameObject);
+        EventSystem.current.SetSelectedGameObject(skillsPanel.GetComponentInChildren<ButtonController>()?.gameObject);
     }
     //进入到选择按钮
     private void enterSelecteButtonPanel()
@@ -281,6 +283,6 @@ public class HumanStatusController : BaseUIInputController, InputButtonEventInte
         skillsPanel.setButtonActive(false);
         selectButtonPanel.setButtonActive(true);
         leftPanelFields.IntroducePanel.GetComponent<UnityEngine.CanvasGroup>().alpha = 0;
-        EventSystem.current.SetSelectedGameObject(selectButtonPanel.GetComponentInChildren<ButtonSelectionChangedController>()?.gameObject);
+        EventSystem.current.SetSelectedGameObject(selectButtonPanel.GetComponentInChildren<ButtonController>()?.gameObject);
     }
 }

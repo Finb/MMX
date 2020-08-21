@@ -57,18 +57,6 @@ public class BaseScene : MonoBehaviour
 
 public static class Extension
 {
-    public static GameObject FindObject(this GameObject parent, string name, bool recursive = false)
-    {
-        Transform[] trs = parent.GetComponentsInChildren<Transform>(true);
-        foreach (Transform t in trs)
-        {
-            if (t.name == name)
-            {
-                return t.gameObject;
-            }
-        }
-        return null;
-    }
     /// <summary>
     /// 获取文本的绘制长度，不同于text的rectTransform.sizeDelta
     /// </summary>

@@ -1,57 +1,81 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MMX
+public static class GameObjectExtension
 {
-    public static class GameObjectExtension
+    public static bool HasComponent<T>(this GameObject obj) where T : Component
     {
-        public static bool HasComponent<T>(this GameObject obj) where T : Component
+        return obj.TryGetComponent(typeof(T), out _);
+    }
+
+    public static GameObject SetParent(this GameObject obj, GameObject newParent)
+    {
+        obj.transform.parent = newParent.transform;
+        return obj;
+    }
+
+    public static GameObject SetParent(this GameObject obj, Component newParent)
+    {
+        obj.transform.parent = newParent.transform;
+        return obj;
+    }
+
+    public static T FindObjectByTypeAndName<T>(string name) where T : Component
+    {
+        var objs = FindObjectsByTypeAndName<T>(name);
+
+        if (objs.Length > 0)
         {
-            return obj.TryGetComponent(typeof(T), out _);
+            return objs[0];
         }
 
-        public static GameObject SetParent(this GameObject obj, GameObject newParent)
-        {
-            obj.transform.parent = newParent.transform;
-            return obj;
-        }
+        return null;
+    }
 
-        public static GameObject SetParent(this GameObject obj, Component newParent)
-        {
-            obj.transform.parent = newParent.transform;
-            return obj;
-        }
+    public static T[] FindObjectsByTypeAndName<T>(string name) where T : Component
+    {
+        var objs = GameObject.FindObjectsOfType<T>();
+        var filteredObjs = new List<T>();
 
-        public static T FindObjectByTypeAndName<T>(string name) where T : Component
+        foreach (var obj in objs)
         {
-            var objs = FindObjectsByTypeAndName<T>(name);
-
-            if (objs.Length > 0)
+            if (obj.name == name)
             {
-                return objs[0];
+                filteredObjs.Add(obj);
             }
-
-            return null;
         }
 
-        public static T[] FindObjectsByTypeAndName<T>(string name) where T : Component
-        {
-            var objs = GameObject.FindObjectsOfType<T>();
-            var filteredObjs = new List<T>();
+        return filteredObjs.ToArray();
+    }
 
-            foreach (var obj in objs)
+    public static GameObject FindObject(this GameObject parent, string name)
+    {
+        Transform[] trs = parent.GetComponentsInChildren<Transform>(true);
+        foreach (Transform t in trs)
+        {
+            if (t.name == name)
             {
-                if (obj.name == name)
-                {
-                    filteredObjs.Add(obj);
+                return t.gameObject;
+            }
+        }
+        return null;
+    }
+    public static T FindComponentByObjectName<T>(this GameObject parent, string name) where T : Component
+    {
+        Transform[] trs = parent.GetComponentsInChildren<Transform>(true);
+        foreach (Transform t in trs)
+        {
+            if (t.name == name)
+            {
+                var component = t.GetComponent<T>();
+                if (component != null) {
+                    return component;
                 }
             }
-
-            return filteredObjs.ToArray();
         }
+        return null;
     }
 }
-
 
 public static class ExtendGameObject
 {
@@ -70,20 +94,21 @@ public static class ExtendGameObject
 
     public static void setButtonActive(this GameObject gameObject, bool active)
     {
-         foreach (var item in gameObject.GetComponentsInChildren<ButtonSelectionChangedController>())
-         {
-             item.active = active;
-         }
+        foreach (var item in gameObject.GetComponentsInChildren<ButtonController>())
+        {
+            item.active = active;
+        }
     }
     public static bool getButtonActive(this GameObject gameObject)
     {
-         foreach (var item in gameObject.GetComponentsInChildren<ButtonSelectionChangedController>())
-         {
-             if (item.active) {
-                 return true;
-             }
-         }
-         return false;
+        foreach (var item in gameObject.GetComponentsInChildren<ButtonController>())
+        {
+            if (item.active)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
 
