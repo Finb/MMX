@@ -159,8 +159,8 @@ public class StationMenuController : BaseUIInputController
     private void setVehicles(int index, VehicleInfo vehicle)
     {
         vehicles[index].GetComponentInChildren<UnityEngine.UI.Text>().text = vehicle?.vehicleName ?? "无乘坐";
-        vehicles[index].FindObject("Image").GetComponent<UnityEngine.UI.Image>().sprite = vehicle?.gameObject.GetComponent<SpriteRenderer>().sprite;
-        vehicles[index].FindObject("Image").GetComponent<UnityEngine.UI.Image>().enabled = vehicle != null;
+        vehicles[index].FindComponentByObjectName<UnityEngine.UI.Image>("Image").sprite = vehicle?.gameObject.GetComponent<SpriteRenderer>().sprite;
+        vehicles[index].FindComponentByObjectName<UnityEngine.UI.Image>("Image").enabled = vehicle != null;
 
         aboardVehicles[index] = vehicle;
 

@@ -35,7 +35,7 @@ public class PackageMenuController : BaseUIInputController
             }
         }
 
-        var vehiclePanel = gameObject.FindObject("Vehicle").GetComponent<RectTransform>();
+        var vehiclePanel = gameObject.FindComponentByObjectName<RectTransform>("Vehicle");
         for (int i = 0; i < 4; i++)
         {
             var vehicleButton = vehiclePanel.GetChild(i);
@@ -43,8 +43,8 @@ public class PackageMenuController : BaseUIInputController
             if (vehicles.ContainsKey(i))
             {
                 var vehicle = vehicles[i];
-                vehicleButton.gameObject.FindObject("Image").GetComponent<UnityEngine.UI.Image>().sprite = vehicle.avatar;
-                vehicleButton.gameObject.FindObject("Text").GetComponent<UnityEngine.UI.Text>().text = vehicle.name;
+                vehicleButton.gameObject.FindComponentByObjectName<UnityEngine.UI.Image>("Image").sprite = vehicle.avatar;
+                vehicleButton.gameObject.FindComponentByObjectName<UnityEngine.UI.Text>("Text").text = vehicle.name;
             }
             else
             {

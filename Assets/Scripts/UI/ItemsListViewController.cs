@@ -80,8 +80,8 @@ public class ItemsListViewController : BaseUIInputController, IListViewDataSourc
     private void refreshView()
     {
         pageText.text = (listView.currentPage + 1) + "/" + listView.totalPage;
-        UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.FindObject("ListView").GetComponent<RectTransform>());
-        UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.FindObject("BorderImage").GetComponent<RectTransform>());
+        UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.FindComponentByObjectName<RectTransform>("ListView"));
+        UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.FindComponentByObjectName<RectTransform>("BorderImage"));
     }
 
     public int numberOfNodes()
@@ -95,8 +95,8 @@ public class ItemsListViewController : BaseUIInputController, IListViewDataSourc
         button.GetComponentInChildren<UnityEngine.UI.Text>().text = this.items[index].name;
         button.GetComponent<UnityEngine.UI.LayoutElement>().preferredWidth = 200;
         button.GetComponent<UnityEngine.UI.LayoutElement>().preferredHeight = 30;
-        button.FindObject("RightText", true).GetComponent<UnityEngine.UI.Text>().text = "" + (this.items[index] as MMX.NormalItem).count;
-        button.FindObject("Image", true).GetComponent<UnityEngine.UI.Image>().sprite = Resources.Load<UnityEngine.Sprite>("Icon/Item");
+        button.FindComponentByObjectName<UnityEngine.UI.Text>("RightText").text = "" + (this.items[index] as MMX.NormalItem).count;
+        button.FindComponentByObjectName<UnityEngine.UI.Image>("Image").sprite = Resources.Load<UnityEngine.Sprite>("Icon/Item");
         button.GetComponent<ButtonController>().viewTag = index;
         return button;
     }

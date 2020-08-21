@@ -33,16 +33,16 @@ public class RoleMenuController : BaseUIInputController
         for (var i = 0; i < TeamQueue.shared.humans.Count; i++)
         {
             var human = TeamQueue.shared.humans[i].GetComponent<RoleInfo>();
-            humanPanel.transform.GetChild(i).gameObject.FindObject("Text").GetComponent<UnityEngine.UI.Text>().text = human.gameObject.GetComponent<RoleInfo>().nick;
-            humanPanel.transform.GetChild(i).gameObject.FindObject("Image").GetComponent<UnityEngine.UI.Image>().sprite = human.gameObject.GetComponent<SpriteRenderer>().sprite; ;
+            humanPanel.transform.GetChild(i).gameObject.FindComponentByObjectName<UnityEngine.UI.Text>("Text").text = human.gameObject.GetComponent<RoleInfo>().nick;
+            humanPanel.transform.GetChild(i).gameObject.FindComponentByObjectName<UnityEngine.UI.Image>("Image").sprite = human.gameObject.GetComponent<SpriteRenderer>().sprite; ;
 
             var vehicleButton = vehiclePanel.transform.GetChild(i);
             if (TeamQueue.shared.humans[i].GetComponent<HumanInfo>().currentTakedVehicle != null)
             {
                 existVehicle = true;
                 var vehicle = TeamQueue.shared.humans[i].GetComponent<HumanInfo>().currentTakedVehicle;
-                vehicleButton.gameObject.FindObject("Image").GetComponent<UnityEngine.UI.Image>().sprite = vehicle.avatar;
-                vehicleButton.gameObject.FindObject("Text").GetComponent<UnityEngine.UI.Text>().text = vehicle.name;
+                vehicleButton.gameObject.FindComponentByObjectName<UnityEngine.UI.Image>("Image").sprite = vehicle.avatar;
+                vehicleButton.gameObject.FindComponentByObjectName<UnityEngine.UI.Text>("Text").text = vehicle.name;
             }
             else
             {

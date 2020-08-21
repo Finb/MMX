@@ -59,21 +59,21 @@ public class HumanStatusController : BaseUIInputController, InputButtonEventInte
         inputs.UI.A.performed += ctx => buttonClick();
 
         //装备按钮
-        gameObject.FindObject("EquipmentSelectedButton").GetComponent<ButtonController>().clickEvent = () =>
+        gameObject.FindComponentByObjectName<ButtonController>("EquipmentSelectedButton").clickEvent = () =>
         {
             equipmentPanel.SetActive(true);
             skillsPanel.SetActive(false);
             layoutMiddlePanel();
-            gameObject.FindObject("SelectedButtonText").GetComponent<UnityEngine.UI.Text>().text = "装备";
+            gameObject.FindComponentByObjectName<UnityEngine.UI.Text>("SelectedButtonText").text = "装备";
         };
         //技能按钮
-        gameObject.FindObject("SkillsSelectedButton").GetComponent<ButtonController>().clickEvent = () =>
+        gameObject.FindComponentByObjectName<ButtonController>("SkillsSelectedButton").clickEvent = () =>
         {
 
             equipmentPanel.SetActive(false);
             skillsPanel.SetActive(true);
             layoutMiddlePanel();
-            gameObject.FindObject("SelectedButtonText").GetComponent<UnityEngine.UI.Text>().text = "技能";
+            gameObject.FindComponentByObjectName<UnityEngine.UI.Text>("SelectedButtonText").text = "技能";
         };
     }
     public static HumanStatusController Create()
@@ -108,7 +108,7 @@ public class HumanStatusController : BaseUIInputController, InputButtonEventInte
     {
         UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(equipmentPanel.GetComponent<RectTransform>());
         UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(skillsPanel.GetComponent<RectTransform>());
-        UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.FindObject("MiddlePanel").GetComponent<RectTransform>());
+        UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(gameObject.FindComponentByObjectName<RectTransform>("MiddlePanel"));
     }
 
 

@@ -40,7 +40,7 @@ public class ButtonController : MonoBehaviour, ISelectHandler
     public void placeFinger()
     {
         var fingerObj = MMX.GameManager.Finger;
-        var fingerImage = fingerObj.FindObject("Image", true); 
+        var fingerImage = fingerObj.FindObject("Image"); 
         var selectedData = EventSystem.current.currentSelectedGameObject;
         var selectedDataRectTransform = selectedData.GetComponent<RectTransform>();
         var fingerImageRectTransform = fingerImage.GetComponent<RectTransform>();

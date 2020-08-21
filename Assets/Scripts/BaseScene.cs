@@ -36,7 +36,7 @@ public class BaseScene : MonoBehaviour
         var mainMenu = Instantiate(Resources.Load<GameObject>("UI/MainMenu"), new Vector3(0, 0, 0), Quaternion.identity, GameObject.Find("UI").GetComponent<Transform>());
         mainMenu.name = "MainMenu";
         //强制先算一下布局（否则Virtual layout 需要在 avtice 为true 时 才布局，那时已经晚了，导致要设置手指的位置时取到的按钮postion错误）
-        UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(mainMenu.FindObject("Image").GetComponent<RectTransform>());
+        UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(mainMenu.FindComponentByObjectName<RectTransform>("Image"));
         mainMenu.SetActive(false);
 
         ItemStorage.shared.addItems<HumanItem>(Resources.Load<TextAsset>("Items/HumanItem").text);

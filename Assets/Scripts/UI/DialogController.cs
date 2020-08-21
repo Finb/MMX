@@ -16,8 +16,8 @@ public class DialogController : BaseUIInputController
         base.Awake();
         needsShowFinger = false;
                
-        textLabel = gameObject.FindObject("Text").GetComponent<Text>();
-        nickLabel = gameObject.FindObject("nickText").GetComponent<Text>();
+        textLabel = gameObject.FindComponentByObjectName<Text>("Text");
+        nickLabel = gameObject.FindComponentByObjectName<Text>("nickText");
         textDisplay = textLabel.GetComponent<TextDisplay>();
  
         inputs.UI.ContinueButton.performed += ctx => {if (isInteroperable) continueDiglog();};  
