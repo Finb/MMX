@@ -110,6 +110,10 @@ public static class ExtendGameObject
         }
         return false;
     }
+    public static ButtonController getButton(this GameObject gameObject)
+    {
+        return gameObject.GetComponentInChildren<ButtonController>();
+    }
 }
 
 public static class ExtenVector2

@@ -29,7 +29,21 @@ public class ButtonController : MonoBehaviour, ISelectHandler
             return _active;
         }
     }
-
+    public int siblingButtonIndex {
+        get {
+            var index = 0;
+            var buttons = transform.parent.gameObject.GetComponentsInChildren<ButtonController>();
+            for (int i = 0; i < buttons.Length; i++)
+            {
+                if (buttons[i].gameObject == gameObject)
+                {
+                    index = i;
+                    break;
+                }
+            }
+            return index;
+        }
+    }
     public void OnSelect(BaseEventData data)
     {
         MMX.GameManager.Audio.PlaySfx(Resources.Load<AudioClip>("MetalMax-SFX/0x4D-Shift"));

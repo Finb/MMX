@@ -267,6 +267,22 @@ public class @InputControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""L"",
+                    ""type"": ""Button"",
+                    ""id"": ""5d877e0c-a2ef-4d69-a667-d9b5e11154ed"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""R"",
+                    ""type"": ""Button"",
+                    ""id"": ""ab448d34-38e1-4a84-8e69-cbbbd1765687"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -610,6 +626,28 @@ public class @InputControls : IInputActionCollection, IDisposable
                     ""action"": ""Right"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8842daf5-ab96-4366-8378-e896e061f1cf"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""L"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""784ead80-3c53-4e34-add6-52fddfad999c"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""R"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -631,6 +669,8 @@ public class @InputControls : IInputActionCollection, IDisposable
         m_UI_Left = m_UI.FindAction("Left", throwIfNotFound: true);
         m_UI_Right = m_UI.FindAction("Right", throwIfNotFound: true);
         m_UI_ContinueButton = m_UI.FindAction("ContinueButton", throwIfNotFound: true);
+        m_UI_L = m_UI.FindAction("L", throwIfNotFound: true);
+        m_UI_R = m_UI.FindAction("R", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -751,6 +791,8 @@ public class @InputControls : IInputActionCollection, IDisposable
     private readonly InputAction m_UI_Left;
     private readonly InputAction m_UI_Right;
     private readonly InputAction m_UI_ContinueButton;
+    private readonly InputAction m_UI_L;
+    private readonly InputAction m_UI_R;
     public struct UIActions
     {
         private @InputControls m_Wrapper;
@@ -761,6 +803,8 @@ public class @InputControls : IInputActionCollection, IDisposable
         public InputAction @Left => m_Wrapper.m_UI_Left;
         public InputAction @Right => m_Wrapper.m_UI_Right;
         public InputAction @ContinueButton => m_Wrapper.m_UI_ContinueButton;
+        public InputAction @L => m_Wrapper.m_UI_L;
+        public InputAction @R => m_Wrapper.m_UI_R;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -788,6 +832,12 @@ public class @InputControls : IInputActionCollection, IDisposable
                 @ContinueButton.started -= m_Wrapper.m_UIActionsCallbackInterface.OnContinueButton;
                 @ContinueButton.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnContinueButton;
                 @ContinueButton.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnContinueButton;
+                @L.started -= m_Wrapper.m_UIActionsCallbackInterface.OnL;
+                @L.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnL;
+                @L.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnL;
+                @R.started -= m_Wrapper.m_UIActionsCallbackInterface.OnR;
+                @R.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnR;
+                @R.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnR;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -810,6 +860,12 @@ public class @InputControls : IInputActionCollection, IDisposable
                 @ContinueButton.started += instance.OnContinueButton;
                 @ContinueButton.performed += instance.OnContinueButton;
                 @ContinueButton.canceled += instance.OnContinueButton;
+                @L.started += instance.OnL;
+                @L.performed += instance.OnL;
+                @L.canceled += instance.OnL;
+                @R.started += instance.OnR;
+                @R.performed += instance.OnR;
+                @R.canceled += instance.OnR;
             }
         }
     }
@@ -830,5 +886,7 @@ public class @InputControls : IInputActionCollection, IDisposable
         void OnLeft(InputAction.CallbackContext context);
         void OnRight(InputAction.CallbackContext context);
         void OnContinueButton(InputAction.CallbackContext context);
+        void OnL(InputAction.CallbackContext context);
+        void OnR(InputAction.CallbackContext context);
     }
 }

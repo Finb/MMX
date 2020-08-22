@@ -48,15 +48,36 @@ public class HumanStatusController : BaseUIInputController, InputButtonEventInte
     {
         get
         {
-            return TeamQueue.shared.humans[0].GetComponent<HumanInfo>();
+            return TeamQueue.shared.humans[currentHumanIndex].GetComponent<HumanInfo>();
         }
     }
+    public int currentHumanIndex = 0;
 
     public override void Awake()
     {
         base.Awake();
         inputs.UI.B.performed += ctx => hide();
         inputs.UI.A.performed += ctx => buttonClick();
+        inputs.UI.L.performed += ctx =>
+        {
+            currentHumanIndex -= 1;
+            if (currentHumanIndex < 0)
+            {
+                currentHumanIndex = TeamQueue.shared.humans.Count - 1;
+            }
+            refreshEquipment();
+            selectedButtonChanged();
+        };
+        inputs.UI.R.performed += ctx =>
+        {
+            currentHumanIndex += 1;
+            if (currentHumanIndex > TeamQueue.shared.humans.Count - 1)
+            {
+                currentHumanIndex = 0;
+            }
+            refreshEquipment();
+            selectedButtonChanged();
+        };
 
         //装备按钮
         gameObject.FindComponentByObjectName<ButtonController>("EquipmentSelectedButton").clickEvent = () =>
@@ -120,16 +141,8 @@ public class HumanStatusController : BaseUIInputController, InputButtonEventInte
         }
         else if (equipmentPanel.getButtonActive())
         {
-            var index = 0;
-            var buttons = equipmentPanel.GetComponentsInChildren<ButtonController>();
-            for (int i = 0; i < buttons.Length; i++)
-            {
-                if (buttons[i].gameObject == currentSelectedGameObject)
-                {
-                    index = i;
-                    break;
-                }
-            }
+
+            var index = currentSelectedGameObject.GetComponent<ButtonController>().siblingButtonIndex;
 
             MMX.EquipmentItem item = null;
             if (index <= 2)
@@ -206,16 +219,7 @@ public class HumanStatusController : BaseUIInputController, InputButtonEventInte
         }
         else if (equipmentPanel.getButtonActive())
         {
-            var index = 0;
-            var buttons = equipmentPanel.GetComponentsInChildren<ButtonController>();
-            for (int i = 0; i < buttons.Length; i++)
-            {
-                if (buttons[i].gameObject == currentSelectedGameObject)
-                {
-                    index = i;
-                    break;
-                }
-            }
+            var index = currentSelectedGameObject.getButton().siblingButtonIndex;
 
             var controller = EquipmentListViewController.Create();
             controller.type = ItemsListType.equipment;
@@ -249,12 +253,20 @@ public class HumanStatusController : BaseUIInputController, InputButtonEventInte
             {
                 weapons[i].text = currentHuman.equipments.weapons[i].name;
             }
+            else
+            {
+                weapons[i].text = "无装备";
+            }
         }
         for (int i = 0; i < armors.Length; i++)
         {
             if (currentHuman.equipments.armors.ContainsKey((MMX.HumanArmorEquipmentType)i))
             {
                 armors[i].text = currentHuman.equipments.armors[(MMX.HumanArmorEquipmentType)i].name;
+            }
+            else
+            {
+                armors[i].text = "无装备";
             }
         }
     }
