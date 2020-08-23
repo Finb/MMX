@@ -28,11 +28,16 @@ public partial class HumanInfo : MonoBehaviour
     //SecondaryCareer
 
     public EquipmentInfo equipments = new EquipmentInfo();
-    public List<MMX.Effect> effects;
+    public List<MMX.Effect> effects = new List<MMX.Effect>();
+    public HumanInfo(){
+        equipments.equipmentInfoChanged = (info) => {
+            refreshProperty();
+        };
+    }
     ///根据当前装备，重新计算属性值
     public void refreshProperty()
     {
-        property = baseProperty;
+        property = baseProperty.clone();
         //加上防具的属性
         foreach (var item in equipments.armors.Values)
         {
@@ -40,6 +45,13 @@ public partial class HumanInfo : MonoBehaviour
             property.defense += item.defense;
             property.velocity += item.velocity;
             property.macho += item.macho;
+
+            property.resistance[MMX.AttackProperty.ice] += item.iceResistance;
+            property.resistance[MMX.AttackProperty.fire] += item.fireResistance;
+            property.resistance[MMX.AttackProperty.electric] += item.electricResistance;
+            property.resistance[MMX.AttackProperty.sonic] += item.sonicResistance;
+            property.resistance[MMX.AttackProperty.gas] += item.gasResistance;
+            property.resistance[MMX.AttackProperty.beam] += item.laserResistance;
         }
 
         //应用特效
@@ -63,28 +75,69 @@ public partial class HumanInfo: MMX.IHumanAbilityPassiveEffect {
 
 public class EquipmentInfo
 {
+    //武器
     public MMX.HumanWeaponEquipment[] weapons = new MMX.HumanWeaponEquipment[3];
+    //防具
     public Dictionary<MMX.HumanArmorEquipmentType, MMX.HumanArmorEquipment> armors = new Dictionary<MMX.HumanArmorEquipmentType, MMX.HumanArmorEquipment>();
+    
+    //装备改动事件
+    public System.Action<EquipmentInfo> equipmentInfoChanged;
+    
+    public void setWeapon(MMX.HumanWeaponEquipment weaponEquipment, int index){
+        weapons[index] = weaponEquipment;
+        if(equipmentInfoChanged != null){
+            equipmentInfoChanged(this);
+        }
+    }
+    public void setArmor(MMX.HumanArmorEquipment armorEquipment, MMX.HumanArmorEquipmentType type){
+        armors[type] = armorEquipment;
+        if(equipmentInfoChanged != null){
+            equipmentInfoChanged(this);
+        }
+    }
 }
 
-public struct HumanProperty : MMX.IEffect
+public class HumanProperty : MMX.IEffect
 {
     //HP
-    public int hp;
-    public int maxHp;
+    public int hp = 0;
+    public int maxHp = 0;
 
     //攻击力
-    public int damage;
+    public int damage = 0;
     //防御力
-    public int defense;
-    //速度
-    public int velocity;
-
+    public int defense = 0;
+    
     //腕力
-    public int wrist;
+    public int wrist = 0;
     //体力
-    public int con;
+    public int con = 0;
     //速度
     //男子气概值
-    public int macho;
+    public int macho = 0;
+    //速度
+    public int velocity = 0;
+    public HumanProperty(){
+        resistance[MMX.AttackProperty.ice] = 0;
+        resistance[MMX.AttackProperty.fire] = 0;
+        resistance[MMX.AttackProperty.electric] = 0;
+        resistance[MMX.AttackProperty.sonic] = 0;
+        resistance[MMX.AttackProperty.gas] = 0;
+        resistance[MMX.AttackProperty.beam] = 0;
+    }
+    public Dictionary<MMX.AttackProperty, int> resistance = new Dictionary<MMX.AttackProperty, int>();
+
+    public HumanProperty clone(){
+        var prop = new HumanProperty();
+        prop.hp = hp;
+        prop.maxHp = maxHp;
+        prop.damage = damage;
+        prop.defense = defense;
+        prop.wrist = wrist;
+        prop.con = con;
+        prop.macho = macho;
+        prop.velocity = velocity;
+        prop.resistance = new Dictionary<MMX.AttackProperty, int>(resistance);
+        return prop;
+    }
 }

@@ -44,6 +44,9 @@ public class HumanStatusController : BaseUIInputController, InputButtonEventInte
     public GameObject skillsPanel;
     public GameObject selectButtonPanel;
 
+    public UnityEngine.UI.Text[] propertyTexts;
+    public UnityEngine.UI.Text[] resistanceTexts;
+
     public HumanInfo currentHuman
     {
         get
@@ -237,11 +240,11 @@ public class HumanStatusController : BaseUIInputController, InputButtonEventInte
     {
         if (index <= 2)
         {
-            currentHuman.equipments.weapons[index] = item as MMX.HumanWeaponEquipment;
+            currentHuman.equipments.setWeapon(item as MMX.HumanWeaponEquipment,index);
         }
         else
         {
-            currentHuman.equipments.armors[(MMX.HumanArmorEquipmentType)(index - 3)] = item as MMX.HumanArmorEquipment;
+            currentHuman.equipments.setArmor(item as MMX.HumanArmorEquipment,(MMX.HumanArmorEquipmentType)(index - 3));
         }
         refreshEquipment();
     }
@@ -269,6 +272,31 @@ public class HumanStatusController : BaseUIInputController, InputButtonEventInte
                 armors[i].text = "无装备";
             }
         }
+        refreshPropertys();
+    }
+    private void refreshPropertys(){
+        propertyTexts[0].text = ""+currentHuman.level;
+        propertyTexts[1].text = ""+currentHuman.driveLevel;
+        propertyTexts[2].text = ""+currentHuman.fightLevel;
+        propertyTexts[3].text = ""+currentHuman.property.wrist;
+        propertyTexts[4].text = ""+currentHuman.property.con;
+        propertyTexts[5].text = ""+currentHuman.property.defense;
+        propertyTexts[6].text = ""+currentHuman.property.velocity;
+        propertyTexts[7].text = ""+currentHuman.property.macho;
+        propertyTexts[8].text = "0";
+
+        
+        resistanceTexts[0].text = "" + currentHuman.property.resistance[MMX.AttackProperty.ice];
+        resistanceTexts[1].text = "" + currentHuman.property.resistance[MMX.AttackProperty.fire];
+        resistanceTexts[2].text = "" + currentHuman.property.resistance[MMX.AttackProperty.electric] ;
+        resistanceTexts[3].text = "" + currentHuman.property.resistance[MMX.AttackProperty.sonic];
+        resistanceTexts[4].text = "" + currentHuman.property.resistance[MMX.AttackProperty.gas];
+        resistanceTexts[5].text = "" + currentHuman.property.resistance[MMX.AttackProperty.beam];
+
+        nickText.text = currentHuman.name;
+        hpText.text = currentHuman.property.hp + "/" + currentHuman.property.maxHp;
+        expText.text = "" + currentHuman.currentExp;
+        
     }
 
     //进入装备
