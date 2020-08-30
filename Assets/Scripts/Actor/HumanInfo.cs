@@ -4,6 +4,11 @@ using System.Collections.Generic;
 [HideInInspector]
 public partial class HumanInfo : MonoBehaviour
 {
+    public string nick {
+        get {
+            return gameObject.GetComponent<RoleInfo>().nick;
+        }
+    }
     //等级
     public int level;
     //战斗等级

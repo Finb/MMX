@@ -25,6 +25,12 @@ public class MainMenuController : BaseUIInputController
                     break;
                 case "装备":
                     var roleMenu = RoleMenuController.Create();
+                    roleMenu.selectRoleCompletionAction = (humanInfo) => {
+                        var humanStatusController = HumanStatusController.Create();
+                        humanStatusController.viewType = HumanStatusController.HumanStatusViewType.equipment;
+                        humanStatusController.currentHumanIndex = TeamQueue.shared.humans.IndexOf(humanInfo.gameObject);
+                        humanStatusController.show();
+                    };
                     roleMenu.show();
                     break;
                 case "乘降":

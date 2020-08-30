@@ -35,6 +35,11 @@ public abstract class BaseUIInputController : MonoBehaviour, InputEventInterface
             return EventSystem.current.currentSelectedGameObject;
         }
     }
+    public int currentSelectedGameObjectIndex {
+        get {
+            return currentSelectedGameObject.GetComponent<ButtonController>().siblingButtonIndex;
+        }
+    }
 
     //失去焦点时，当前选中的按钮
     public GameObject currentSelectedGameObjectWhenLostFocus;
@@ -66,8 +71,13 @@ public abstract class BaseUIInputController : MonoBehaviour, InputEventInterface
             {
                 return _defaultSelectedGameObjecteAtFirst;
             }
-            var obj = gameObject.GetComponentInChildren<ButtonController>()?.gameObject;
-            return obj;
+            var buttons = gameObject.GetComponentsInChildren<ButtonController>();
+            foreach(var button in buttons){
+                if(button.active){
+                    return button.gameObject;
+                }
+            }
+            return null;
         }
         set
         {

@@ -7,14 +7,14 @@ public class RoleMenuController : BaseUIInputController
 {
     public GameObject humanPanel;
     public GameObject vehiclePanel;
-    public System.Action selectRoleCompletionAction;
+    public System.Action<HumanInfo> selectRoleCompletionAction;
     public override void Awake()
     {
         base.Awake();
         inputs.UI.A.performed += ctx =>
         {
             if(this.selectRoleCompletionAction != null){
-                this.selectRoleCompletionAction();
+                this.selectRoleCompletionAction(TeamQueue.shared.humans[currentSelectedGameObjectIndex].GetComponent<HumanInfo>());
             }
         };
         inputs.UI.B.performed += ctx => hide();

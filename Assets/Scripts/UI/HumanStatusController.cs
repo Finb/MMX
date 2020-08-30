@@ -56,6 +56,18 @@ public class HumanStatusController : BaseUIInputController, InputButtonEventInte
     }
     public int currentHumanIndex = 0;
 
+    //当前页面显示的类型
+    public enum HumanStatusViewType : int
+    {
+        //默认，由玩家选择进入的界面
+        none = 0,
+        //进入装备界面
+        equipment,
+        //进入技能界面
+        skills
+    }
+    public HumanStatusViewType viewType = HumanStatusViewType.none;
+
     public override void Awake()
     {
         base.Awake();
@@ -109,20 +121,45 @@ public class HumanStatusController : BaseUIInputController, InputButtonEventInte
     {
         MMX.GameManager.Input.pushTarget(gameObject);
 
-        equipmentPanel.setButtonActive(false);
-        skillsPanel.setButtonActive(false);
+        if (viewType == HumanStatusViewType.none)
+        {
+            equipmentPanel.setButtonActive(false);
+            skillsPanel.setButtonActive(false);
+            selectButtonPanel.setButtonActive(true);
+
+        }
+        else if (viewType == HumanStatusViewType.equipment)
+        {
+            equipmentPanel.setButtonActive(true);
+            skillsPanel.setButtonActive(false);
+            selectButtonPanel.setButtonActive(false);
+        }
+        else
+        {
+            equipmentPanel.setButtonActive(false);
+            skillsPanel.setButtonActive(true);
+            selectButtonPanel.setButtonActive(false);
+        }
         refreshEquipment();
     }
     public void hide()
     {
-        if (selectButtonPanel.getButtonActive())
+        if (viewType == HumanStatusViewType.none)
         {
-            MMX.GameManager.Input.popTarget();
-            Destroy(gameObject);
+            if (selectButtonPanel.getButtonActive())
+            {
+                MMX.GameManager.Input.popTarget();
+                Destroy(gameObject);
+            }
+            else
+            {
+                enterSelecteButtonPanel();
+            }
         }
         else
         {
-            enterSelecteButtonPanel();
+            MMX.GameManager.Input.popTarget();
+            Destroy(gameObject);
         }
 
     }
@@ -240,11 +277,11 @@ public class HumanStatusController : BaseUIInputController, InputButtonEventInte
     {
         if (index <= 2)
         {
-            currentHuman.equipments.setWeapon(item as MMX.HumanWeaponEquipment,index);
+            currentHuman.equipments.setWeapon(item as MMX.HumanWeaponEquipment, index);
         }
         else
         {
-            currentHuman.equipments.setArmor(item as MMX.HumanArmorEquipment,(MMX.HumanArmorEquipmentType)(index - 3));
+            currentHuman.equipments.setArmor(item as MMX.HumanArmorEquipment, (MMX.HumanArmorEquipmentType)(index - 3));
         }
         refreshEquipment();
     }
@@ -274,29 +311,30 @@ public class HumanStatusController : BaseUIInputController, InputButtonEventInte
         }
         refreshPropertys();
     }
-    private void refreshPropertys(){
-        propertyTexts[0].text = ""+currentHuman.level;
-        propertyTexts[1].text = ""+currentHuman.driveLevel;
-        propertyTexts[2].text = ""+currentHuman.fightLevel;
-        propertyTexts[3].text = ""+currentHuman.property.wrist;
-        propertyTexts[4].text = ""+currentHuman.property.con;
-        propertyTexts[5].text = ""+currentHuman.property.defense;
-        propertyTexts[6].text = ""+currentHuman.property.velocity;
-        propertyTexts[7].text = ""+currentHuman.property.macho;
+    private void refreshPropertys()
+    {
+        propertyTexts[0].text = "" + currentHuman.level;
+        propertyTexts[1].text = "" + currentHuman.driveLevel;
+        propertyTexts[2].text = "" + currentHuman.fightLevel;
+        propertyTexts[3].text = "" + currentHuman.property.wrist;
+        propertyTexts[4].text = "" + currentHuman.property.con;
+        propertyTexts[5].text = "" + currentHuman.property.defense;
+        propertyTexts[6].text = "" + currentHuman.property.velocity;
+        propertyTexts[7].text = "" + currentHuman.property.macho;
         propertyTexts[8].text = "0";
 
-        
+
         resistanceTexts[0].text = "" + currentHuman.property.resistance[MMX.AttackProperty.ice];
         resistanceTexts[1].text = "" + currentHuman.property.resistance[MMX.AttackProperty.fire];
-        resistanceTexts[2].text = "" + currentHuman.property.resistance[MMX.AttackProperty.electric] ;
+        resistanceTexts[2].text = "" + currentHuman.property.resistance[MMX.AttackProperty.electric];
         resistanceTexts[3].text = "" + currentHuman.property.resistance[MMX.AttackProperty.sonic];
         resistanceTexts[4].text = "" + currentHuman.property.resistance[MMX.AttackProperty.gas];
         resistanceTexts[5].text = "" + currentHuman.property.resistance[MMX.AttackProperty.beam];
 
-        nickText.text = currentHuman.name;
+        nickText.text = currentHuman.nick;
         hpText.text = currentHuman.property.hp + "/" + currentHuman.property.maxHp;
         expText.text = "" + currentHuman.currentExp;
-        
+
     }
 
     //进入装备
