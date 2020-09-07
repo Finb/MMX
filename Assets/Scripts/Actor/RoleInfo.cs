@@ -14,8 +14,6 @@ public class RoleInfo : MonoBehaviour
     public float raycastDistance = 1f;
     [Header("角色昵称")]
     public string nick;
-    public RoleInfoAction action;
-
     private Animator anim;
     void Start()
     {
@@ -27,40 +25,5 @@ public class RoleInfo : MonoBehaviour
         if (upAnimation != null) overrideAinmator["主角1_move_up"] = upAnimation;
         anim.runtimeAnimatorController = overrideAinmator;
     }
-
-    public void playAction(RoleInfoAction action)
-    {
-        if (action == null)
-        {
-            return;
-        }
-        switch (action.actionType)
-        {
-            case RoleInfoActionType.dialogue:
-                var dialog = DialogController.create();
-                dialog.showText(action.dialogueText, this.nick, () =>
-                {
-                    if (action.childRoleInfoActions.Length > 0)
-                    {
-                        var boxController = SelectButtonBoxController.Create();
-                        foreach (var item in action.childRoleInfoActions)
-                        {
-                            boxController.addButton(item.actionName, () =>
-                            {
-                                dialog.hide();
-                                this.playAction(item);
-                            });
-                        }
-                        boxController.show();
-                    }
-                });
-                break;
-            case RoleInfoActionType.follow:
-                MMX.GameManager.Queue.enqueue(this.gameObject);
-                Debug.Log("跟随");
-                break;
-        }
-    }
-
 }
 

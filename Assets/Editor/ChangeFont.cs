@@ -68,30 +68,30 @@ public class ToolCacheManager
 }
 
 public class UnityUIEvent
+{
+    [InitializeOnLoadMethod]
+    private static void Init()
     {
-        [InitializeOnLoadMethod]
-        private static void Init()
+        Action OnEvent = delegate
         {
-            Action OnEvent = delegate
-            {
-                ChangeDefaultFont();
-            };
+            ChangeDefaultFont();
+        };
 
-            EditorApplication.hierarchyWindowChanged = delegate()
-            {
-                OnEvent();
-            };
-        }
-
-        private static void ChangeDefaultFont()
+        EditorApplication.hierarchyChanged += delegate ()
         {
-            if (Selection.activeGameObject != null)
+            OnEvent();
+        };
+    }
+
+    private static void ChangeDefaultFont()
+    {
+        if (Selection.activeGameObject != null)
+        {
+            Text text = Selection.activeGameObject.GetComponent<Text>();
+            if (text != null)
             {
-                Text text = Selection.activeGameObject.GetComponent<Text>();
-                if (text != null)
-                {
-                    text.font = ToolCacheManager.GetFont();
-                }
+                text.font = ToolCacheManager.GetFont();
             }
         }
     }
+}
