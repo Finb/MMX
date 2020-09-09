@@ -30,7 +30,7 @@ public class BaseScene : MonoBehaviour
         collider.points = pointsList.ToArray();
 
         // 加载地图
-        GameManager.Queue.captain.GetComponent<TeleportController>()?.teleport(new TeleportTargetInfo("拉多1", "拉多镇", new Vector2(0.5f, -2.5f), null));
+        new TeleportExecuter().teleport(new TeleportTargetInfo("拉多1", "拉多镇", new Vector2(0.5f, -2.5f), null));
 
         //加载UI界面
         var mainMenu = Instantiate(Resources.Load<GameObject>("UI/MainMenu"), new Vector3(0, 0, 0), Quaternion.identity, GameObject.Find("UI").GetComponent<Transform>());

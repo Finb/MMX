@@ -5,7 +5,10 @@ using UnityEngine;
 public enum EventActionType
 {
     none,
-    dialogue, //弹出对话
+    //弹出对话
+    dialogue, 
+    //传送
+    teleport,
     humanItem, //人类道具店
 }
 //触发条件
@@ -25,6 +28,7 @@ public interface IExecute {
     void execute(EventAction eventAction);
 }
 
+[AddComponentMenu("EventAction/EventAction")]
 public class EventAction : MonoBehaviour
 {
     //事件类型
@@ -38,13 +42,26 @@ public class EventAction : MonoBehaviour
     //事件参数
     public string stringVar1;
     public string stringVar2;
+    public string stringVar3;
+    public string stringVar4;
+    public string stringVar5;
 
     public string intVar1;
     public string intVar2;
 
+    public AudioClip audioClipVar1;
+    public AudioClip audioClipVar2;
+
+    public Vector2 vector2Var1;
+    public Vector2 vector2Var2;
+
+    public Transform transformVar1;
+    public Transform transformVar2;
+
     public EventAction[] childEventAction;
 
     public ScriptableObject scriptableObjectVar1;
+    
 
     public void OnKeyTrigger(Collider other) {
 
@@ -62,9 +79,15 @@ public class EventAction : MonoBehaviour
         execute();   
     }
     public void execute(){
-        getExecuter().execute(this);
+        getExecuter()?.execute(this);
     }
     private IExecute getExecuter(){
-        return new DialogExecuter();
+        switch (type){
+            case EventActionType.dialogue:
+            return new DialogExecuter();
+            case EventActionType.teleport:
+            return new TeleportExecuter();
+        }
+        return null;
     }
 }

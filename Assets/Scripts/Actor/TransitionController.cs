@@ -4,17 +4,42 @@ using UnityEngine;
 
 public class TransitionController : MonoBehaviour
 {
-    public GameObject messageReceiver;
+    public System.Action transitionInCompletion;
+    public System.Action transitionOutCompletion;
+
     public void OnTransitionInAnimationComplete()
     {
         Debug.Log("屏幕黑了");
-        messageReceiver.GetComponent<TeleportController>().teleport();
+        if (transitionInCompletion != null)
+        {
+            transitionInCompletion();
+        }
+
     }
 
     // This method should be called by a keyframe event
     public void OnTransitionOutAnimationComplete()
     {
-        messageReceiver.GetComponent<TeleportController>().teleportFinished();
         Debug.Log("屏幕亮了");
+        if (transitionOutCompletion != null)
+        {
+            transitionOutCompletion();
+        }
+        transitionInCompletion = null;
+        transitionOutCompletion = null;
+    }
+
+    public void startScreenFade()
+    {
+        var screenFader = GameObject.FindWithTag("ScreenFader");
+        var screenFaderAnimator = screenFader.GetComponent<Animator>();
+        screenFaderAnimator.SetTrigger("FadeInTrigger");
+    }
+
+    public void endScreenFade()
+    {
+        var screenFader = GameObject.FindWithTag("ScreenFader");
+        var screenFaderAnimator = screenFader.GetComponent<Animator>();
+        screenFaderAnimator.SetTrigger("FadeOutTrigger");
     }
 }

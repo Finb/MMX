@@ -16,6 +16,8 @@ namespace MMX
         public static TeamQueue Queue = TeamQueue.shared;
 
         public static GameObject map;
+        
+        public static TransitionController transition = Singleton<TransitionController>.Instance;
 
         public static void PlayEnterButtonSfx()
         {
@@ -26,5 +28,6 @@ namespace MMX
             MMX.GameManager.Audio.PlaySfx(Resources.Load<AudioClip>("MetalMax-SFX/0x3E-Enter"));
         }
 
+        
     }
 }

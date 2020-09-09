@@ -5,8 +5,6 @@ using UnityEngine.InputSystem;
 
 public class MoveController : Movement, InputEventInterface
 {
-    TeleportController teleportController;
-
     private Vector2 lastPostion;
 
     public InputControls inputs;

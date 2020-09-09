@@ -69,11 +69,6 @@ public class TeamQueue
     {
         //重置queue队列中的数据
 
-        //清空 TeleportController 
-        foreach (var item in queue)
-        {
-            MonoBehaviour.Destroy(item.GetComponent<TeleportController>());
-        }
         //移除所有队员
         queue.RemoveRange(0, queue.Count);
     }
@@ -139,18 +134,14 @@ public class TeamQueue
             humans[0].GetComponent<BoxCollider2D>().isTrigger = false;
         }
 
-        player.AddComponent<TeleportController>();
-
         MMX.GameManager.Input.setRootTarget(player);
 
         var mainCamera = GameObject.FindWithTag("MainCamera");
         mainCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().Follow = player.transform;
-        GameObject.FindWithTag("ScreenFader").GetComponent<TransitionController>().messageReceiver = player;
     }
     public void setupMember(GameObject player)
     {
-        //清空传送脚本
-        MonoBehaviour.Destroy(player.GetComponent<TeleportController>());
+        
     }
 
     //清空队列中角色的 setps 信息

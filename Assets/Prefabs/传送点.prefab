@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7346778100923090395}
   - component: {fileID: 7346778100923090392}
-  - component: {fileID: 7346778100923090393}
+  - component: {fileID: 1973982908025590800}
   m_Layer: 0
   m_Name: "\u4F20\u9001\u70B9"
   m_TagString: Untagged
@@ -58,7 +58,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7346778100923090393
+--- !u!114 &1973982908025590800
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -67,18 +67,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 7346778100923090398}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 645e53be447084cb89ae0b5bee689c5f, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ac0bbc7553e64c6abec1e5a2ff9325e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundEffect: {fileID: 8300000, guid: 1edda31d23ced4e2d80a1ea0cb251ae5, type: 3}
-  dropZone: {fileID: 0}
-  dropZoneOffset: {x: 0, y: 0}
-  dropZoneSteps: 0
-  dropZoneLookAt: 0
-  cameraConfiner:
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  calculatedDropZone: {x: 0, y: 0}
-  calculatedDropZoneLookAt: {x: 0, y: 0}
+  type: 2
+  eventName: 
+  startCondition: 3
+  stringVar1: 
+  stringVar2: 
+  stringVar3: 
+  stringVar4: 
+  stringVar5: 
+  intVar1: 
+  intVar2: 
+  audioClipVar1: {fileID: 8300000, guid: 1edda31d23ced4e2d80a1ea0cb251ae5, type: 3}
+  audioClipVar2: {fileID: 0}
+  vector2Var1: {x: 0, y: 0}
+  vector2Var2: {x: 0, y: 0}
+  transformVar1: {fileID: 0}
+  transformVar2: {fileID: 0}
+  childEventAction: []
+  scriptableObjectVar1: {fileID: 0}

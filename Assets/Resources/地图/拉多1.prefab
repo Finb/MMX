@@ -8752,8 +8752,47 @@ MonoBehaviour:
   startCondition: 0
   stringVar1: Fin2
   stringVar2: "\u5546\u5E97\u7CFB\u7EDF"
+  stringVar3: 
+  stringVar4: 
+  stringVar5: 
   intVar1: 
   intVar2: 
+  audioClipVar1: {fileID: 0}
+  audioClipVar2: {fileID: 0}
+  vector2Var1: {x: 0, y: 0}
+  vector2Var2: {x: 0, y: 0}
+  transformVar1: {fileID: 0}
+  transformVar2: {fileID: 0}
+  childEventAction: []
+  scriptableObjectVar1: {fileID: 0}
+--- !u!114 &2937793144227327955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5208790916336613448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ac0bbc7553e64c6abec1e5a2ff9325e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
+  eventName: "\u4F20\u9001\u5230\u5BB6\u91CC"
+  startCondition: 0
+  stringVar1: "\u79D1\u6280\u9986"
+  stringVar2: "\u79D1\u6280\u9986"
+  stringVar3: "\u4F20\u9001\u70B9"
+  stringVar4: 
+  stringVar5: 
+  intVar1: 
+  intVar2: 
+  audioClipVar1: {fileID: 8300000, guid: 1edda31d23ced4e2d80a1ea0cb251ae5, type: 3}
+  audioClipVar2: {fileID: 0}
+  vector2Var1: {x: 0, y: 0}
+  vector2Var2: {x: 0, y: 0}
+  transformVar1: {fileID: 0}
+  transformVar2: {fileID: 0}
   childEventAction: []
   scriptableObjectVar1: {fileID: 0}
 --- !u!114 &4236561921519634338
@@ -8773,11 +8812,21 @@ MonoBehaviour:
   startCondition: 2
   stringVar1: Fin
   stringVar2: "\u8FD9\u662F\u91CD\u88C5\u673A\u5175<b><color=red>Unity</color></b>\u7248\n\u76EE\u6807\u662F\u5B9E\u73B02R\u7684\u6E38\u620F\u7CFB\u7EDF\n\u73B0\u5728\u6B63\u5728\u5F00\u53D1\n\u8BF7\u9009\u62E9\u67E5\u770B\u5F00\u53D1\u8FDB\u5EA6"
+  stringVar3: 
+  stringVar4: 
+  stringVar5: 
   intVar1: 
   intVar2: 
+  audioClipVar1: {fileID: 0}
+  audioClipVar2: {fileID: 0}
+  vector2Var1: {x: 0, y: 0}
+  vector2Var2: {x: 0, y: 0}
+  transformVar1: {fileID: 0}
+  transformVar2: {fileID: 0}
   childEventAction:
   - {fileID: 7066195719690409497}
   - {fileID: 1018202536731501203}
+  - {fileID: 2937793144227327955}
   scriptableObjectVar1: {fileID: 0}
 --- !u!114 &6468232186440040636
 MonoBehaviour:
@@ -8811,8 +8860,17 @@ MonoBehaviour:
   startCondition: 0
   stringVar1: Fin
   stringVar2: "\u8DDF\u968F\u7CFB\u7EDF\u3001\u4E8B\u4EF6\u7CFB\u7EDF\n\u7269\u54C1\u7CFB\u7EDF\u3001\u88C5\u5907\u7CFB\u7EDF"
+  stringVar3: 
+  stringVar4: 
+  stringVar5: 
   intVar1: 
   intVar2: 
+  audioClipVar1: {fileID: 0}
+  audioClipVar2: {fileID: 0}
+  vector2Var1: {x: 0, y: 0}
+  vector2Var2: {x: 0, y: 0}
+  transformVar1: {fileID: 0}
+  transformVar2: {fileID: 0}
   childEventAction:
   - {fileID: 7066195719690409497}
   - {fileID: 1018202536731501203}
@@ -17613,6 +17671,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5297467387268208259}
     m_Modifications:
+    - target: {fileID: 1973982908025590800, guid: 0f82d66805ac04c8eaacfa0d52b8b71b,
+        type: 3}
+      propertyPath: transformVar1
+      value: 
+      objectReference: {fileID: 1751278041313256999}
+    - target: {fileID: 1973982908025590800, guid: 0f82d66805ac04c8eaacfa0d52b8b71b,
+        type: 3}
+      propertyPath: vector2Var1.y
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 7346778100923090392, guid: 0f82d66805ac04c8eaacfa0d52b8b71b,
         type: 3}
       propertyPath: m_Size.x
@@ -17885,15 +17953,15 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5585513850713760815, guid: db67f2a17307649f8a11c85e1d5c8a59, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: db67f2a17307649f8a11c85e1d5c8a59, type: 3}
---- !u!4 &4793431832702595741 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8227369369701448723, guid: db67f2a17307649f8a11c85e1d5c8a59,
-    type: 3}
-  m_PrefabInstance: {fileID: 3506276623294025358}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4013104351690806273 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 511621616496056975, guid: db67f2a17307649f8a11c85e1d5c8a59,
+    type: 3}
+  m_PrefabInstance: {fileID: 3506276623294025358}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4793431832702595741 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8227369369701448723, guid: db67f2a17307649f8a11c85e1d5c8a59,
     type: 3}
   m_PrefabInstance: {fileID: 3506276623294025358}
   m_PrefabAsset: {fileID: 0}
@@ -17910,6 +17978,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5297467387268208259}
     m_Modifications:
+    - target: {fileID: 1973982908025590800, guid: 0f82d66805ac04c8eaacfa0d52b8b71b,
+        type: 3}
+      propertyPath: stringVar1
+      value: "\u79D1\u6280\u9986"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973982908025590800, guid: 0f82d66805ac04c8eaacfa0d52b8b71b,
+        type: 3}
+      propertyPath: stringVar2
+      value: "\u79D1\u6280\u9986"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973982908025590800, guid: 0f82d66805ac04c8eaacfa0d52b8b71b,
+        type: 3}
+      propertyPath: stringVar3
+      value: "\u4F20\u9001\u70B9"
+      objectReference: {fileID: 0}
     - target: {fileID: 7346778100923090393, guid: 0f82d66805ac04c8eaacfa0d52b8b71b,
         type: 3}
       propertyPath: teleportInfo.mapName
@@ -18000,6 +18083,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7917555476143490757}
     m_Modifications:
+    - target: {fileID: 1973982908025590800, guid: 0f82d66805ac04c8eaacfa0d52b8b71b,
+        type: 3}
+      propertyPath: transformVar1
+      value: 
+      objectReference: {fileID: 7234263911709777544}
+    - target: {fileID: 1973982908025590800, guid: 0f82d66805ac04c8eaacfa0d52b8b71b,
+        type: 3}
+      propertyPath: vector2Var1.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7346778100923090392, guid: 0f82d66805ac04c8eaacfa0d52b8b71b,
         type: 3}
       propertyPath: m_Offset.y
@@ -18708,6 +18801,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7917555476143490757}
     m_Modifications:
+    - target: {fileID: 1973982908025590800, guid: 0f82d66805ac04c8eaacfa0d52b8b71b,
+        type: 3}
+      propertyPath: transformVar1
+      value: 
+      objectReference: {fileID: 1683306010865413969}
+    - target: {fileID: 1973982908025590800, guid: 0f82d66805ac04c8eaacfa0d52b8b71b,
+        type: 3}
+      propertyPath: vector2Var1.x
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 7346778100923090392, guid: 0f82d66805ac04c8eaacfa0d52b8b71b,
         type: 3}
       propertyPath: m_Offset.y
@@ -18858,6 +18961,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5297467387268208259}
     m_Modifications:
+    - target: {fileID: 1973982908025590800, guid: 0f82d66805ac04c8eaacfa0d52b8b71b,
+        type: 3}
+      propertyPath: transformVar1
+      value: 
+      objectReference: {fileID: 4267734611143724916}
+    - target: {fileID: 1973982908025590800, guid: 0f82d66805ac04c8eaacfa0d52b8b71b,
+        type: 3}
+      propertyPath: vector2Var1.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7346778100923090392, guid: 0f82d66805ac04c8eaacfa0d52b8b71b,
         type: 3}
       propertyPath: m_Size.x
@@ -19013,6 +19126,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7917555476143490757}
     m_Modifications:
+    - target: {fileID: 1973982908025590800, guid: 0f82d66805ac04c8eaacfa0d52b8b71b,
+        type: 3}
+      propertyPath: transformVar1
+      value: 
+      objectReference: {fileID: 7234263911709777544}
+    - target: {fileID: 1973982908025590800, guid: 0f82d66805ac04c8eaacfa0d52b8b71b,
+        type: 3}
+      propertyPath: vector2Var1.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7346778100923090392, guid: 0f82d66805ac04c8eaacfa0d52b8b71b,
         type: 3}
       propertyPath: m_Offset.y
