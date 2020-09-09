@@ -6816,7 +6816,7 @@ PrefabInstance:
     - target: {fileID: 1973982908025590800, guid: 0f82d66805ac04c8eaacfa0d52b8b71b,
         type: 3}
       propertyPath: stringVar1
-      value: "\u62C9\u591A1"
+      value: "\u62C9\u591A"
       objectReference: {fileID: 0}
     - target: {fileID: 1973982908025590800, guid: 0f82d66805ac04c8eaacfa0d52b8b71b,
         type: 3}

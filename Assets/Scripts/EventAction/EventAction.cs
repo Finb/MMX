@@ -6,9 +6,12 @@ public enum EventActionType
 {
     none,
     //弹出对话
-    dialogue, 
+    //
+    dialogue,
     //传送
     teleport,
+    //等待
+    Wait,
     humanItem, //人类道具店
 }
 //触发条件
@@ -22,9 +25,12 @@ public enum StartConditions
     Collide,
     //Trigger
     TriggerEnter,
+    //自动开始
+    AutoStart,
 }
 
-public interface IExecute {
+public interface IExecute
+{
     void execute(EventAction eventAction);
 }
 
@@ -46,8 +52,11 @@ public class EventAction : MonoBehaviour
     public string stringVar4;
     public string stringVar5;
 
-    public string intVar1;
-    public string intVar2;
+    public int intVar1;
+    public int intVar2;
+
+    public float floatVar1;
+    public float floatVar2;
 
     public AudioClip audioClipVar1;
     public AudioClip audioClipVar2;
@@ -57,36 +66,51 @@ public class EventAction : MonoBehaviour
 
     public Transform transformVar1;
     public Transform transformVar2;
-
     public EventAction[] childEventAction;
 
     public ScriptableObject scriptableObjectVar1;
-    
 
-    public void OnKeyTrigger(Collider other) {
+    private void Start()
+    {
+        if (startCondition == StartConditions.AutoStart)
+        {
+            execute();
+        }
+    }
+    public void OnKeyTrigger(Collider other)
+    {
 
     }
-    private void OnTriggerEnter2D(Collider2D other){
-        if (startCondition != StartConditions.TriggerEnter || other.gameObject != TeamQueue.shared.captain.gameObject) {
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (startCondition != StartConditions.TriggerEnter || other.gameObject != TeamQueue.shared.captain.gameObject)
+        {
             return;
         }
         execute();
     }
-    private void OnCollisionEnter2D(Collision2D other) {
-        if (startCondition != StartConditions.Collide || other.gameObject != TeamQueue.shared.captain.gameObject) {
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (startCondition != StartConditions.Collide || other.gameObject != TeamQueue.shared.captain.gameObject)
+        {
             return;
         }
-        execute();   
+        execute();
     }
-    public void execute(){
+    public void execute()
+    {
         getExecuter()?.execute(this);
     }
-    private IExecute getExecuter(){
-        switch (type){
+    private IExecute getExecuter()
+    {
+        switch (type)
+        {
             case EventActionType.dialogue:
-            return new DialogExecuter();
+                return new DialogExecuter();
             case EventActionType.teleport:
-            return new TeleportExecuter();
+                return new TeleportExecuter();
+            case EventActionType.Wait:
+                return new WaitExecuter();
         }
         return null;
     }

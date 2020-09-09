@@ -22,14 +22,21 @@ public class EventActionEditor : Editor
             case EventActionType.dialogue:
                 action.stringVar1 = EditorGUILayout.TextField("昵称", action.stringVar1);
                 action.stringVar2 = EditorGUILayout.TextArea(action.stringVar2, GUILayout.Height(60));
-                layoutChildAction();
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("childEventAction"), true);
                 break;
 
             case EventActionType.teleport:
-                action.audioClipVar1 = (AudioClip)EditorGUILayout.ObjectField("传送音效", action.audioClipVar1, typeof(AudioClip), true);
-                action.vector2Var1 = EditorGUILayout.Vector2Field("传送偏移量", action.vector2Var1);
+                EditorGUILayout.LabelField("自身配置");
+                EditorGUI.indentLevel++;
+                action.vector2Var1 = EditorGUILayout.Vector2Field("自身传送偏移量", action.vector2Var1);
+                EditorGUILayout.LabelField("传送到这个传送点时，需要偏移的位置", EditorStyles.miniLabel);
+                EditorGUI.indentLevel--;
 
-                EditorGUILayout.LabelField("使用指定传送点");
+
+                EditorGUILayout.LabelField("传送配置");
+                EditorGUI.indentLevel++;
+                action.audioClipVar1 = (AudioClip)EditorGUILayout.ObjectField("传送音效", action.audioClipVar1, typeof(AudioClip), true);
+                EditorGUILayout.LabelField("传送到指定传送点");
 
                 EditorGUI.indentLevel++;
                 action.transformVar1 = (Transform)EditorGUILayout.ObjectField("目标传送点", action.transformVar1, typeof(Transform), true);
@@ -47,22 +54,19 @@ public class EventActionEditor : Editor
                 EditorGUI.indentLevel++;
                 action.vector2Var2 = EditorGUILayout.Vector2Field("传送点坐标", action.vector2Var2);
                 EditorGUI.indentLevel--;
-
+                EditorGUI.indentLevel--;
                 EditorGUI.indentLevel--;
 
                 break;
 
+            case EventActionType.Wait:
+            action.floatVar1 = EditorGUILayout.FloatField("等待时间(单位秒)",action.floatVar1);
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("childEventAction"), true);
+            EditorGUILayout.LabelField("等待完毕后，子任务只有一个则直接执行，多个则会弹出执行选择框选择执行", EditorStyles.miniLabel);
+            break;
         }
 
         if (GUI.changed) { EditorUtility.SetDirty(target); }
         serializedObject.ApplyModifiedProperties();
-    }
-
-    void layoutChildAction()
-    {
-
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("childEventAction"), true);
-
-
     }
 }
