@@ -12,6 +12,8 @@ public enum EventActionType
     teleport,
     //等待
     Wait,
+    //发送Message
+    SendMessage,
     humanItem, //人类道具店
 }
 //触发条件
@@ -111,6 +113,8 @@ public class EventAction : MonoBehaviour
                 return new TeleportExecuter();
             case EventActionType.Wait:
                 return new WaitExecuter();
+            case EventActionType.SendMessage:
+                return new SendMessageExecuter();
         }
         return null;
     }

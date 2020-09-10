@@ -29,3 +29,19 @@ public class WaitExecuter : IExecute
         }
     }
 }
+
+
+public class SendMessageExecuter : IExecute
+{
+    public void execute(EventAction eventAction)
+    {
+        if (eventAction.transformVar1)
+        {
+            eventAction.transformVar1.SendMessage(eventAction.stringVar1, SendMessageOptions.DontRequireReceiver);
+        }
+        else
+        {
+            eventAction.gameObject.SendMessage(eventAction.stringVar1, SendMessageOptions.DontRequireReceiver);
+        }
+    }
+}

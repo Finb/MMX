@@ -64,6 +64,12 @@ public class EventActionEditor : Editor
             EditorGUILayout.PropertyField(serializedObject.FindProperty("childEventAction"), true);
             EditorGUILayout.LabelField("等待完毕后，子任务只有一个则直接执行，多个则会弹出执行选择框选择执行", EditorStyles.miniLabel);
             break;
+
+            case EventActionType.SendMessage:
+            action.stringVar1 = EditorGUILayout.TextField("消息名称", action.stringVar1);
+			action.transformVar1 = EditorGUILayout.ObjectField("发送目标", action.transformVar1 , typeof(Transform), true) as Transform;
+            EditorGUILayout.LabelField("为空则给自己发送消息", EditorStyles.miniLabel);
+            break;
         }
 
         if (GUI.changed) { EditorUtility.SetDirty(target); }
