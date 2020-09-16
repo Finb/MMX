@@ -60,6 +60,9 @@ public class EventAction : MonoBehaviour
     public float floatVar1;
     public float floatVar2;
 
+    public bool boolVar1;
+    public bool boolVar2;
+
     public AudioClip audioClipVar1;
     public AudioClip audioClipVar2;
 

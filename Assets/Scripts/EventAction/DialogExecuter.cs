@@ -19,6 +19,7 @@ public class DialogExecuter : IExecute
                         dialog.hide();
                         item.execute();
                     });
+                    boxController.canCancel = !eventAction.boolVar1;
                 }
                 boxController.show();
             }

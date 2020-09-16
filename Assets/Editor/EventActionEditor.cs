@@ -23,6 +23,7 @@ public class EventActionEditor : Editor
                 action.stringVar1 = EditorGUILayout.TextField("昵称", action.stringVar1);
                 action.stringVar2 = EditorGUILayout.TextArea(action.stringVar2, GUILayout.Height(60));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("childEventAction"), true);
+                action.boolVar1 = EditorGUILayout.Toggle("不可取消",action.boolVar1);
                 break;
 
             case EventActionType.teleport:

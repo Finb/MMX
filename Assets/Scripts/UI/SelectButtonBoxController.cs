@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Linq;
 public class SelectButtonBoxController : BaseUIInputController
 {
-    // Start is called before the first frame update
+    //按钮事件，最后一个默认为取消按钮事件
     List<Action> onClicks = new List<Action>();
+    
+    //是否能按B键退出
+    public bool canCancel =  true;
+
     List<GameObject> buttons = new List<GameObject>();
-     public override void Awake(){
+    public override void Awake()
+    {
         base.Awake();
         inputs.UI.A.performed += ctx =>
         {
@@ -19,7 +25,14 @@ public class SelectButtonBoxController : BaseUIInputController
                 onClicks[index]();
             }
         };
-        inputs.UI.B.performed += ctx => hide();
+        inputs.UI.B.performed += ctx =>
+        {
+            if (canCancel)
+            {
+                hide();
+                onClicks.Last()?.Invoke();
+            }
+        };
     }
     void Start()
     {
@@ -39,13 +52,13 @@ public class SelectButtonBoxController : BaseUIInputController
         buttons.Add(Instantiate(button, Vector3.zero, Quaternion.identity, gameObject.FindObject("ImageBox").transform));
         onClicks.Add(onClick);
     }
-    public void addButton(string text, UnityEngine.Sprite sprite = null,  Action onClick = null)
+    public void addButton(string text, UnityEngine.Sprite sprite = null, Action onClick = null)
     {
         var button = Resources.Load<GameObject>("UI/prefabs/IconButton");
         button.GetComponentInChildren<UnityEngine.UI.Text>().text = text;
         button.FindObject("Image").GetComponent<UnityEngine.UI.Image>().sprite = sprite;
         button.FindObject("Image").GetComponent<UnityEngine.UI.Image>().enabled = sprite != null;
-        
+
         buttons.Add(Instantiate(button, Vector3.zero, Quaternion.identity, gameObject.FindObject("ImageBox").transform));
         onClicks.Add(onClick);
     }
