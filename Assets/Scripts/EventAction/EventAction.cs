@@ -14,6 +14,8 @@ public enum EventActionType
     Wait,
     //发送Message
     SendMessage,
+    //条件判断
+    ConditionCheck,
     humanItem, //人类道具店
 }
 //触发条件
@@ -29,6 +31,15 @@ public enum StartConditions
     TriggerEnter,
     //自动开始
     AutoStart,
+}
+public enum ConditionChecker
+{
+    GreaterOrEqual,
+    Greater,
+    Equal,
+    LessOrEqual,
+    Less,
+    NotEqual
 }
 
 public interface IExecute
@@ -46,6 +57,7 @@ public class EventAction : MonoBehaviour
     //事件触发方式
     public StartConditions startCondition;
 
+    public ConditionChecker conditionChecker;
 
     //事件参数
     public string stringVar1;
@@ -72,6 +84,8 @@ public class EventAction : MonoBehaviour
     public Transform transformVar1;
     public Transform transformVar2;
     public EventAction[] childEventAction;
+    public EventAction eventAction1;
+    public EventAction eventAction2;
 
     public ScriptableObject scriptableObjectVar1;
 
@@ -118,6 +132,8 @@ public class EventAction : MonoBehaviour
                 return new WaitExecuter();
             case EventActionType.SendMessage:
                 return new SendMessageExecuter();
+            case EventActionType.ConditionCheck:
+                return new CheckerExecuter();
         }
         return null;
     }

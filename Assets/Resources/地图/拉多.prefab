@@ -8750,6 +8750,7 @@ MonoBehaviour:
   type: 1
   eventName: "\u5C06\u5F00\u53D1\u7684\u529F\u80FD"
   startCondition: 0
+  conditionChecker: 0
   stringVar1: Fin2
   stringVar2: "\u5546\u5E97\u7CFB\u7EDF"
   stringVar3: 
@@ -8768,6 +8769,8 @@ MonoBehaviour:
   transformVar1: {fileID: 0}
   transformVar2: {fileID: 0}
   childEventAction: []
+  eventAction1: {fileID: 0}
+  eventAction2: {fileID: 0}
   scriptableObjectVar1: {fileID: 0}
 --- !u!114 &2937793144227327955
 MonoBehaviour:
@@ -8784,6 +8787,7 @@ MonoBehaviour:
   type: 2
   eventName: "\u4F20\u9001\u5230\u5BB6\u91CC"
   startCondition: 0
+  conditionChecker: 0
   stringVar1: "\u79D1\u6280\u9986"
   stringVar2: "\u79D1\u6280\u9986"
   stringVar3: "\u4F20\u9001\u70B9"
@@ -8802,6 +8806,8 @@ MonoBehaviour:
   transformVar1: {fileID: 0}
   transformVar2: {fileID: 0}
   childEventAction: []
+  eventAction1: {fileID: 0}
+  eventAction2: {fileID: 0}
   scriptableObjectVar1: {fileID: 0}
 --- !u!114 &4236561921519634338
 MonoBehaviour:
@@ -8818,6 +8824,7 @@ MonoBehaviour:
   type: 1
   eventName: 
   startCondition: 1
+  conditionChecker: 0
   stringVar1: Fin
   stringVar2: "\u8FD9\u662F\u91CD\u88C5\u673A\u5175<b><color=red>Unity</color></b>\u7248\n\u76EE\u6807\u662F\u5B9E\u73B02R\u7684\u6E38\u620F\u7CFB\u7EDF\n\u73B0\u5728\u6B63\u5728\u5F00\u53D1\n\u8BF7\u9009\u62E9\u67E5\u770B\u5F00\u53D1\u8FDB\u5EA6"
   stringVar3: 
@@ -8839,6 +8846,8 @@ MonoBehaviour:
   - {fileID: 7066195719690409497}
   - {fileID: 1018202536731501203}
   - {fileID: 2937793144227327955}
+  eventAction1: {fileID: 0}
+  eventAction2: {fileID: 0}
   scriptableObjectVar1: {fileID: 0}
 --- !u!114 &6468232186440040636
 MonoBehaviour:
@@ -8870,6 +8879,7 @@ MonoBehaviour:
   type: 1
   eventName: "\u5DF2\u5F00\u53D1\u7684\u529F\u80FD"
   startCondition: 0
+  conditionChecker: 0
   stringVar1: Fin
   stringVar2: "\u8DDF\u968F\u7CFB\u7EDF\u3001\u4E8B\u4EF6\u7CFB\u7EDF\n\u7269\u54C1\u7CFB\u7EDF\u3001\u88C5\u5907\u7CFB\u7EDF"
   stringVar3: 
@@ -8890,6 +8900,8 @@ MonoBehaviour:
   childEventAction:
   - {fileID: 7066195719690409497}
   - {fileID: 1018202536731501203}
+  eventAction1: {fileID: 0}
+  eventAction2: {fileID: 0}
   scriptableObjectVar1: {fileID: 0}
 --- !u!1 &6236494731270807942
 GameObject:

@@ -71,6 +71,16 @@ public class EventActionEditor : Editor
 			action.transformVar1 = EditorGUILayout.ObjectField("发送目标", action.transformVar1 , typeof(Transform), true) as Transform;
             EditorGUILayout.LabelField("为空则给自己发送消息", EditorStyles.miniLabel);
             break;
+
+            case EventActionType.ConditionCheck:
+			action.stringVar1 = EditorGUILayout.TextField("检查key", action.stringVar1);
+            action.conditionChecker = (ConditionChecker)EditorGUILayout.EnumPopup("判断方式", action.conditionChecker);
+			action.intVar1 = EditorGUILayout.IntField("检查值", action.intVar1);
+			
+            action.eventAction1 = (EventAction)EditorGUILayout.ObjectField("成功执行", action.eventAction1, typeof(EventAction), true);
+            action.eventAction2 = (EventAction)EditorGUILayout.ObjectField("失败执行", action.eventAction2, typeof(EventAction), true);
+
+            break;
         }
 
         if (GUI.changed) { EditorUtility.SetDirty(target); }
