@@ -7,10 +7,10 @@ public class CheckerExecuter : IExecute
     public void execute(EventAction eventAction)
     {
         if (CheckCondition(eventAction)){
-            eventAction.eventAction1.execute();
+            eventAction.eventAction1?.execute();
         }
         else{
-            eventAction.eventAction2.execute();
+            eventAction.eventAction2?.execute();
         }
     }
 
