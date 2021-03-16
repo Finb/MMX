@@ -1,0 +1,181 @@
+@startuml Item 
+Item <|-- NormalItem
+NormalItem <|-- HumanItem
+NormalItem <|-- RecoverItem
+NormalItem <|-- FightItem
+NormalItem <|-- EquipmentItem
+EquipmentItem <|-- HumanEquipment
+EquipmentItem <|-- VehicleEquipment
+
+HumanEquipment <|-- HumanWeaponEquipment
+HumanWeaponEquipment ..>  AttackProperty
+HumanWeaponEquipment ..>  AttackRangeType
+HumanEquipment <|-- HumanArmorEquipment
+HumanArmorEquipment ..> HumanArmorEquipmentType
+
+VehicleEquipment <|-- VehicleWeaponEquipment
+VehicleWeaponEquipment ..>  AttackProperty
+VehicleWeaponEquipment ..>  AttackRangeType
+VehicleWeaponEquipment ..> VehicleWeaponEquipmentType
+
+VehicleEquipment <|-- VehicleCEquipment
+VehicleEquipment <|-- VehicleEngineEquipment
+
+Item <|-- VehicleItem
+class Item 
+{
+   + string id
+   + int orderNumber
+   + string name
+   + int buyPrice
+   + int sellPrice
+   + string desc
+   + int star
+   + void run()
+}
+class NormalItem <道具>
+{
+    + int count;
+}
+
+class HumanItem  <人类道具>
+{
+
+}
+class RecoverItem <回复道具>
+{
+
+}
+class FightItem <战斗道具>
+{
+
+}
+class EquipmentItem <装备>
+{
+
+}
+class HumanEquipment <人类装备>
+{
+    + int CareerRequirements :  职业要求
+}
+class HumanWeaponEquipment <人类武器>
+{
+
+    + int damage : 攻击力
+    + AttackRangeType attackRangeType : 攻击范围
+    + int attacksNum : 攻击次数
+    + AttackProperty attackProperty : 攻击伤害属性
+}
+
+enum HumanArmorEquipmentType <人类防具类型>
+{
+    + head : 头用防具
+    + body : 体用防具
+    + hand : 手用防具
+    + foot : 足用防具
+    + decoration : 装饰品
+}
+
+class HumanArmorEquipment <人类防具>
+{
+    + HumanArmorEquipmentType type
+    + int damage : 攻击力
+    + int defense : 防御力
+    + int velocity : 速度
+    + int macho : 男人味
+
+    + int fireResistance : 火抗
+    + int iceResistance : 冰抗
+    + int electricResistance : 电抗
+    + int sonicResistance : 音波抗性
+    + int gasResistance : 瓦斯抗性
+    + int laserResistance : 激光抗性
+}
+
+class VehicleEquipment <战车装备>
+{
+    + int weight : 当前重量
+    + int maxWeight : 最大重量
+    + int minWeight : 最小重量
+    + int virtual modifiedCount { get }: 总改造次数 
+
+    + int defense : 防御力
+    + int maxDefense : 最大防御力
+    + int minDefense : 最小防御力
+    + int defenseModifiedCount : 防御力改造次数
+
+    + int modifiedPrice : 改造一次的价格
+}
+enum VehicleWeaponEquipmentType <战车武器类型>
+{
+    + artillery  : 主炮
+    + machineGun  : 副炮
+    + se : SE
+}
+
+class VehicleWeaponEquipment <战车武器>
+{
+    + enum VehicleWeaponEquipmentType : int
+    + VehicleWeaponEquipmentType equipmentType;
+    + AttackRangeType attackRangeType : 攻击范围
+    + AttackProperty attackProperty : 攻击属性
+    + int ammoPrice : 弹药价格
+
+    + int damage : 攻击力
+    + int maxDamage : 最大攻击力
+    + int minDamage : 最小攻击力
+    + int damageModifiedCount : 攻击力改造次数
+
+    + int magazine : 弹仓
+    + int maxMagazine : 最大弹仓
+    + int minMagazine : 最小弹仓
+    + int magazineModifiedCount : 弹仓改造次数
+}
+
+class VehicleCEquipment <C装置>
+{
+    
+    + int hit : 命中
+    + int maxHit
+    + int minHit
+    + int hitModifiedCount
+
+    + int dodge : 闪避
+    + int maxDodge
+    + int minDodge
+    + int dodgeModifiedCount
+}
+
+class VehicleEngineEquipment <战车引擎>
+{
+    float capacity : 载重量
+    int upgradePrice : 引擎改造升级费用
+}
+
+class VehicleItem <战车道具>
+{
+
+}
+
+enum AttackProperty <攻击属性>
+{
+    + normal : 通常
+    + beam : 光束
+    + fire : 火炎
+    + ice : 冰
+    + electric : 电
+    + gas : 毒气
+    + sonic : 音波
+}
+enum AttackRangeType <攻击范围>
+{
+    + all : 全体  
+    + single : 单体伤害  
+    + smallThrough : 小贯通  
+    + bigThrough : 大贯通  
+    + smallSector : 扇形小  
+    + bigSector : 扇形大  
+    + adjustableSector : 扇形可调节  
+}
+
+@enduml
