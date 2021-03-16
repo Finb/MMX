@@ -131,7 +131,6 @@ class VehicleCUnitEquipment <C装置>
 class VehicleEngineEquipment <战车引擎>
 {
     float capacity : 载重量
-    int upgradePrice : 引擎改造升级费用
 }
 
 enum HumanArmorEquipmentType <人类防具类型>
