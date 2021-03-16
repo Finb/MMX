@@ -184,7 +184,7 @@ public class HumanStatusController : BaseUIInputController, InputButtonEventInte
 
             var index = currentSelectedGameObject.GetComponent<ButtonController>().siblingButtonIndex;
 
-            MMX.EquipmentItem item = null;
+            MMX.HumanEquipment item = null;
             if (index <= 2)
             {
                 item = currentHuman.equipments.weapons[index];
@@ -266,14 +266,14 @@ public class HumanStatusController : BaseUIInputController, InputButtonEventInte
             controller.clickAction = (MMX.Item item) =>
             {
                 Debug.Log(index);
-                setEquipment(item as MMX.EquipmentItem, index);
+                setEquipment(item as MMX.HumanEquipment, index);
             };
             controller.show();
         }
 
     }
 
-    private void setEquipment(MMX.EquipmentItem item, int index)
+    private void setEquipment(MMX.HumanEquipment item, int index)
     {
         if (index <= 2)
         {

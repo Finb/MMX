@@ -4,34 +4,6 @@ using System.IO;
 using Newtonsoft.Json;
 namespace MMX
 {
-    public class ItemStorage
-    {
-        static public ItemStorage shared = new ItemStorage();
-
-        public Dictionary<string, Item> items = new Dictionary<string, Item>();
-
-        private ItemStorage()
-        {
-            //加载人类道具json
-            // var item = JsonUtility.FromJson<MMX.HumanItem>("",List<MMX.HumanItem>);
-
-            Debug.Log(items.Count);
-        }
-        public void addItems<T>(string json) where T : Item
-        {
-            var itemArray = JsonConvert.DeserializeObject<List<T>>(json);
-            foreach (var item in itemArray)
-            {
-                if (items.ContainsKey(item.id))
-                {
-                    Debug.LogError("重复的Item");
-                }
-                item.orderNumber = items.Count;
-                items.Add(item.id, item);
-            }
-        }
-    }
-
     public class Item
     {
         public string id;
@@ -53,36 +25,58 @@ namespace MMX
 
         }
     }
-    //CriticalHitChance
-    public class NormalItem : Item
+}
+
+namespace MMX
+{
+    public enum AttackProperty
     {
-
-        //剩余数量
-        public int count;
+        //通常
+        normal = 0,
+        //光束
+        beam = 1,
+        //火炎
+        fire = 2,
+        //冰
+        ice = 3,
+        //电
+        electric = 4,
+        //毒气
+        gas = 5,
+        //音波
+        sonic = 6
     }
-    //人类道具
-    public class HumanItem : NormalItem
+    public enum AttackRangeType
     {
-
+        //全体
+        all = 0,
+        //单体伤害
+        single = 1,
+        //小贯通
+        smallThrough = 2,
+        //大贯通
+        bigThrough = 3,
+        //扇形小
+        smallSector = 4,
+        //扇形大
+        bigSector = 5,
+        //扇形可调节
+        adjustableSector = 6,
     }
-
-    //回复道具
-    public class RecoverItem : NormalItem
+    public enum HumanArmorEquipmentType : int
     {
-
+        //头用防具
+        head = 0,
+        //体用防具
+        body,
+        //手用防具
+        hand,
+        //足用防具
+        foot,
+        //装饰品
+        decoration,
     }
 
-    //战斗道具
-    public class FightItem : NormalItem
-    {
-
-    }
-
-    //战车道具
-    public class VehicleItem : Item
-    {
-
-    }
     public static class TypeExtension
     {
         public static string getName(this AttackRangeType type)
@@ -125,204 +119,5 @@ namespace MMX
             }
             return "";
         }
-    }
-    public enum AttackProperty
-    {
-        //通常
-        normal = 0,
-        //光束
-        beam = 1,
-        //火炎
-        fire = 2,
-        //冰
-        ice = 3,
-        //电
-        electric = 4,
-        //毒气
-        gas = 5,
-        //音波
-        sonic = 6
-    }
-
-    //装备
-    public class EquipmentItem : NormalItem
-    {
-
-    }
-
-    //人类装备
-    public class HumanEquipment : EquipmentItem
-    {
-        //职业要求
-        public int CareerRequirements;
-    }
-
-    //人类武器装备
-    public class HumanWeaponEquipment : HumanEquipment
-    {
-
-        //攻击力
-        public int damage;
-        //攻击范围
-        public AttackRangeType attackRangeType;
-        ///攻击次数
-        public int attacksNum;
-        //攻击伤害属性
-        public AttackProperty attackProperty;
-
-    }
-    //人类防具装备
-    public class HumanArmorEquipment : HumanEquipment
-    {
-
-
-        public HumanArmorEquipmentType type;
-        //攻击力
-        public int damage;
-        //防御力
-        public int defense;
-        //速度
-        public int velocity;
-        //男人味
-        public int macho;
-
-        //火抗
-        public int fireResistance;
-        //冰抗
-        public int iceResistance;
-        //电抗
-        public int electricResistance;
-        //音波抗性
-        public int sonicResistance;
-        //瓦斯抗性
-        public int gasResistance;
-        //激光抗性
-        public int laserResistance;
-    }
-
-
-    //战车装备
-    public class VehicleEquipment : EquipmentItem
-    {
-        //当前重量
-        public int weight;
-        //最大重量
-        public int maxWeight;
-        //最小重量
-        public int minWeight;
-        //总改造次数
-        public virtual int modifiedCount { get; }
-
-        //防御力
-        public int defense;
-        //最大防御力
-        public int maxDefense;
-        //最小防御力
-        public int minDefense;
-        //防御力改造次数
-        public int defenseModifiedCount;
-
-        //改造一次的价格
-        public int modifiedPrice;
-    }
-
-    //战车武器
-    public class VehicleWeaponEquipment : VehicleEquipment
-    {
-        public enum VehicleWeaponEquipmentType : int
-        {
-            //主炮
-            artillery = 0,
-            //副炮
-            machineGun = 1,
-            //SE
-            se = 2
-        }
-        public VehicleWeaponEquipmentType equipmentType;
-        //攻击范围
-        public AttackRangeType attackRangeType;
-        //攻击属性
-        public AttackProperty attackProperty;
-        //弹药价格
-        public int ammoPrice;
-
-        //攻击力
-        public int damage;
-        //最大攻击力
-        public int maxDamage;
-        //最小攻击力
-        public int minDamage;
-        //攻击力改造次数
-        public int damageModifiedCount;
-
-        //弹仓
-        public int magazine;
-        //最大弹仓
-        public int maxMagazine;
-        //最小弹仓
-        public int minMagazine;
-        //弹仓改造次数
-        public int magazineModifiedCount;
-    }
-
-    //战车C装置
-    public class VehicleCEquipment : VehicleEquipment
-    {
-        //命中
-        public int hit;
-        public int maxHit;
-        public int minHit;
-        public int hitModifiedCount;
-
-        //闪避
-        public int dodge;
-        public int maxDodge;
-        public int minDodge;
-        public int dodgeModifiedCount;
-    }
-
-    // 战车引擎
-    public class VehicleEngineEquipment : VehicleEquipment
-    {
-        //载重量
-        public float capacity;
-        //引擎改造升级费用
-        public int upgradePrice;
-    }
-}
-
-
-namespace MMX
-{
-
-    public enum AttackRangeType
-    {
-        //全体
-        all = 0,
-        //单体伤害
-        single = 1,
-        //小贯通
-        smallThrough = 2,
-        //大贯通
-        bigThrough = 3,
-        //扇形小
-        smallSector = 4,
-        //扇形大
-        bigSector = 5,
-        //扇形可调节
-        adjustableSector = 6,
-    }
-    public enum HumanArmorEquipmentType : int
-    {
-        //头用防具
-        head = 0,
-        //体用防具
-        body,
-        //手用防具
-        hand,
-        //足用防具
-        foot,
-        //装饰品
-        decoration,
     }
 }

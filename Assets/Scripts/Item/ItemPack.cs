@@ -13,7 +13,7 @@ class ItemPack
     //战斗道具
     public List<FightItem> fightItems = new List<FightItem>();
     //人类装备
-    public List<EquipmentItem> equipmentItems = new List<EquipmentItem>();
+    public List<HumanEquipment> equipmentItems = new List<HumanEquipment>();
     private ItemPack()
     {
         foreach (var item in ItemStorage.shared.items.Values)
