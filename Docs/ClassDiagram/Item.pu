@@ -16,7 +16,7 @@ VehicleEquipment <|-- VehicleWeaponEquipment
 VehicleWeaponEquipment ..>  AttackProperty
 VehicleWeaponEquipment ..>  AttackRangeType
 VehicleWeaponEquipment ..> VehicleWeaponEquipmentType
-VehicleEquipment <|-- VehicleCEquipment
+VehicleEquipment <|-- VehicleCUnitEquipment
 VehicleEquipment <|-- VehicleEngineEquipment
 
 
@@ -55,7 +55,7 @@ class HumanEquipment <人类装备>
 class HumanWeaponEquipment <人类武器>
 {
 
-    + int damage : 攻击力
+    + int attack : 攻击力
     + AttackRangeType attackRangeType : 攻击范围
     + int attacksNum : 攻击次数
     + AttackProperty attackProperty : 攻击伤害属性
@@ -64,9 +64,9 @@ class HumanWeaponEquipment <人类武器>
 class HumanArmorEquipment <人类防具>
 {
     + HumanArmorEquipmentType type
-    + int damage : 攻击力
-    + int defense : 防御力
-    + int velocity : 速度
+    + int attack : 攻击力
+    + int defend : 防御力
+    + int agility : 速度
     + int macho : 男人味
 
     + int fireResistance : 火抗
@@ -88,26 +88,25 @@ class VehicleEquipment <战车装备>
     + int minWeight : 最小重量
     + int virtual modifiedCount { get }: 总改造次数 
 
-    + int defense : 防御力
-    + int maxDefense : 最大防御力
-    + int minDefense : 最小防御力
-    + int defenseModifiedCount : 防御力改造次数
+    + int defend : 防御力
+    + int maxdefend : 最大防御力
+    + int mindefend : 最小防御力
+    + int defendModifiedCount : 防御力改造次数
 
     + int modifiedPrice : 改造一次的价格
 }
 
 class VehicleWeaponEquipment <战车武器>
 {
-    + enum VehicleWeaponEquipmentType : int
     + VehicleWeaponEquipmentType equipmentType;
     + AttackRangeType attackRangeType : 攻击范围
     + AttackProperty attackProperty : 攻击属性
     + int ammoPrice : 弹药价格
 
-    + int damage : 攻击力
-    + int maxDamage : 最大攻击力
-    + int minDamage : 最小攻击力
-    + int damageModifiedCount : 攻击力改造次数
+    + int attack : 攻击力
+    + int maxAttack : 最大攻击力
+    + int minAttack : 最小攻击力
+    + int attackModifiedCount : 攻击力改造次数
 
     + int magazine : 弹仓
     + int maxMagazine : 最大弹仓
@@ -115,7 +114,7 @@ class VehicleWeaponEquipment <战车武器>
     + int magazineModifiedCount : 弹仓改造次数
 }
 
-class VehicleCEquipment <C装置>
+class VehicleCUnitEquipment <C装置>
 {
     
     + int hit : 命中
@@ -123,10 +122,10 @@ class VehicleCEquipment <C装置>
     + int minHit
     + int hitModifiedCount
 
-    + int dodge : 闪避
-    + int maxDodge
-    + int minDodge
-    + int dodgeModifiedCount
+    + int evade : 闪避
+    + int maxEvade
+    + int minEvade
+    + int evadeModifiedCount
 }
 
 class VehicleEngineEquipment <战车引擎>
@@ -145,9 +144,9 @@ enum HumanArmorEquipmentType <人类防具类型>
 }
 enum VehicleWeaponEquipmentType <战车武器类型>
 {
-    + artillery  : 主炮
-    + machineGun  : 副炮
-    + se : SE
+    + cannon  : 主炮
+    + autogun  : 副炮
+    + special : SE
 }
 enum AttackProperty <攻击属性>
 {

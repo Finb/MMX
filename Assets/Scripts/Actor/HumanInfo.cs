@@ -12,9 +12,11 @@ public partial class HumanInfo : MonoBehaviour
     //等级
     public int level;
     //战斗等级
-    public int fightLevel;
+    public int combatLevel;
     //驾驶等级
-    public int driveLevel;
+    public int driverLevel;
+    //修理等级
+    // public int repairLevel;
 
     //基础属性
     public HumanProperty baseProperty = new HumanProperty();
@@ -46,9 +48,9 @@ public partial class HumanInfo : MonoBehaviour
         //加上防具的属性
         foreach (var item in equipments.armors.Values)
         {
-            property.damage += item.damage;
-            property.defense += item.defense;
-            property.velocity += item.velocity;
+            property.attack += item.attack;
+            property.defend += item.defend;
+            property.agility += item.agility;
             property.macho += item.macho;
 
             property.resistance[MMX.AttackProperty.ice] += item.iceResistance;
@@ -109,19 +111,19 @@ public class HumanProperty : MMX.IEffect
     public int maxHp = 0;
 
     //攻击力
-    public int damage = 0;
+    public int attack = 0;
     //防御力
-    public int defense = 0;
+    public int defend = 0;
     
     //腕力
-    public int wrist = 0;
+    public int strength = 0;
     //体力
-    public int con = 0;
-    //速度
+    public int vitality = 0;
+
     //男子气概值
     public int macho = 0;
     //速度
-    public int velocity = 0;
+    public int agility = 0;
     public HumanProperty(){
         resistance[MMX.AttackProperty.ice] = 0;
         resistance[MMX.AttackProperty.fire] = 0;
@@ -136,12 +138,12 @@ public class HumanProperty : MMX.IEffect
         var prop = new HumanProperty();
         prop.hp = hp;
         prop.maxHp = maxHp;
-        prop.damage = damage;
-        prop.defense = defense;
-        prop.wrist = wrist;
-        prop.con = con;
+        prop.attack = attack;
+        prop.defend = defend;
+        prop.strength = strength;
+        prop.vitality = vitality;
         prop.macho = macho;
-        prop.velocity = velocity;
+        prop.agility = agility;
         prop.resistance = new Dictionary<MMX.AttackProperty, int>(resistance);
         return prop;
     }

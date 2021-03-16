@@ -32,7 +32,7 @@ class EquipmentListViewController : ItemsListViewController
             ArmorPanel.SetActive(false);
             this.ItemDescriptionText.text = "武器";
             var weaponItem = this.items[index] as MMX.HumanWeaponEquipment;
-            this.DamageText.text = "攻击力: " + weaponItem.damage;
+            this.DamageText.text = "攻击力: " + weaponItem.attack;
             this.RangeText.text = "范围: " + weaponItem.attackRangeType.getName();
             this.PropertyText.text = "属性: " + weaponItem.attackProperty.getName();
         }
@@ -43,9 +43,9 @@ class EquipmentListViewController : ItemsListViewController
 
             var armorItem = this.items[index] as MMX.HumanArmorEquipment;
             this.ItemDescriptionText.text = armorItem.type.getName();
-            this.ArmorDamageText.text = "攻击力: " + armorItem.damage;
-            this.DefenseText.text = "防御力: " + armorItem.defense;
-            this.VelocityText.text = "速度值: " + armorItem.velocity;
+            this.ArmorDamageText.text = "攻击力: " + armorItem.attack;
+            this.DefenseText.text = "防御力: " + armorItem.defend;
+            this.VelocityText.text = "速度值: " + armorItem.agility;
             this.MachoText.text = "男人味: " + armorItem.macho;
 
             propertyTexts[0].text = "" + armorItem.fireResistance;

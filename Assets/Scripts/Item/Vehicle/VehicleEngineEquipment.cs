@@ -5,7 +5,5 @@ namespace MMX
     {
         //载重量
         public float capacity;
-        //引擎改造升级费用
-        public int upgradePrice;
     }
 }

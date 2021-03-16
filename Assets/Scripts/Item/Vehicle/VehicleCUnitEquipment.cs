@@ -1,7 +1,7 @@
 namespace MMX
 {
     //战车C装置
-    public class VehicleCEquipment : VehicleEquipment
+    public class VehicleCUnitEquipment : VehicleEquipment
     {
         //命中
         public int hit;
@@ -10,9 +10,9 @@ namespace MMX
         public int hitModifiedCount;
 
         //闪避
-        public int dodge;
-        public int maxDodge;
-        public int minDodge;
-        public int dodgeModifiedCount;
+        public int evade;
+        public int maxEvade;
+        public int minEvade;
+        public int evadeModifiedCount;
     }
 }

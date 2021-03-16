@@ -5,7 +5,7 @@ namespace MMX
     {
 
         //攻击力
-        public int damage;
+        public int attack;
         //攻击范围
         public AttackRangeType attackRangeType;
         ///攻击次数

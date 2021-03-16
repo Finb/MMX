@@ -210,7 +210,7 @@ public class HumanStatusController : BaseUIInputController, InputButtonEventInte
                     leftPanelFields.ArmorPanel.SetActive(false);
                     this.leftPanelFields.ItemDescriptionText.text = "武器";
                     var weaponItem = item as MMX.HumanWeaponEquipment;
-                    this.leftPanelFields.DamageText.text = "攻击力: " + weaponItem.damage;
+                    this.leftPanelFields.DamageText.text = "攻击力: " + weaponItem.attack;
                     this.leftPanelFields.RangeText.text = "范围: " + weaponItem.attackRangeType.getName();
                     this.leftPanelFields.PropertyText.text = "属性: " + weaponItem.attackProperty.getName();
                     UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(leftPanelFields.IntroducePanel.GetComponent<RectTransform>());
@@ -222,9 +222,9 @@ public class HumanStatusController : BaseUIInputController, InputButtonEventInte
 
                     var armorItem = item as MMX.HumanArmorEquipment;
                     this.leftPanelFields.ItemDescriptionText.text = armorItem.type.getName();
-                    this.leftPanelFields.ArmorDamageText.text = "攻击力: " + armorItem.damage;
-                    this.leftPanelFields.DefenseText.text = "防御力: " + armorItem.defense;
-                    this.leftPanelFields.VelocityText.text = "速度值: " + armorItem.velocity;
+                    this.leftPanelFields.ArmorDamageText.text = "攻击力: " + armorItem.attack;
+                    this.leftPanelFields.DefenseText.text = "防御力: " + armorItem.defend;
+                    this.leftPanelFields.VelocityText.text = "速度值: " + armorItem.agility;
                     this.leftPanelFields.MachoText.text = "男人味: " + armorItem.macho;
 
                     leftPanelFields.propertyTexts[0].text = "" + armorItem.fireResistance;
@@ -314,12 +314,12 @@ public class HumanStatusController : BaseUIInputController, InputButtonEventInte
     private void refreshPropertys()
     {
         propertyTexts[0].text = "" + currentHuman.level;
-        propertyTexts[1].text = "" + currentHuman.driveLevel;
-        propertyTexts[2].text = "" + currentHuman.fightLevel;
-        propertyTexts[3].text = "" + currentHuman.property.wrist;
-        propertyTexts[4].text = "" + currentHuman.property.con;
-        propertyTexts[5].text = "" + currentHuman.property.defense;
-        propertyTexts[6].text = "" + currentHuman.property.velocity;
+        propertyTexts[1].text = "" + currentHuman.driverLevel;
+        propertyTexts[2].text = "" + currentHuman.combatLevel;
+        propertyTexts[3].text = "" + currentHuman.property.strength;
+        propertyTexts[4].text = "" + currentHuman.property.vitality;
+        propertyTexts[5].text = "" + currentHuman.property.defend;
+        propertyTexts[6].text = "" + currentHuman.property.agility;
         propertyTexts[7].text = "" + currentHuman.property.macho;
         propertyTexts[8].text = "0";
 

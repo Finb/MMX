@@ -3,11 +3,11 @@ namespace MMX
     public enum VehicleWeaponEquipmentType : int
     {
         //主炮
-        artillery = 0,
+        cannon = 0,
         //副炮
-        machineGun = 1,
+        autogun = 1,
         //SE
-        se = 2
+        special = 2
     }
     //战车武器
     public class VehicleWeaponEquipment : VehicleEquipment
@@ -22,13 +22,13 @@ namespace MMX
         public int ammoPrice;
 
         //攻击力
-        public int damage;
+        public int attack;
         //最大攻击力
-        public int maxDamage;
+        public int maxAttack;
         //最小攻击力
-        public int minDamage;
+        public int minAttack;
         //攻击力改造次数
-        public int damageModifiedCount;
+        public int attackModifiedCount;
 
         //弹仓
         public int magazine;

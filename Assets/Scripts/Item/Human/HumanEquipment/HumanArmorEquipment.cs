@@ -5,11 +5,11 @@ namespace MMX
     {
         public HumanArmorEquipmentType type;
         //攻击力
-        public int damage;
+        public int attack;
         //防御力
-        public int defense;
+        public int defend;
         //速度
-        public int velocity;
+        public int agility;
         //男人味
         public int macho;
 
