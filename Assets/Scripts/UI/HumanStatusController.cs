@@ -223,9 +223,9 @@ public class HumanStatusController : BaseUIInputController, InputButtonEventInte
                     var armorItem = item as MMX.HumanArmorEquipment;
                     this.leftPanelFields.ItemDescriptionText.text = armorItem.type.getName();
                     this.leftPanelFields.ArmorDamageText.text = "攻击力: " + armorItem.attack;
-                    this.leftPanelFields.DefenseText.text = "防御力: " + armorItem.defend;
-                    this.leftPanelFields.VelocityText.text = "速度值: " + armorItem.agility;
-                    this.leftPanelFields.MachoText.text = "男人味: " + armorItem.macho;
+                    this.leftPanelFields.DefenseText.text = "防御力: " + armorItem.defense;
+                    this.leftPanelFields.VelocityText.text = "速度值: " + armorItem.speed;
+                    this.leftPanelFields.MachoText.text = "男人味: " + armorItem.manliness;
 
                     leftPanelFields.propertyTexts[0].text = "" + armorItem.fireResistance;
                     leftPanelFields.propertyTexts[1].text = "" + armorItem.iceResistance;

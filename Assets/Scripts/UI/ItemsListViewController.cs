@@ -95,7 +95,7 @@ public class ItemsListViewController : BaseUIInputController, IListViewDataSourc
         button.GetComponentInChildren<UnityEngine.UI.Text>().text = this.items[index].name;
         button.GetComponent<UnityEngine.UI.LayoutElement>().preferredWidth = 200;
         button.GetComponent<UnityEngine.UI.LayoutElement>().preferredHeight = 30;
-        button.FindComponentByObjectName<UnityEngine.UI.Text>("RightText").text = "" + (this.items[index] as MMX.NormalItem).count;
+        button.FindComponentByObjectName<UnityEngine.UI.Text>("RightText").text = "" + (this.items[index] as MMX.ToolsItem).count;
         button.FindComponentByObjectName<UnityEngine.UI.Image>("Image").sprite = Resources.Load<UnityEngine.Sprite>("Icon/Item");
         button.GetComponent<ButtonController>().viewTag = index;
         return button;

@@ -44,9 +44,9 @@ class EquipmentListViewController : ItemsListViewController
             var armorItem = this.items[index] as MMX.HumanArmorEquipment;
             this.ItemDescriptionText.text = armorItem.type.getName();
             this.ArmorDamageText.text = "攻击力: " + armorItem.attack;
-            this.DefenseText.text = "防御力: " + armorItem.defend;
-            this.VelocityText.text = "速度值: " + armorItem.agility;
-            this.MachoText.text = "男人味: " + armorItem.macho;
+            this.DefenseText.text = "防御力: " + armorItem.defense;
+            this.VelocityText.text = "速度值: " + armorItem.speed;
+            this.MachoText.text = "男人味: " + armorItem.manliness;
 
             propertyTexts[0].text = "" + armorItem.fireResistance;
             propertyTexts[1].text = "" + armorItem.iceResistance;

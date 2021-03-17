@@ -11,13 +11,13 @@ namespace MMX
         public virtual int modifiedCount { get; }
 
         //防御力
-        public int defend;
+        public int defense;
         //最大防御力
-        public int maxDefend;
+        public int maxDefense;
         //最小防御力
-        public int minDefend;
+        public int minDefense;
         //防御力改造次数
-        public int defendModifiedCount;
+        public int defenseModifiedCount;
 
         //改造一次的价格
         public int modifiedPrice;

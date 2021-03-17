@@ -7,11 +7,11 @@ namespace MMX
         //攻击力
         public int attack;
         //防御力
-        public int defend;
+        public int defense;
         //速度
-        public int agility;
+        public int speed;
         //男人味
-        public int macho;
+        public int manliness;
 
         //火抗
         public int fireResistance;

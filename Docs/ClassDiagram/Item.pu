@@ -1,8 +1,8 @@
 @startuml Item 
 Item <|-- HumanItem
-HumanItem <|-- NormalItem
-HumanItem <|-- RecoverItem
-HumanItem <|-- FightItem
+HumanItem <|-- ToolsItem
+HumanItem <|-- MedicinesItem
+HumanItem <|-- BattleItem
 HumanItem <|-- HumanEquipment
 HumanEquipment <|-- HumanWeaponEquipment
 HumanWeaponEquipment ..>  AttackProperty
@@ -36,15 +36,15 @@ class HumanItem  <人类道具>
 {
     + int count;
 }
-class NormalItem <通常道具>
+class ToolsItem <通常道具>
 {
     
 }
-class RecoverItem <回复道具>
+class MedicinesItem <回复道具>
 {
 
 }
-class FightItem <战斗道具>
+class BattleItem <战斗道具>
 {
 
 }
@@ -65,9 +65,9 @@ class HumanArmorEquipment <人类防具>
 {
     + HumanArmorEquipmentType type
     + int attack : 攻击力
-    + int defend : 防御力
-    + int agility : 速度
-    + int macho : 男人味
+    + int defense : 防御力
+    + int speed : 速度
+    + int manliness : 男人味
 
     + int fireResistance : 火抗
     + int iceResistance : 冰抗
@@ -88,10 +88,10 @@ class VehicleEquipment <战车装备>
     + int minWeight : 最小重量
     + int virtual modifiedCount { get }: 总改造次数 
 
-    + int defend : 防御力
-    + int maxdefend : 最大防御力
-    + int mindefend : 最小防御力
-    + int defendModifiedCount : 防御力改造次数
+    + int defense : 防御力
+    + int maxDefense : 最大防御力
+    + int minDefense : 最小防御力
+    + int defenseModifiedCount : 防御力改造次数
 
     + int modifiedPrice : 改造一次的价格
 }
@@ -108,24 +108,24 @@ class VehicleWeaponEquipment <战车武器>
     + int minAttack : 最小攻击力
     + int attackModifiedCount : 攻击力改造次数
 
-    + int magazine : 弹仓
-    + int maxMagazine : 最大弹仓
-    + int minMagazine : 最小弹仓
-    + int magazineModifiedCount : 弹仓改造次数
+    + int ammo : 弹仓
+    + int maxAmmo : 最大弹仓
+    + int minAmmo : 最小弹仓
+    + int ammoModifiedCount : 弹仓改造次数
 }
 
 class VehicleCUnitEquipment <C装置>
 {
     
-    + int hit : 命中
-    + int maxHit
-    + int minHit
-    + int hitModifiedCount
+    + int accuracy : 命中
+    + int maxAccuracy
+    + int minAccuracy
+    + int accuracyModifiedCount
 
-    + int evade : 闪避
-    + int maxEvade
-    + int minEvade
-    + int evadeModifiedCount
+    + int evasion : 闪避
+    + int maxEvasion
+    + int minEvasion
+    + int evasionModifiedCount
 }
 
 class VehicleEngineEquipment <战车引擎>
@@ -137,9 +137,9 @@ enum HumanArmorEquipmentType <人类防具类型>
 {
     + head : 头用防具
     + body : 体用防具
-    + hand : 手用防具
-    + foot : 足用防具
-    + decoration : 装饰品
+    + arms : 手用防具
+    + legs : 足用防具
+    + accessory : 装饰品
 }
 enum VehicleWeaponEquipmentType <战车武器类型>
 {
@@ -160,12 +160,12 @@ enum AttackProperty <攻击属性>
 enum AttackRangeType <攻击范围>
 {
     + all : 全体  
-    + single : 单体伤害  
-    + smallThrough : 小贯通  
-    + bigThrough : 大贯通  
-    + smallSector : 扇形小  
-    + bigSector : 扇形大  
-    + adjustableSector : 扇形可调节  
+    + oneEnemy : 单体伤害  
+    + smallLine : 小贯通  
+    + largeLine : 大贯通  
+    + smallFan : 扇形小  
+    + largeFan : 扇形大  
+    + adjustableFan : 扇形可调节  
 }
 
 @enduml

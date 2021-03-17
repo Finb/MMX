@@ -20,7 +20,7 @@ namespace MMX
         //星星数
         public int star;
 
-        public void run()
+        public void use()
         {
 
         }
@@ -51,17 +51,17 @@ namespace MMX
         //全体
         all = 0,
         //单体伤害
-        single = 1,
+        oneEnemy = 1,
         //小贯通
-        smallThrough = 2,
+        smallLine = 2,
         //大贯通
-        bigThrough = 3,
+        LargeLine = 3,
         //扇形小
         smallSector = 4,
         //扇形大
-        bigSector = 5,
+        LargeFan = 5,
         //扇形可调节
-        adjustableSector = 6,
+        adjustableFan = 6,
     }
     public enum HumanArmorEquipmentType : int
     {
@@ -70,11 +70,11 @@ namespace MMX
         //体用防具
         body,
         //手用防具
-        hand,
+        arms,
         //足用防具
-        foot,
+        legs,
         //装饰品
-        decoration,
+        accessory,
     }
 
     public static class TypeExtension
@@ -84,12 +84,12 @@ namespace MMX
             switch (type)
             {
                 case AttackRangeType.all: return "全体";
-                case AttackRangeType.single: return "单体";
-                case AttackRangeType.smallThrough: return "贯通小";
-                case AttackRangeType.bigThrough: return "贯通大";
+                case AttackRangeType.oneEnemy: return "单体";
+                case AttackRangeType.smallLine: return "贯通小";
+                case AttackRangeType.LargeLine: return "贯通大";
                 case AttackRangeType.smallSector: return "扇形小";
-                case AttackRangeType.bigSector: return "扇形大";
-                case AttackRangeType.adjustableSector: return "扇形可调节";
+                case AttackRangeType.LargeFan: return "扇形大";
+                case AttackRangeType.adjustableFan: return "扇形可调节";
             }
             return "";
         }
@@ -99,9 +99,9 @@ namespace MMX
             {
                 case HumanArmorEquipmentType.head: return "头用防具";
                 case HumanArmorEquipmentType.body: return "体用防具";
-                case HumanArmorEquipmentType.hand: return "手用防具";
-                case HumanArmorEquipmentType.foot: return "足用防具";
-                case HumanArmorEquipmentType.decoration: return "装饰品";
+                case HumanArmorEquipmentType.arms: return "手用防具";
+                case HumanArmorEquipmentType.legs: return "足用防具";
+                case HumanArmorEquipmentType.accessory: return "装饰品";
             }
             return "";
         }

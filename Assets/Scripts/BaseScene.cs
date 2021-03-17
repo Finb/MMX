@@ -40,8 +40,8 @@ public class BaseScene : MonoBehaviour
         mainMenu.SetActive(false);
 
         ItemStorage.shared.addItems<HumanItem>(Resources.Load<TextAsset>("Items/HumanItem").text);
-        ItemStorage.shared.addItems<RecoverItem>(Resources.Load<TextAsset>("Items/RecoverItem").text);
-        ItemStorage.shared.addItems<FightItem>(Resources.Load<TextAsset>("Items/FightItem").text);
+        ItemStorage.shared.addItems<MedicinesItem>(Resources.Load<TextAsset>("Items/RecoverItem").text);
+        ItemStorage.shared.addItems<BattleItem>(Resources.Load<TextAsset>("Items/FightItem").text);
         ItemStorage.shared.addItems<HumanWeaponEquipment>(Resources.Load<TextAsset>("Items/HumanWeaponEquipment").text);
         ItemStorage.shared.addItems<HumanArmorEquipment>(Resources.Load<TextAsset>("Items/HumanArmorEquipment").text);
 

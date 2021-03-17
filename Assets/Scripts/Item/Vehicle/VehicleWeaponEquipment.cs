@@ -31,12 +31,12 @@ namespace MMX
         public int attackModifiedCount;
 
         //弹仓
-        public int magazine;
+        public int ammo;
         //最大弹仓
-        public int maxMagazine;
+        public int maxAmmo;
         //最小弹仓
-        public int minMagazine;
+        public int minAmmo;
         //弹仓改造次数
-        public int magazineModifiedCount;
+        public int ammoModifiedCount;
     }
 }

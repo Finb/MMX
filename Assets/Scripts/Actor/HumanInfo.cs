@@ -49,9 +49,9 @@ public partial class HumanInfo : MonoBehaviour
         foreach (var item in equipments.armors.Values)
         {
             property.attack += item.attack;
-            property.defend += item.defend;
-            property.agility += item.agility;
-            property.macho += item.macho;
+            property.defend += item.defense;
+            property.agility += item.speed;
+            property.macho += item.manliness;
 
             property.resistance[MMX.AttackProperty.ice] += item.iceResistance;
             property.resistance[MMX.AttackProperty.fire] += item.fireResistance;
