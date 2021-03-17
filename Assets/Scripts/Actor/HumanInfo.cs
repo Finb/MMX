@@ -49,9 +49,9 @@ public partial class HumanInfo : MonoBehaviour
         foreach (var item in equipments.armors.Values)
         {
             property.attack += item.attack;
-            property.defend += item.defense;
-            property.agility += item.speed;
-            property.macho += item.manliness;
+            property.defense += item.defense;
+            property.speed += item.speed;
+            property.manliness += item.manliness;
 
             property.resistance[MMX.AttackProperty.ice] += item.iceResistance;
             property.resistance[MMX.AttackProperty.fire] += item.fireResistance;
@@ -113,7 +113,7 @@ public class HumanProperty : MMX.IEffect
     //攻击力
     public int attack = 0;
     //防御力
-    public int defend = 0;
+    public int defense = 0;
     
     //腕力
     public int strength = 0;
@@ -121,9 +121,12 @@ public class HumanProperty : MMX.IEffect
     public int vitality = 0;
 
     //男子气概值
-    public int macho = 0;
+    public int manliness = 0;
     //速度
-    public int agility = 0;
+    public int speed = 0;
+
+    //伤痕
+    public int scars = 0;
     public HumanProperty(){
         resistance[MMX.AttackProperty.ice] = 0;
         resistance[MMX.AttackProperty.fire] = 0;
@@ -139,11 +142,11 @@ public class HumanProperty : MMX.IEffect
         prop.hp = hp;
         prop.maxHp = maxHp;
         prop.attack = attack;
-        prop.defend = defend;
+        prop.defense = defense;
         prop.strength = strength;
         prop.vitality = vitality;
-        prop.macho = macho;
-        prop.agility = agility;
+        prop.manliness = manliness;
+        prop.speed = speed;
         prop.resistance = new Dictionary<MMX.AttackProperty, int>(resistance);
         return prop;
     }

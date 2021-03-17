@@ -318,9 +318,9 @@ public class HumanStatusController : BaseUIInputController, InputButtonEventInte
         propertyTexts[2].text = "" + currentHuman.combatLevel;
         propertyTexts[3].text = "" + currentHuman.property.strength;
         propertyTexts[4].text = "" + currentHuman.property.vitality;
-        propertyTexts[5].text = "" + currentHuman.property.defend;
-        propertyTexts[6].text = "" + currentHuman.property.agility;
-        propertyTexts[7].text = "" + currentHuman.property.macho;
+        propertyTexts[5].text = "" + currentHuman.property.defense;
+        propertyTexts[6].text = "" + currentHuman.property.speed;
+        propertyTexts[7].text = "" + currentHuman.property.manliness;
         propertyTexts[8].text = "0";
 
 

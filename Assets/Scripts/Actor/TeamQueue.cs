@@ -40,8 +40,8 @@ public class TeamQueue
         roleInfo.baseProperty.maxHp = 100;
         roleInfo.baseProperty.strength = 10;
         roleInfo.baseProperty.vitality = 5;
-        roleInfo.baseProperty.agility = 5;
-        roleInfo.baseProperty.macho = 1;
+        roleInfo.baseProperty.speed = 5;
+        roleInfo.baseProperty.manliness = 1;
 
         roleInfo = humans[1].GetComponentInChildren<HumanInfo>();
         roleInfo.level = 2;
@@ -51,8 +51,8 @@ public class TeamQueue
         roleInfo.baseProperty.maxHp = 120;
         roleInfo.baseProperty.strength = 15;
         roleInfo.baseProperty.vitality = 10;
-        roleInfo.baseProperty.agility = 10;
-        roleInfo.baseProperty.macho = 5;
+        roleInfo.baseProperty.speed = 10;
+        roleInfo.baseProperty.manliness = 5;
 
         buildFollowChain();
     }
