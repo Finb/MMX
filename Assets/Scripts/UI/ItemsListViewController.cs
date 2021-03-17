@@ -95,7 +95,7 @@ public class ItemsListViewController : BaseUIInputController, IListViewDataSourc
         button.GetComponentInChildren<UnityEngine.UI.Text>().text = this.items[index].name;
         button.GetComponent<UnityEngine.UI.LayoutElement>().preferredWidth = 200;
         button.GetComponent<UnityEngine.UI.LayoutElement>().preferredHeight = 30;
-        button.FindComponentByObjectName<UnityEngine.UI.Text>("RightText").text = "" + (this.items[index] as MMX.ToolsItem).count;
+        button.FindComponentByObjectName<UnityEngine.UI.Text>("RightText").text = "" + (this.items[index] as MMX.HumanItem).count;
         button.FindComponentByObjectName<UnityEngine.UI.Image>("Image").sprite = Resources.Load<UnityEngine.Sprite>("Icon/Item");
         button.GetComponent<ButtonController>().viewTag = index;
         return button;
@@ -120,9 +120,9 @@ public class ItemsListViewController : BaseUIInputController, IListViewDataSourc
         MMX.GameManager.Input.pushTarget(gameObject);
         switch (type)
         {
-            case ItemsListType.humanItems: items = new List<MMX.Item>(ItemPack.shared.humanItems); break;
-            case ItemsListType.recoverItems: items = new List<MMX.Item>(ItemPack.shared.recoverItems); break;
-            case ItemsListType.fightItem: items = new List<MMX.Item>(ItemPack.shared.fightItems); break;
+            case ItemsListType.humanItems: items = new List<MMX.Item>(ItemPack.shared.toolItems); break;
+            case ItemsListType.recoverItems: items = new List<MMX.Item>(ItemPack.shared.medicineItems); break;
+            case ItemsListType.fightItem: items = new List<MMX.Item>(ItemPack.shared.battleItems); break;
             case ItemsListType.equipment: items = new List<MMX.Item>(ItemPack.shared.equipmentItems); break;
         }
         listView.reloadData();

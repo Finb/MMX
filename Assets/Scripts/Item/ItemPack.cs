@@ -7,31 +7,31 @@ class ItemPack
     //有多少钱
     public int money;
     //人类道具
-    public List<HumanItem> humanItems = new List<HumanItem>();
+    public List<ToolItem> toolItems = new List<ToolItem>();
     //回复道具
-    public List<MedicinesItem> recoverItems = new List<MedicinesItem>();
+    public List<MedicineItem> medicineItems = new List<MedicineItem>();
     //战斗道具
-    public List<BattleItem> fightItems = new List<BattleItem>();
+    public List<BattleItem> battleItems = new List<BattleItem>();
     //人类装备
     public List<HumanEquipment> equipmentItems = new List<HumanEquipment>();
     private ItemPack()
     {
         foreach (var item in ItemStorage.shared.items.Values)
         {
-            if (item is HumanItem)
+            if (item is ToolItem)
             {
-                (item as HumanItem).count = System.Convert.ToInt32(Random.Range(1, 99));
-                humanItems.Add(item as HumanItem);
+                (item as ToolItem).count = System.Convert.ToInt32(Random.Range(1, 99));
+                toolItems.Add(item as ToolItem);
             }
-            else if (item is MedicinesItem)
+            else if (item is MedicineItem)
             {
-                (item as MedicinesItem).count = System.Convert.ToInt32(Random.Range(1, 99));
-                recoverItems.Add(item as MedicinesItem);
+                (item as MedicineItem).count = System.Convert.ToInt32(Random.Range(1, 99));
+                medicineItems.Add(item as MedicineItem);
             }
             else if (item is BattleItem)
             {
                 (item as BattleItem).count = System.Convert.ToInt32(Random.Range(1, 99));
-                fightItems.Add(item as BattleItem);
+                battleItems.Add(item as BattleItem);
             }
             else if (item is HumanWeaponEquipment)
             {

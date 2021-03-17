@@ -1,7 +1,7 @@
 namespace MMX
 {
     /// 回复道具
-    public class MedicinesItem : HumanItem
+    public class MedicineItem : HumanItem
     {
 
     }
