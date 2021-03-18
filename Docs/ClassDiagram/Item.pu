@@ -29,7 +29,7 @@ class Item
    + int sellPrice
    + string desc
    + int star
-   + void run()
+   + void use()
 }
 
 class HumanItem  <人类道具>

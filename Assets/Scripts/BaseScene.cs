@@ -39,12 +39,16 @@ public class BaseScene : MonoBehaviour
         UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(mainMenu.FindComponentByObjectName<RectTransform>("Image"));
         mainMenu.SetActive(false);
 
+        //加载道具
         ItemStorage.shared.addItems<ToolItem>(Resources.Load<TextAsset>("Items/HumanItem").text);
+        //加载恢复道具
         ItemStorage.shared.addItems<MedicineItem>(Resources.Load<TextAsset>("Items/RecoverItem").text);
+        //加载战斗道具
         ItemStorage.shared.addItems<BattleItem>(Resources.Load<TextAsset>("Items/FightItem").text);
+        //加载人类武器
         ItemStorage.shared.addItems<HumanWeaponEquipment>(Resources.Load<TextAsset>("Items/HumanWeaponEquipment").text);
+        //加载人类防具
         ItemStorage.shared.addItems<HumanArmorEquipment>(Resources.Load<TextAsset>("Items/HumanArmorEquipment").text);
-
     }
 
     // Update is called once per frame
