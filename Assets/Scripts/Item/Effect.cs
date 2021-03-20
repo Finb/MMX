@@ -37,7 +37,6 @@ namespace MMX
                 return;
             }
             var property = target.propertyForIncrease();
-            property.attack += (int)(property.attack * damagePercent);
             property.maxHp += (int)(property.maxHp * damagePercent);
         }
     }

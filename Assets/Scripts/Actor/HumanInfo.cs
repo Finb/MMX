@@ -48,7 +48,7 @@ public partial class HumanInfo : MonoBehaviour
         //加上防具的属性
         foreach (var item in equipments.armors.Values)
         {
-            property.attack += item.attack;
+            property.strength += item.attack;
             property.defense += item.defense;
             property.speed += item.speed;
             property.manliness += item.manliness;

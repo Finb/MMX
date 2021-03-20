@@ -42,6 +42,7 @@ public class TeamQueue
         roleInfo.baseProperty.vitality = 5;
         roleInfo.baseProperty.speed = 5;
         roleInfo.baseProperty.manliness = 1;
+        roleInfo.refreshProperty();
 
         roleInfo = humans[1].GetComponentInChildren<HumanInfo>();
         roleInfo.level = 2;
@@ -53,6 +54,7 @@ public class TeamQueue
         roleInfo.baseProperty.vitality = 10;
         roleInfo.baseProperty.speed = 10;
         roleInfo.baseProperty.manliness = 5;
+        roleInfo.refreshProperty();
 
         buildFollowChain();
     }

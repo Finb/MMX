@@ -1,0 +1,38 @@
+@startuml 人类属性
+
+HumanInfo ..> HumanProperty
+HumanInfo ..> VehicleInfo
+
+HumanInfo ..> Career
+HumanInfo ..> EquipmentInfo
+HumanInfo ..> Effect
+
+class HumanInfo <人类属性信息>
+{
+    string nick;
+    int level : 等级
+    int combatLevel : 战斗等级
+    int driverLevel : 驾驶等级
+    
+
+    HumanProperty baseProperty : 基础属性 
+    HumanProperty property : 整体属性，加上装备属性或其他增益
+    VehicleInfo currentTakedVehicle : 当前乘坐的车辆
+
+    long exp : 总经验值
+    long currentExp : 当前等级经验值
+
+
+    Career career : 职业
+    Career secondaryCareer : 第二职业
+
+    EquipmentInfo equipments : 装备信息
+    List<Effect> effects : 技能特效
+
+    void HumanInfo()
+
+    + void refreshProperty()
+
+    + HumanProperty propertyForIncrease()
+}
+@enduml
