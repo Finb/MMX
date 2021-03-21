@@ -110,8 +110,6 @@ public class HumanProperty : MMX.IEffect
     public int hp = 0;
     public int maxHp = 0;
 
-    //攻击力
-    public int attack = 0;
     //防御力
     public int defense = 0;
     
@@ -141,7 +139,6 @@ public class HumanProperty : MMX.IEffect
         var prop = new HumanProperty();
         prop.hp = hp;
         prop.maxHp = maxHp;
-        prop.attack = attack;
         prop.defense = defense;
         prop.strength = strength;
         prop.vitality = vitality;
