@@ -5,7 +5,7 @@ using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
 [TrackBindingType(typeof(RoleInfo))]
-[TrackClipType(typeof(RoleAnimationAsset))]
+[TrackClipType(typeof(RoleAnimationClip))]
 public class RoleAnimationTrack : TrackAsset
 {
 }

@@ -5,7 +5,7 @@ using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
 [System.Serializable]
-public class RoleAnimationAsset : PlayableAsset
+public class RoleAnimationClip : PlayableAsset
 {
     public RoleAnimationBehaviour template = new RoleAnimationBehaviour();
     public RoleAnimationType type;
