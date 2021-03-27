@@ -13,13 +13,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 0
-  fightLevel: 0
-  driveLevel: 0
-  hp: 0
-  wrist: 0
-  vit: 0
-  dex: 0
-  manValue: 0
+  combatLevel: 0
+  driverLevel: 0
   currentTakedVehicle: {fileID: 0}
   exp: 0
   currentExp: 0
@@ -51,8 +46,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 751989742903072840, guid: 2f8818e1613294d71b326d54775fa103,
         type: 3}
-      propertyPath: m_TagString
-      value: Player
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 751989742903072840, guid: 2f8818e1613294d71b326d54775fa103,
         type: 3}
@@ -61,13 +56,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 751989742903072840, guid: 2f8818e1613294d71b326d54775fa103,
         type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 751989742903072842, guid: 2f8818e1613294d71b326d54775fa103,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: -0.2734958
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 751989742903072842, guid: 2f8818e1613294d71b326d54775fa103,
         type: 3}
@@ -78,6 +68,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.y
       value: 0.3733084
+      objectReference: {fileID: 0}
+    - target: {fileID: 751989742903072842, guid: 2f8818e1613294d71b326d54775fa103,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.2734958
+      objectReference: {fileID: 0}
+    - target: {fileID: 751989742903072847, guid: 2f8818e1613294d71b326d54775fa103,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 751989742903072847, guid: 2f8818e1613294d71b326d54775fa103,
         type: 3}
@@ -96,6 +96,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 751989742903072847, guid: 2f8818e1613294d71b326d54775fa103,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 751989742903072847, guid: 2f8818e1613294d71b326d54775fa103,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -107,16 +112,6 @@ PrefabInstance:
     - target: {fileID: 751989742903072847, guid: 2f8818e1613294d71b326d54775fa103,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 751989742903072847, guid: 2f8818e1613294d71b326d54775fa103,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 751989742903072847, guid: 2f8818e1613294d71b326d54775fa103,
-        type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 751989742903072847, guid: 2f8818e1613294d71b326d54775fa103,
@@ -139,6 +134,26 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6178589070373856627, guid: 2f8818e1613294d71b326d54775fa103,
+        type: 3}
+      propertyPath: upAnimation
+      value: 
+      objectReference: {fileID: 7400000, guid: 9ca02ece7319a48f1bcf1b798b715a6f, type: 2}
+    - target: {fileID: 6178589070373856627, guid: 2f8818e1613294d71b326d54775fa103,
+        type: 3}
+      propertyPath: downAnimation
+      value: 
+      objectReference: {fileID: 7400000, guid: 14ee4a8a42f3343f9a5062a22abcbaa3, type: 2}
+    - target: {fileID: 6178589070373856627, guid: 2f8818e1613294d71b326d54775fa103,
+        type: 3}
+      propertyPath: leftAnimation
+      value: 
+      objectReference: {fileID: 7400000, guid: a2492d5edadd8475c83787f87dee0516, type: 2}
+    - target: {fileID: 6178589070373856627, guid: 2f8818e1613294d71b326d54775fa103,
+        type: 3}
+      propertyPath: rightAnimation
+      value: 
+      objectReference: {fileID: 7400000, guid: 0880d01b4c6534d53b888c8dc5443dd6, type: 2}
     - target: {fileID: 6178589070373856627, guid: 2f8818e1613294d71b326d54775fa103,
         type: 3}
       propertyPath: raycastDistance

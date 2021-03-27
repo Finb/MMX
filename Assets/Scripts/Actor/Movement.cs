@@ -44,8 +44,7 @@ public class Movement : MonoBehaviour
     {
         if (Mathf.Abs(direction.x) + Mathf.Abs(direction.y) > 0)
         {
-            anim.SetFloat("moveX", direction.x);
-            anim.SetFloat("moveY", direction.y);
+            toward(direction);
             lookDirection = direction;
             anim.enabled = true;
             rbody.MovePosition(position);
@@ -72,5 +71,11 @@ public class Movement : MonoBehaviour
             moveSteps.Enqueue(new MoveStep(position, direction));
         }
 
+    }
+
+    public void toward(Vector2 direction)
+    {
+        anim.SetFloat("moveX", direction.x);
+        anim.SetFloat("moveY", direction.y);
     }
 }
