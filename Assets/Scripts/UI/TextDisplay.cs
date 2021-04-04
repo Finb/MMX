@@ -70,9 +70,9 @@ public class TextDisplay : MonoBehaviour
                 currentDisplaySentenceIndex++;
                 if (currentDisplaySentenceIndex >= sentences.Count)
                 {
-                    if (dialogController.disPlayCompletionAction != null)
+                    if (dialogController.displayCompletionAction != null)
                     {
-                        dialogController.disPlayCompletionAction();
+                        dialogController.displayCompletionAction();
                     }
                 }
                 //全部显示完毕

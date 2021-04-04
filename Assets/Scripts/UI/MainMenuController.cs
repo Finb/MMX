@@ -55,8 +55,15 @@ public class MainMenuController : BaseUIInputController
     {
         MMX.GameManager.Audio.PlaySfx(Resources.Load<AudioClip>("MetalMax-SFX/0x3E-Enter"));
         gameObject.SetActive(true);
-        MMX.GameManager.Input.pushTarget(gameObject);
+        // gameObject.GetComponentInChildren<UnityEngine.CanvasGroup>().DOFade(0, 0.1f);
+        // gameObject.GetComponentInChildren<UnityEngine.CanvasGroup>().DOFade(1, 0.1f).OnComplete(() =>
+        // {
+        //     MMX.GameManager.Input.pushTarget(gameObject);
+        //     EventSystem.current.SetSelectedGameObject(gameObject.FindObject("包裹"));
+        // });
 
+        MMX.GameManager.Input.pushTarget(gameObject);
+        
         EventSystem.current.SetSelectedGameObject(gameObject.FindObject("包裹"));
     }
     public void hide()

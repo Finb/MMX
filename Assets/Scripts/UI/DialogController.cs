@@ -10,7 +10,7 @@ public class DialogController : BaseUIInputController
     private Text nickLabel;
     public TextDisplay textDisplay;
 
-    public Action disPlayCompletionAction;
+    public Action displayCompletionAction;
     public Action willDisappearAction;
     public override void Awake(){
         base.Awake();
@@ -46,9 +46,9 @@ public class DialogController : BaseUIInputController
             return textDisplay.arrowImage.activeSelf;
         }
     }
-    public void showText(string text, string nick = null, Action disPlayCompletionAction = null)
+    public void showText(string text, string nick = null, Action displayCompletionAction = null)
     {
-        this.disPlayCompletionAction = disPlayCompletionAction;
+        this.displayCompletionAction = displayCompletionAction;
         MMX.GameManager.Input.pushTarget(gameObject);
         gameObject.SetActive(true);
         var nickPanel = nickLabel.gameObject.transform.parent.gameObject;
