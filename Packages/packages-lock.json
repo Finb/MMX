@@ -12,15 +12,6 @@
       "source": "builtin",
       "dependencies": {}
     },
-    "com.unity.2d.tilemap.extras": {
-      "version": "file:/Users/huangfeng/Downloads/2d-extras-master",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {
-        "com.unity.modules.tilemap": "1.0.0",
-        "com.unity.2d.tilemap": "1.0.0"
-      }
-    },
     "com.unity.ads": {
       "version": "3.6.1",
       "depth": 0,
