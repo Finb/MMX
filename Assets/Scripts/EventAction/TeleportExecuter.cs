@@ -16,27 +16,6 @@ public class TeleportExecuter : IExecute
             return teleportTargetInfo != null;
         }
     }
-    public static TeleportPortal ConvertEventActionToTeleportPortal(EventAction eventAction)
-    {
-        TeleportPortal teleport = new TeleportPortal();
-        teleport.dropZone = eventAction.transformVar1;
-        teleport.dropZoneOffset = eventAction.vector2Var1;
-        teleport.soundEffect = eventAction.audioClipVar1;
-        if (eventAction.stringVar1.Length > 0)
-        {
-            teleport.teleportInfo = new TeleportInfo();
-            teleport.teleportInfo.mapName = eventAction.stringVar1;
-            teleport.teleportInfo.roomName = eventAction.stringVar2;
-            teleport.teleportInfo.teleportPortalName = eventAction.stringVar3;
-            teleport.teleportInfo.teleportPoint = eventAction.vector2Var2;
-        }
-        teleport.gameObject = eventAction.gameObject;
-        return teleport;
-    }
-    public RoomInfo getParentRoom(GameObject gameObject)
-    {
-        return gameObject.GetComponentInParentIncludeInactive<RoomInfo>();
-    }
 
     public void execute(EventAction eventAction)
     {
@@ -46,35 +25,32 @@ public class TeleportExecuter : IExecute
             return;
         }
 
-        TeleportPortal teleport = ConvertEventActionToTeleportPortal(eventAction);
+        TeleportPortal teleport = TeleportPortal.ConvertEventActionToTeleportPortal(eventAction);
 
         if (teleport == null || teleport.dropZone == null && teleport.teleportInfo.mapName.Length <= 0)
         {
             return;
         }
 
-        EventAction dropZoneEventAction = null;
-        if ( teleport.dropZone != null){
-            dropZoneEventAction = teleport.dropZone.GetComponent<EventAction>();
-        }
-        if (teleport.dropZone != null && dropZoneEventAction != null && dropZoneEventAction.type == EventActionType.teleport)
+        //传送到当前地图的目标传送点
+        if (teleport.dropZone != null && teleport.dropZoneEventAction != null && teleport.dropZoneEventAction.type == EventActionType.teleport)
         {
-            var targetTeleport = ConvertEventActionToTeleportPortal(dropZoneEventAction);
-            this.teleport(new TeleportTargetInfo(getParentRoom(dropZoneEventAction.gameObject), targetTeleport));
+            this.teleport(new TeleportTargetInfo(teleport));
         }
         else
         {
+            //传送到指定地图
             var mapName = teleport.teleportInfo.mapName;
             var roomName = teleport.teleportInfo.roomName;
             var teleportPortalName = teleport.teleportInfo.teleportPortalName;
             if (teleportPortalName != null && teleportPortalName.Length > 0)
             {
-                this.teleport(new TeleportTargetInfo(mapName, roomName, teleportPortalName));
+                this.teleport(new TeleportTargetInfo(mapName, roomName, teleportPortalName, teleport.soundEffect));
             }
             else
             {
                 var postion = teleport.teleportInfo.teleportPoint;
-                this.teleport(new TeleportTargetInfo(mapName, roomName, postion, null));
+                this.teleport(new TeleportTargetInfo(mapName, roomName, postion, teleport.soundEffect));
             }
 
         }
@@ -177,7 +153,6 @@ public class TeleportTargetInfo
 
     public RoomInfo room;
     public MapInfo map;
-    public TeleportPortal teleportPortal;
 
     public Vector2 position;
 
@@ -186,7 +161,7 @@ public class TeleportTargetInfo
     public Vector2[] cameraConfiner;
 
 
-    public TeleportTargetInfo(string mapName, string roomName, string teleportPortalName)
+    public TeleportTargetInfo(string mapName, string roomName, string teleportPortalName, AudioClip soundEffect)
     {
         this.mapName = mapName;
         this.roomName = roomName;
@@ -213,16 +188,17 @@ public class TeleportTargetInfo
             {
                 if (item.name == teleportPortalName)
                 {
-                    this.teleportPortal = TeleportExecuter.ConvertEventActionToTeleportPortal(item);
+                    var teleportPortal = TeleportPortal.ConvertEventActionToTeleportPortal(item);
+                    this.position = (Vector2)teleportPortal.gameObject.transform.position + teleportPortal.dropZoneOffset;
                 }
             }
         }
-        this.position = (Vector2)this.teleportPortal.gameObject.transform.position + this.teleportPortal.dropZoneOffset;
-        this.soundEffect = this.teleportPortal.soundEffect;
+
+        this.soundEffect = soundEffect;
         this.backgroundMusic = this.room.backgroundMusic;
         this.cameraConfiner = this.room.cameraConfiner;
     }
-    public TeleportTargetInfo(string mapName, string roomName, Vector2 position, string soundEffect)
+    public TeleportTargetInfo(string mapName, string roomName, Vector2 position, AudioClip soundEffect)
     {
         this.mapName = mapName;
         this.roomName = roomName;
@@ -245,19 +221,20 @@ public class TeleportTargetInfo
         }
         this.backgroundMusic = room.backgroundMusic;
         this.cameraConfiner = room.cameraConfiner;
-        this.soundEffect = Resources.Load<AudioClip>(soundEffect);
+        this.soundEffect = soundEffect;
     }
 
-    public TeleportTargetInfo(RoomInfo room, TeleportPortal teleportPortal)
+    public TeleportTargetInfo(TeleportPortal teleportPortal)
     {
+        var room = RoomInfo.getParentRoom(teleportPortal.dropZone.gameObject);
+
         this.map = room.gameObject.GetComponentInParentIncludeInactive<MapInfo>();
         this.mapName = map.name;
         this.room = room;
         this.roomName = room.name;
-        this.teleportPortal = teleportPortal;
 
-        this.position = (Vector2)this.teleportPortal.gameObject.transform.position + teleportPortal.dropZoneOffset;
-        this.soundEffect = this.teleportPortal.soundEffect;
+        this.position = (Vector2)teleportPortal.dropZone.transform.position + teleportPortal.dropZoneTeleportPortal.dropZoneOffset;
+        this.soundEffect = teleportPortal.soundEffect;
         this.backgroundMusic = this.room.backgroundMusic;
         this.cameraConfiner = this.room.cameraConfiner;
     }
