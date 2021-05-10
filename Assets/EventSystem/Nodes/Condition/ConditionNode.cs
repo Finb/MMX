@@ -10,7 +10,7 @@ public class ConditionNode : Node
 
     [Input(backingValue = ShowBackingValue.Never, connectionType = ConnectionType.Override)]
     public int input;
-    [Input(dynamicPortList = true, backingValue = ShowBackingValue.Never)]
+    [Input(dynamicPortList = true, backingValue = ShowBackingValue.Never, connectionType = ConnectionType.Override)]
     public List<bool> conditions = new List<bool>();
 
     [Output(backingValue = ShowBackingValue.Never, connectionType = ConnectionType.Multiple)]

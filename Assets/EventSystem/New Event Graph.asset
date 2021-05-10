@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -328, y: -152}
+  position: {x: -408, y: -8}
   ports:
     keys:
     - input
@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: Switch
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -584, y: -8}
+  position: {x: -664, y: -8}
   ports:
     keys:
     - options
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: Switch Condition Setter
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 184, y: 216}
+  position: {x: 56, y: 200}
   ports:
     keys:
     - input
@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -824, y: -8}
+  position: {x: -920, y: -8}
   ports:
     keys:
     - input
@@ -187,7 +187,10 @@ MonoBehaviour:
       _node: {fileID: -4504238023181833159}
       _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: output
+        node: {fileID: -2918727753704150310}
+        reroutePoints: []
       _direction: 0
       _connectionType: 1
       _typeConstraint: 0
@@ -221,7 +224,7 @@ MonoBehaviour:
   m_Name: Variable Condition Setter
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -88, y: -104}
+  position: {x: -184, y: -8}
   ports:
     keys:
     - intput
@@ -242,6 +245,51 @@ MonoBehaviour:
   conditionKey: 
   variableOperation: 0
   conditionValue: 0
+--- !u!114 &-2918727753704150310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e62287efd9abb4cd5a7d73ee2fbb5a8f, type: 3}
+  m_Name: Trigger
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -1176, y: -8}
+  ports:
+    keys:
+    - output
+    - conditions
+    values:
+    - _fieldName: output
+      _node: {fileID: -2918727753704150310}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: input
+        node: {fileID: -4504238023181833159}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: conditions
+      _node: {fileID: -2918727753704150310}
+      _typeQualifiedName: System.Collections.Generic.List`1[[System.Boolean, mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  triggerType: 0
+  priority: 0
+  conditions: 
+  output: 0
 --- !u!114 &-2113514290160226964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,7 +303,7 @@ MonoBehaviour:
   m_Name: Condition
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -312, y: 168}
+  position: {x: -408, y: 184}
   ports:
     keys:
     - conditions
@@ -266,6 +314,7 @@ MonoBehaviour:
     - conditions 2
     - fail
     - conditions 3
+    - conditions 4
     values:
     - _fieldName: conditions
       _node: {fileID: -2113514290160226964}
@@ -274,7 +323,7 @@ MonoBehaviour:
         Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 0
-      _connectionType: 0
+      _connectionType: 1
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: input
@@ -310,7 +359,7 @@ MonoBehaviour:
         node: {fileID: 5204324439909336402}
         reroutePoints: []
       _direction: 0
-      _connectionType: 0
+      _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
     - _fieldName: conditions 1
@@ -322,7 +371,7 @@ MonoBehaviour:
         node: {fileID: 148222460502251735}
         reroutePoints: []
       _direction: 0
-      _connectionType: 0
+      _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
     - _fieldName: conditions 2
@@ -334,7 +383,7 @@ MonoBehaviour:
         node: {fileID: 1063714489178964923}
         reroutePoints: []
       _direction: 0
-      _connectionType: 0
+      _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
     - _fieldName: fail
@@ -352,20 +401,26 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: output
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: output
         node: {fileID: 8555406282051940087}
         reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: conditions 4
+      _node: {fileID: -2113514290160226964}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
       - fieldName: output
         node: {fileID: 2314738734864158772}
         reroutePoints: []
       _direction: 0
-      _connectionType: 0
+      _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
   input: 0
-  conditions: 00000000
+  conditions: 0000000000
   pass: 0
   fail: 0
 --- !u!114 &11400000
@@ -394,6 +449,7 @@ MonoBehaviour:
   - {fileID: 5569775420175734862}
   - {fileID: 8555406282051940087}
   - {fileID: 2314738734864158772}
+  - {fileID: -2918727753704150310}
 --- !u!114 &148222460502251735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,7 +463,7 @@ MonoBehaviour:
   m_Name: Switch Condition
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -600, y: 296}
+  position: {x: -696, y: 296}
   ports:
     keys:
     - output
@@ -441,7 +497,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -72, y: 168}
+  position: {x: -184, y: 200}
   ports:
     keys:
     - input
@@ -491,7 +547,7 @@ MonoBehaviour:
   m_Name: Variable Condition
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -600, y: 408}
+  position: {x: -696, y: 408}
   ports:
     keys:
     - output
@@ -525,7 +581,7 @@ MonoBehaviour:
   m_Name: Item Condition Setter
   m_EditorClassIdentifier: Assembly-CSharp::ItemConditionSetterNode
   graph: {fileID: 11400000}
-  position: {x: -600, y: 712}
+  position: {x: -696, y: 712}
   ports:
     keys:
     - output
@@ -535,7 +591,7 @@ MonoBehaviour:
       _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
-      - fieldName: conditions 3
+      - fieldName: conditions 4
         node: {fileID: -2113514290160226964}
         reroutePoints: []
       _direction: 1
@@ -559,7 +615,7 @@ MonoBehaviour:
   m_Name: Switch Condition
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -600, y: 184}
+  position: {x: -696, y: 184}
   ports:
     keys:
     - output
@@ -593,7 +649,7 @@ MonoBehaviour:
   m_Name: Switch Condition Setter
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 184, y: 344}
+  position: {x: 56, y: 328}
   ports:
     keys:
     - input
@@ -628,7 +684,7 @@ MonoBehaviour:
   m_Name: Item Condition Setter
   m_EditorClassIdentifier: Assembly-CSharp::ItemConditionSetterNode
   graph: {fileID: 11400000}
-  position: {x: -600, y: 552}
+  position: {x: -696, y: 552}
   ports:
     keys:
     - output
