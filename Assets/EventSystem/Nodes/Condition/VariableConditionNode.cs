@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
-[CreateNodeMenu(null)]
-public class EventBaseNode : Node
+[CreateNodeMenu("Condition/VariableCondition")]
+[NodeWidth(240)]
+public class VariableConditionNode : Node
 {
+    public string conditionKey;
+    public ComparisonOperator comparisonOperator = ComparisonOperator.equal;
+    public int conditionValue;
+    [Output]
+    public bool output;
 
-    [Input(backingValue = ShowBackingValue.Never, connectionType = ConnectionType.Override)]
-    public int input;
-    [Output(backingValue = ShowBackingValue.Never, connectionType = ConnectionType.Multiple)]
-    public int output;
-
-    // Use this for initialization
     protected override void Init()
     {
         base.Init();
+
     }
 
     // Return the correct value of an output port when requested

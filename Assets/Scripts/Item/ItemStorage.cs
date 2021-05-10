@@ -12,9 +12,16 @@ namespace MMX
 
         private ItemStorage()
         {
-            //加载人类道具json
-            // var item = JsonUtility.FromJson<MMX.HumanItem>("",List<MMX.HumanItem>);
-
+            //加载道具
+            addItems<ToolItem>(Resources.Load<TextAsset>("Items/HumanItem").text);
+            //加载恢复道具
+            addItems<MedicineItem>(Resources.Load<TextAsset>("Items/RecoverItem").text);
+            //加载战斗道具
+            addItems<BattleItem>(Resources.Load<TextAsset>("Items/FightItem").text);
+            //加载人类武器
+            addItems<HumanWeaponEquipment>(Resources.Load<TextAsset>("Items/HumanWeaponEquipment").text);
+            //加载人类防具
+            addItems<HumanArmorEquipment>(Resources.Load<TextAsset>("Items/HumanArmorEquipment").text);
             Debug.Log(items.Count);
         }
         public void addItems<T>(string json) where T : Item

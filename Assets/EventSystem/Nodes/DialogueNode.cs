@@ -9,6 +9,8 @@ public class DialogueNode : EventBaseNode
     [TextArea(3, 10)]
     public string content;
 
+    
+
     // Use this for initialization
     protected override void Init()
     {

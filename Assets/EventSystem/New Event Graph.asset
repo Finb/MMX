@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8686268232588775853
+--- !u!114 &-7945731847991034001
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,31 +9,45 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Switch Condition
-  m_EditorClassIdentifier: Assembly-CSharp::SwitchConditionNode
+  m_Script: {fileID: 11500000, guid: ae77b7e1078764a94b654627f9dfd14c, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -632, y: 248}
+  position: {x: -328, y: -152}
   ports:
     keys:
+    - input
     - output
     values:
-    - _fieldName: output
-      _node: {fileID: -8686268232588775853}
-      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+    - _fieldName: input
+      _node: {fileID: -7945731847991034001}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
-      - fieldName: conditions 1
-        node: {fileID: -1117524540656304233}
+      - fieldName: options 0
+        node: {fileID: -7043318595766846326}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: -7945731847991034001}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: intput
+        node: {fileID: -3465903760992293123}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  conditionType: 1
-  conditionKey: 
+  input: 0
   output: 0
---- !u!114 &-8075574979940982840
+  nick: 
+  content: 
+--- !u!114 &-7043318595766846326
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,75 +60,17 @@ MonoBehaviour:
   m_Name: Switch
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -696, y: -136}
+  position: {x: -584, y: -8}
   ports:
     keys:
+    - options
     - input
     - output
     - options 0
     - options 1
-    - options 2
-    - options
     values:
-    - _fieldName: input
-      _node: {fileID: -8075574979940982840}
-      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: output
-        node: {fileID: 1529167905953952243}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: output
-      _node: {fileID: -8075574979940982840}
-      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: options 0
-      _node: {fileID: -8075574979940982840}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: input
-        node: {fileID: -340693877017043109}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: options 1
-      _node: {fileID: -8075574979940982840}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: input
-        node: {fileID: -164581696897662426}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: options 2
-      _node: {fileID: -8075574979940982840}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: input
-        node: {fileID: -1117524540656304233}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
     - _fieldName: options
-      _node: {fileID: -8075574979940982840}
+      _node: {fileID: -7043318595766846326}
       _typeQualifiedName: System.Collections.Generic.List`1[[System.String, mscorlib,
         Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib,
         Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
@@ -123,13 +79,92 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: input
+      _node: {fileID: -7043318595766846326}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: output
+        node: {fileID: -4504238023181833159}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: -7043318595766846326}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: options 0
+      _node: {fileID: -7043318595766846326}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: input
+        node: {fileID: -7945731847991034001}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: options 1
+      _node: {fileID: -7043318595766846326}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: input
+        node: {fileID: -2113514290160226964}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
   input: 0
   output: 0
   options:
-  - "\u9009\u98791"
-  - "\u9009\u98792"
-  - "\u9009\u98793"
---- !u!114 &-5831959681580404443
+  - test1
+  - test2
+--- !u!114 &-4867028073145020701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b6d578404f844b328ab9b8e5ee9559d, type: 3}
+  m_Name: Switch Condition Setter
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 184, y: 216}
+  ports:
+    keys:
+    - input
+    values:
+    - _fieldName: input
+      _node: {fileID: -4867028073145020701}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: output
+        node: {fileID: 451093548792364425}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  input: 0
+  conditionType: 0
+  selfSwitchType: 0
+  conditionKey: 
+  conditionValue: 0
+--- !u!114 &-4504238023181833159
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,34 +177,28 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -152, y: 136}
+  position: {x: -824, y: -8}
   ports:
     keys:
     - input
     - output
     values:
     - _fieldName: input
-      _node: {fileID: -5831959681580404443}
+      _node: {fileID: -4504238023181833159}
       _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: output
-        node: {fileID: -1117524540656304233}
-        reroutePoints: []
+      connections: []
       _direction: 0
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: output
-      _node: {fileID: -5831959681580404443}
+      _node: {fileID: -4504238023181833159}
       _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
-      - fieldName: intput
-        node: {fileID: 1418580628508124308}
-        reroutePoints: []
-      - fieldName: intput
-        node: {fileID: -1210134711197418797}
+      - fieldName: input
+        node: {fileID: -7043318595766846326}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -179,7 +208,7 @@ MonoBehaviour:
   output: 0
   nick: 
   content: 
---- !u!114 &-4680379986885199124
+--- !u!114 &-3465903760992293123
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -188,56 +217,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Variable Condition
-  m_EditorClassIdentifier: Assembly-CSharp::VariableConditionNode
-  graph: {fileID: 11400000}
-  position: {x: -632, y: 360}
-  ports:
-    keys:
-    - output
-    values:
-    - _fieldName: output
-      _node: {fileID: -4680379986885199124}
-      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: conditions 2
-        node: {fileID: -1117524540656304233}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  conditionKey: 
-  comparisonOperator: 5
-  conditionValue: 0
-  output: 0
---- !u!114 &-1210134711197418797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: dde5e03450aed4d3aa7f3674c5240cf6, type: 3}
   m_Name: Variable Condition Setter
-  m_EditorClassIdentifier: Assembly-CSharp::VariableConditionSetterNode
+  m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 88, y: 200}
+  position: {x: -88, y: -104}
   ports:
     keys:
     - intput
     values:
     - _fieldName: intput
-      _node: {fileID: -1210134711197418797}
+      _node: {fileID: -3465903760992293123}
       _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: output
-        node: {fileID: -5831959681580404443}
+        node: {fileID: -7945731847991034001}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -245,8 +240,9 @@ MonoBehaviour:
       _dynamic: 0
   intput: 0
   conditionKey: 
+  variableOperation: 0
   conditionValue: 0
---- !u!114 &-1117524540656304233
+--- !u!114 &-2113514290160226964
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -259,54 +255,20 @@ MonoBehaviour:
   m_Name: Condition
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -392, y: 136}
+  position: {x: -312, y: 168}
   ports:
     keys:
-    - input
-    - output
-    - conditions 0
     - conditions
+    - input
+    - pass
+    - conditions 0
     - conditions 1
     - conditions 2
+    - fail
+    - conditions 3
     values:
-    - _fieldName: input
-      _node: {fileID: -1117524540656304233}
-      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: options 2
-        node: {fileID: -8075574979940982840}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: output
-      _node: {fileID: -1117524540656304233}
-      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: input
-        node: {fileID: -5831959681580404443}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: conditions 0
-      _node: {fileID: -1117524540656304233}
-      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: output
-        node: {fileID: 4735135679074141319}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 1
     - _fieldName: conditions
-      _node: {fileID: -1117524540656304233}
+      _node: {fileID: -2113514290160226964}
       _typeQualifiedName: System.Collections.Generic.List`1[[System.Boolean, mscorlib,
         Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib,
         Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
@@ -315,131 +277,97 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-    - _fieldName: conditions 1
-      _node: {fileID: -1117524540656304233}
+    - _fieldName: input
+      _node: {fileID: -2113514290160226964}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: options 1
+        node: {fileID: -7043318595766846326}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: pass
+      _node: {fileID: -2113514290160226964}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: input
+        node: {fileID: 451093548792364425}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: conditions 0
+      _node: {fileID: -2113514290160226964}
       _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: output
-        node: {fileID: -8686268232588775853}
+        node: {fileID: 5204324439909336402}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: conditions 1
+      _node: {fileID: -2113514290160226964}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: output
+        node: {fileID: 148222460502251735}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
     - _fieldName: conditions 2
-      _node: {fileID: -1117524540656304233}
+      _node: {fileID: -2113514290160226964}
       _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: output
-        node: {fileID: -4680379986885199124}
+        node: {fileID: 1063714489178964923}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: fail
+      _node: {fileID: -2113514290160226964}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: conditions 3
+      _node: {fileID: -2113514290160226964}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: output
+        node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: output
+        node: {fileID: 8555406282051940087}
+        reroutePoints: []
+      - fieldName: output
+        node: {fileID: 2314738734864158772}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
   input: 0
-  output: 0
-  conditions: 000000
---- !u!114 &-340693877017043109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae77b7e1078764a94b654627f9dfd14c, type: 3}
-  m_Name: Dialogue
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: -392, y: -312}
-  ports:
-    keys:
-    - input
-    - output
-    values:
-    - _fieldName: input
-      _node: {fileID: -340693877017043109}
-      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: options 0
-        node: {fileID: -8075574979940982840}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: output
-      _node: {fileID: -340693877017043109}
-      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  input: 0
-  output: 0
-  nick: 
-  content: 'gdfs
-
-    gdsfh
-
-    dsf
-
-    h
-
-    dsfh
-
-    dsfhdsfh'
---- !u!114 &-164581696897662426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae77b7e1078764a94b654627f9dfd14c, type: 3}
-  m_Name: Dialogue
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: -392, y: -72}
-  ports:
-    keys:
-    - input
-    - output
-    values:
-    - _fieldName: input
-      _node: {fileID: -164581696897662426}
-      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: options 1
-        node: {fileID: -8075574979940982840}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: output
-      _node: {fileID: -164581696897662426}
-      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  input: 0
-  output: 0
-  nick: 
-  content: 
+  conditions: 00000000
+  pass: 0
+  fail: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,18 +381,20 @@ MonoBehaviour:
   m_Name: New Event Graph
   m_EditorClassIdentifier: 
   nodes:
-  - {fileID: 1529167905953952243}
-  - {fileID: -340693877017043109}
-  - {fileID: -164581696897662426}
-  - {fileID: -8075574979940982840}
-  - {fileID: -1117524540656304233}
-  - {fileID: 4735135679074141319}
-  - {fileID: -8686268232588775853}
-  - {fileID: -5831959681580404443}
-  - {fileID: -4680379986885199124}
-  - {fileID: -1210134711197418797}
-  - {fileID: 1418580628508124308}
---- !u!114 &1418580628508124308
+  - {fileID: -4504238023181833159}
+  - {fileID: -2113514290160226964}
+  - {fileID: -7043318595766846326}
+  - {fileID: -7945731847991034001}
+  - {fileID: 5204324439909336402}
+  - {fileID: 1063714489178964923}
+  - {fileID: 451093548792364425}
+  - {fileID: 148222460502251735}
+  - {fileID: -4867028073145020701}
+  - {fileID: -3465903760992293123}
+  - {fileID: 5569775420175734862}
+  - {fileID: 8555406282051940087}
+  - {fileID: 2314738734864158772}
+--- !u!114 &148222460502251735
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -473,37 +403,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Switch Condition Setter
-  m_EditorClassIdentifier: Assembly-CSharp::SwitchConditionSetterNode
+  m_Script: {fileID: 11500000, guid: 4e23353e2291c48789445dd90b396bdb, type: 3}
+  m_Name: Switch Condition
+  m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 88, y: 88}
+  position: {x: -600, y: 296}
   ports:
     keys:
-    - intput
+    - output
     values:
-    - _fieldName: intput
-      _node: {fileID: 1418580628508124308}
+    - _fieldName: output
+      _node: {fileID: 148222460502251735}
       _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
-      - fieldName: output
-        node: {fileID: -5831959681580404443}
+      - fieldName: conditions 1
+        node: {fileID: -2113514290160226964}
         reroutePoints: []
-      - fieldName: output
-        node: {fileID: -5831959681580404443}
-        reroutePoints: []
-      - fieldName: output
-        node: {fileID: -5831959681580404443}
-        reroutePoints: []
-      _direction: 0
+      _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  intput: 0
+  conditionType: 1
+  selfSwitchType: 0
   conditionKey: 
-  conditionValue: 0
---- !u!114 &1529167905953952243
+  output: 0
+--- !u!114 &451093548792364425
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -516,28 +441,34 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -952, y: -152}
+  position: {x: -72, y: 168}
   ports:
     keys:
     - input
     - output
     values:
     - _fieldName: input
-      _node: {fileID: 1529167905953952243}
+      _node: {fileID: 451093548792364425}
       _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: pass
+        node: {fileID: -2113514290160226964}
+        reroutePoints: []
       _direction: 0
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: output
-      _node: {fileID: 1529167905953952243}
+      _node: {fileID: 451093548792364425}
       _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: input
-        node: {fileID: -8075574979940982840}
+        node: {fileID: -4867028073145020701}
+        reroutePoints: []
+      - fieldName: input
+        node: {fileID: 5569775420175734862}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -547,7 +478,41 @@ MonoBehaviour:
   output: 0
   nick: 
   content: 
---- !u!114 &4735135679074141319
+--- !u!114 &1063714489178964923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aee1a002dab5c4539a2cec7595b3ca97, type: 3}
+  m_Name: Variable Condition
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -600, y: 408}
+  ports:
+    keys:
+    - output
+    values:
+    - _fieldName: output
+      _node: {fileID: 1063714489178964923}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: conditions 2
+        node: {fileID: -2113514290160226964}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  conditionKey: 
+  comparisonOperator: 5
+  conditionValue: 0
+  output: 0
+--- !u!114 &2314738734864158772
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -557,26 +522,130 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: Switch Condition
-  m_EditorClassIdentifier: Assembly-CSharp::SwitchConditionNode
+  m_Name: Item Condition Setter
+  m_EditorClassIdentifier: Assembly-CSharp::ItemConditionSetterNode
   graph: {fileID: 11400000}
-  position: {x: -632, y: 136}
+  position: {x: -600, y: 712}
   ports:
     keys:
     - output
     values:
     - _fieldName: output
-      _node: {fileID: 4735135679074141319}
+      _node: {fileID: 2314738734864158772}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: conditions 3
+        node: {fileID: -2113514290160226964}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  itemId: goggle
+  comparisonOperator: 1
+  count: 0
+  output: 0
+--- !u!114 &5204324439909336402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e23353e2291c48789445dd90b396bdb, type: 3}
+  m_Name: Switch Condition
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -600, y: 184}
+  ports:
+    keys:
+    - output
+    values:
+    - _fieldName: output
+      _node: {fileID: 5204324439909336402}
       _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: conditions 0
-        node: {fileID: -1117524540656304233}
+        node: {fileID: -2113514290160226964}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
   conditionType: 0
+  selfSwitchType: 0
   conditionKey: 
+  output: 0
+--- !u!114 &5569775420175734862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b6d578404f844b328ab9b8e5ee9559d, type: 3}
+  m_Name: Switch Condition Setter
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 184, y: 344}
+  ports:
+    keys:
+    - input
+    values:
+    - _fieldName: input
+      _node: {fileID: 5569775420175734862}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: output
+        node: {fileID: 451093548792364425}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  input: 0
+  conditionType: 1
+  selfSwitchType: 0
+  conditionKey: 
+  conditionValue: 0
+--- !u!114 &8555406282051940087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Item Condition Setter
+  m_EditorClassIdentifier: Assembly-CSharp::ItemConditionSetterNode
+  graph: {fileID: 11400000}
+  position: {x: -600, y: 552}
+  ports:
+    keys:
+    - output
+    values:
+    - _fieldName: output
+      _node: {fileID: 8555406282051940087}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: conditions 3
+        node: {fileID: -2113514290160226964}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  itemId: metalDetector
+  comparisonOperator: 1
+  count: 1
   output: 0
