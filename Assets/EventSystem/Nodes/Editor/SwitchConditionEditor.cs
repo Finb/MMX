@@ -69,7 +69,7 @@ public class VariableSetterEditor : NodeEditor
 }
 
 [CustomNodeEditor(typeof(ItemConditionNode))]
-public class ItemConditionSetterEditor : NodeEditor
+public class ItemConditionEditor : NodeEditor
 {
     public override void OnBodyGUI()
     {
@@ -93,6 +93,35 @@ public class ItemConditionSetterEditor : NodeEditor
         NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("comparisonOperator"), new GUIContent("Operator"));
         NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("count"));
         NodeEditorGUILayout.PortField(target.GetOutputPort("output"));
+
+    }
+}
+
+[CustomNodeEditor(typeof(ItemSetterNode))]
+public class ItemSetterEditor : NodeEditor
+{
+    public override void OnBodyGUI()
+    {
+        var node = target as ItemSetterNode;
+
+        EditorGUIUtility.labelWidth = 60;
+        NodeEditorGUILayout.PortField(target.GetInputPort("input"));
+        NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("itemId"));
+        if (node.itemId != null && node.itemId.Length > 0)
+        {
+            var style = new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleRight };
+            if (MMX.ItemStorage.shared.items.ContainsKey(node.itemId))
+            {
+                var item = MMX.ItemStorage.shared.items[node.itemId];
+                EditorGUILayout.LabelField(item.name, style, GUILayout.ExpandWidth(true));
+            }
+            else
+            {
+                EditorGUILayout.LabelField("Invalid Item Id", style, GUILayout.ExpandWidth(true));
+            }
+        }
+        NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("operation"), new GUIContent("Operator"));
+        NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("count"));
 
     }
 }

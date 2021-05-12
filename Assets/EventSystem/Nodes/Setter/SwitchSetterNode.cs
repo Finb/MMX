@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
-[CreateNodeMenu("Setter/SwitchConditionSetter", 100)]
+[CreateNodeMenu("Setter/SwitchSetter", 100)]
 public class SwitchSetterNode : Node
 {
     [Input]
