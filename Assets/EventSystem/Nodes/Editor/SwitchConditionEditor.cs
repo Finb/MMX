@@ -24,25 +24,25 @@ public class SwitchConditionEditor : NodeEditor
     }
 }
 
-[CustomNodeEditor(typeof(SwitchConditionSetterNode))]
-public class SwitchConditionSetterEditor : NodeEditor
+[CustomNodeEditor(typeof(SwitchSetterNode))]
+public class SwitchSetterEditor : NodeEditor
 {
     public override void OnBodyGUI()
     {
         EditorGUIUtility.labelWidth = 100;
-        SwitchConditionSetterNode node = target as SwitchConditionSetterNode;
+        SwitchSetterNode node = target as SwitchSetterNode;
 
         NodeEditorGUILayout.PortField(target.GetInputPort("input"));
-        NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("conditionType"));
-        if (node.conditionType == SwitchConditionType.self)
+        NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("type"));
+        if (node.type == SwitchConditionType.self)
         {
             NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("selfSwitchType"));
         }
         else
         {
-            NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("conditionKey"));
+            NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("switchkey"));
         }
-        NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("conditionValue"));
+        NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("switchValue"));
 
     }
 }
@@ -58,8 +58,8 @@ public class VariableConditionEditor : NodeEditor
     }
 }
 
-[CustomNodeEditor(typeof(VariableConditionSetterNode))]
-public class VariableConditionSetterEditor : NodeEditor
+[CustomNodeEditor(typeof(VariableSetterNode))]
+public class VariableSetterEditor : NodeEditor
 {
     public override void OnBodyGUI()
     {
@@ -68,16 +68,16 @@ public class VariableConditionSetterEditor : NodeEditor
     }
 }
 
-[CustomNodeEditor(typeof(ItemConditionSetterNode))]
+[CustomNodeEditor(typeof(ItemConditionNode))]
 public class ItemConditionSetterEditor : NodeEditor
 {
     public override void OnBodyGUI()
     {
-        var node = target as ItemConditionSetterNode;
+        var node = target as ItemConditionNode;
 
         EditorGUIUtility.labelWidth = 60;
         NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("itemId"));
-        if (node.itemId.Length > 0)
+        if (node.itemId != null && node.itemId.Length > 0)
         {
             var style = new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleRight };
             if (MMX.ItemStorage.shared.items.ContainsKey(node.itemId))

@@ -5,7 +5,7 @@ using XNode;
 
 [CreateNodeMenu("Condition/ItemCondition", 102)]
 [NodeWidth(240)]
-public class ItemConditionSetterNode : Node
+public class ItemConditionNode : Node
 {
     public string itemId;
     public ComparisonOperator comparisonOperator = ComparisonOperator.greaterThanOrEqua;

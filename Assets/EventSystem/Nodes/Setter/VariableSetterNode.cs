@@ -13,12 +13,12 @@ public enum VariableOperation
     mod,
 }
 
-[CreateNodeMenu("Condition/VariableConditionSetter", 101)]
-public class VariableConditionSetterNode : Node
+[CreateNodeMenu("Setter/VariableSetter", 101)]
+public class VariableSetterNode : Node
 {
     [Input]
     public bool intput;
-    public string conditionKey;
+    public string variableKey;
     public VariableOperation variableOperation = VariableOperation.set;
-    public int conditionValue;
+    public int value;
 }
