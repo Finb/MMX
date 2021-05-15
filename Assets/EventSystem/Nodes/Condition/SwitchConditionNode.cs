@@ -19,7 +19,7 @@ public enum SelfSwitchType
 
 [CreateNodeMenu("Condition/SwitchCondition")]
 [NodeWidth(240)]
-public class SwitchConditionNode : Node
+public class SwitchConditionNode : EventBaseNode
 {
     public SwitchConditionType conditionType = SwitchConditionType.self;
     public SelfSwitchType selfSwitchType = SelfSwitchType.A;
@@ -37,5 +37,16 @@ public class SwitchConditionNode : Node
     public override object GetValue(NodePort port)
     {
         return null; // Replace this
+    }
+
+    public override bool trigger()
+    {
+        if (conditionType == SwitchConditionType.self)
+        {
+            return true;
+        }
+        else{
+            return true;
+        }
     }
 }

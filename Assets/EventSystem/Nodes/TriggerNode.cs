@@ -13,7 +13,7 @@ public enum TriggerType
     //自动开始
     AutoStart,
 }
-public class TriggerNode : Node
+public class TriggerNode : EventBaseNode
 {
 
     public TriggerType triggerType = TriggerType.KeyTrigger;
@@ -34,6 +34,27 @@ public class TriggerNode : Node
     // Return the correct value of an output port when requested
     public override object GetValue(NodePort port)
     {
+
         return null; // Replace this
+    }
+
+    public override bool trigger()
+    {
+        var success = true;
+        foreach (var item in this.DynamicInputs)
+        {
+            var nodes = item.GetConnections().ConvertAll<EventBaseNode>((connection) => connection.node as EventBaseNode);
+            foreach(var node in nodes){
+                if (!node.trigger()){
+                    success = false;
+                    break;
+                }
+            }
+        }
+        if(success){
+            (this.GetOutputPort("output").Connection?.node as EventBaseNode)?.trigger();
+        }
+
+        return success;
     }
 }

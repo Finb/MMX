@@ -5,11 +5,17 @@ using XNode;
 [CreateNodeMenu("Dialogue", -100)]
 public class DialogueNode : EventBaseNode
 {
+
+    [Input(backingValue = ShowBackingValue.Never, connectionType = ConnectionType.Override)]
+    public int input;
+    [Output(backingValue = ShowBackingValue.Never, connectionType = ConnectionType.Multiple)]
+    public int output;
+
     public string nick;
     [TextArea(3, 10)]
     public string content;
 
-    
+
 
     // Use this for initialization
     protected override void Init()
@@ -22,5 +28,14 @@ public class DialogueNode : EventBaseNode
     public override object GetValue(NodePort port)
     {
         return null; // Replace this
+    }
+
+    public override bool trigger()
+    {
+        DialogController.create().showText(content, nick, () =>
+        {
+            (this.GetOutputPort("output").Connection?.node as EventBaseNode).trigger();
+        });
+        return true;
     }
 }

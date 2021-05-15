@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Name: Variable Condition Setter
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -184, y: -8}
+  position: {x: -136, y: 24}
   ports:
     keys:
     - intput

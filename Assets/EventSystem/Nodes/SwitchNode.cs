@@ -6,7 +6,8 @@ using XNode;
 [NodeTint("#c06014")]
 public class SwitchNode : EventBaseNode
 {
-
+    [Input(backingValue = ShowBackingValue.Never, connectionType = ConnectionType.Override)]
+    public int input;
 
     [Output(dynamicPortList = true, typeConstraint = TypeConstraint.None, connectionType = ConnectionType.Override)]
     public List<string> options = new List<string>();
@@ -22,5 +23,9 @@ public class SwitchNode : EventBaseNode
     public override object GetValue(NodePort port)
     {
         return null; // Replace this
+    }
+    public override bool trigger()
+    {
+        return true;
     }
 }
