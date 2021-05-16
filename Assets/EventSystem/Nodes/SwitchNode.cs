@@ -11,6 +11,7 @@ public class SwitchNode : EventBaseNode
 
     [Output(dynamicPortList = true, typeConstraint = TypeConstraint.None, connectionType = ConnectionType.Override)]
     public List<string> options = new List<string>();
+    public bool canCancel;
 
     // Use this for initialization
     protected override void Init()

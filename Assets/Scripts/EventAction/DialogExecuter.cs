@@ -6,7 +6,7 @@ public class DialogExecuter : IExecute
 {
     public void execute(EventAction eventAction)
     {
-        var dialog = DialogController.create();
+        var dialog = DialogController.shared;
         dialog.showText(eventAction.stringVar2, eventAction.stringVar1, () =>
         {
             if (eventAction.childEventAction.Length > 0)

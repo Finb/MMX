@@ -64,8 +64,8 @@ public class TextDisplay : MonoBehaviour
         if (currentDisplaySentenceIndex < sentences.Count)
         {
             var sentence = sentences[currentDisplaySentenceIndex];
-            var sentenceLength = Regex.Replace(sentence, "/<[^>]+>/g","").Length;
-            textLabel.DOText(sentence, sentenceLength * 0.01f, true).OnComplete(delegate ()
+            var sentenceLength = Regex.Replace(sentence, "/<[^>]+>/g", "").Length;
+            textLabel.DOText(sentence, sentenceLength * 0.01f, true).OnComplete(() =>
             {
                 currentDisplaySentenceIndex++;
                 if (currentDisplaySentenceIndex >= sentences.Count)

@@ -6,25 +6,27 @@ using UnityEngine.UI;
 
 public class DialogController : BaseUIInputController
 {
+    //显示引用计数，每调用一次show + 1， 调用1次hide - 1, hide时count为 0 则隐藏对话框
+    private int showReferenceCount = 0;
     private Text textLabel;
     private Text nickLabel;
     public TextDisplay textDisplay;
 
     public Action displayCompletionAction;
-    public Action willDisappearAction;
-    public override void Awake(){
+    public override void Awake()
+    {
         base.Awake();
         needsShowFinger = false;
-               
+
         textLabel = gameObject.FindComponentByObjectName<Text>("Text");
         nickLabel = gameObject.FindComponentByObjectName<Text>("nickText");
         textDisplay = textLabel.GetComponent<TextDisplay>();
- 
-        inputs.UI.ContinueButton.performed += ctx => {if (isInteroperable) continueDiglog();};  
+
+        inputs.UI.ContinueButton.performed += ctx => { if (isInteroperable) continueDiglog(); };
     }
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -48,9 +50,16 @@ public class DialogController : BaseUIInputController
     }
     public void showText(string text, string nick = null, Action displayCompletionAction = null)
     {
+        showReferenceCount += 1;
+
         this.displayCompletionAction = displayCompletionAction;
-        MMX.GameManager.Input.pushTarget(gameObject);
+        if (MMX.GameManager.Input.currentTarget != this)
+        {
+            //如果已经显示，就不需要再push了
+            MMX.GameManager.Input.pushTarget(gameObject);
+        }
         gameObject.SetActive(true);
+
         var nickPanel = nickLabel.gameObject.transform.parent.gameObject;
         var nickPanelRectTransform = nickPanel.GetComponent<RectTransform>();
         if (nick != null && nick.Length > 0)
@@ -71,23 +80,31 @@ public class DialogController : BaseUIInputController
     }
     public void hide()
     {
-        gameObject.SetActive(false);
-        MMX.GameManager.Input.popTarget();
-        if (willDisappearAction != null)
+        showReferenceCount -= 1;
+        
+        if (showReferenceCount <= 0)
         {
-            willDisappearAction();
+            gameObject.SetActive(false);
+            MMX.GameManager.Input.popTarget();
         }
-        Destroy(gameObject);
     }
     public void continueDiglog()
     {
         textDisplay.continueType();
     }
 
-    public static DialogController create()
+    private static DialogController create()
     {
         var diglog = Instantiate(Resources.Load<GameObject>("UI/Dialog"), new Vector3(0, 0, 0), Quaternion.identity, GameObject.Find("UI").GetComponent<Transform>());
         diglog.name = "Diglog";
         return diglog.GetComponent<DialogController>();
+    }
+    private static readonly Lazy<DialogController> Instancelock = new Lazy<DialogController>(() => DialogController.create());
+    public static DialogController shared
+    {
+        get
+        {
+            return Instancelock.Value;
+        }
     }
 }

@@ -10,5 +10,6 @@ public class SwitchEditor : NodeEditor
     {
         NodeEditorGUILayout.PortField(target.GetInputPort("input"));
         NodeEditorGUILayout.DynamicPortList("options", typeof(Object), serializedObject, NodePort.IO.Output, Node.ConnectionType.Override);
+        NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("canCancel"));
     }
 }

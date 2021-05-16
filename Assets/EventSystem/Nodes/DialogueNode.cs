@@ -32,7 +32,7 @@ public class DialogueNode : EventBaseNode
 
     public override bool trigger()
     {
-        DialogController.create().showText(content, nick, () =>
+        DialogController.shared.showText(content, nick, () =>
         {
             (this.GetOutputPort("output").Connection?.node as EventBaseNode).trigger();
         });

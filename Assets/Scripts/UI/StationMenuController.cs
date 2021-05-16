@@ -117,7 +117,7 @@ public class StationMenuController : BaseUIInputController
             if (passengerCount > item.busload)
             {
                 //超载
-                DialogController.create().showText(item.vehicleName + "最多\n只能乘坐" + item.busload + "人");
+                DialogController.shared.showText(item.vehicleName + "最多\n只能乘坐" + item.busload + "人");
                 return;
             }
         }
