@@ -68,15 +68,16 @@ public class TextDisplay : MonoBehaviour
             textLabel.DOText(sentence, sentenceLength * 0.01f, true).OnComplete(() =>
             {
                 currentDisplaySentenceIndex++;
-                if (currentDisplaySentenceIndex >= sentences.Count)
-                {
-                    if (dialogController.displayCompletionAction != null)
-                    {
-                        dialogController.displayCompletionAction();
-                    }
-                }
+
                 //全部显示完毕
-                arrowImage.SetActive(true);
+                if (dialogController.autoEnter && currentDisplaySentenceIndex >= sentences.Count)
+                {
+                    finished();
+                }
+                else
+                {
+                    arrowImage.SetActive(true);
+                }
             });
         }
         else
@@ -95,6 +96,6 @@ public class TextDisplay : MonoBehaviour
     }
     void finished()
     {
-        dialogController.hide();
+        dialogController.displayCompletionAction();
     }
 }

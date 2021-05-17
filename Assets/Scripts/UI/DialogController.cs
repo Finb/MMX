@@ -12,6 +12,7 @@ public class DialogController : BaseUIInputController
     private Text nickLabel;
     public TextDisplay textDisplay;
 
+    public bool autoEnter;
     public Action displayCompletionAction;
     public override void Awake()
     {
@@ -48,12 +49,20 @@ public class DialogController : BaseUIInputController
             return textDisplay.arrowImage.activeSelf;
         }
     }
-    public void showText(string text, string nick = null, Action displayCompletionAction = null)
+    public void showText(string text, string nick = null, Action displayCompletionAction = null, bool autoEnter = false)
     {
-        showReferenceCount += 1;
+        this.autoEnter = autoEnter;
+        this.showReferenceCount += 1;
+        if (displayCompletionAction == null)
+        {
+            this.displayCompletionAction = hide;
+        }
+        else
+        {
+            this.displayCompletionAction = displayCompletionAction;
+        }
 
-        this.displayCompletionAction = displayCompletionAction;
-        if (MMX.GameManager.Input.currentTarget != this)
+        if (!MMX.GameManager.Input.targets.Contains(gameObject))
         {
             //如果已经显示，就不需要再push了
             MMX.GameManager.Input.pushTarget(gameObject);
@@ -80,12 +89,14 @@ public class DialogController : BaseUIInputController
     }
     public void hide()
     {
-        showReferenceCount -= 1;
-        
-        if (showReferenceCount <= 0)
+        this.showReferenceCount -= 1;
+
+        if (this.showReferenceCount <= 0)
         {
+            this.showReferenceCount = 0;
             gameObject.SetActive(false);
             MMX.GameManager.Input.popTarget();
+            print("tttttt" + MMX.GameManager.Input.currentTarget.name);
         }
     }
     public void continueDiglog()

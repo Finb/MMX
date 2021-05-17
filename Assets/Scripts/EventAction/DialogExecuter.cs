@@ -16,13 +16,16 @@ public class DialogExecuter : IExecute
                 {
                     boxController.addButton(item.eventName, () =>
                     {
-                        dialog.hide();
                         item.execute();
+                        dialog.hide();
                     });
                     boxController.canCancel = !eventAction.boolVar1;
                 }
                 boxController.show();
             }
-        });
+            else{
+                dialog.hide();
+            }
+        }, eventAction.childEventAction.Length > 0);
     }
 }
