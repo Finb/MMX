@@ -34,7 +34,8 @@ public class DialogueNode : EventBaseNode
     {
         DialogController.shared.showText(content, nick, () =>
         {
-            (this.GetOutputPort("output").Connection?.node as EventBaseNode).trigger();
+            (this.GetOutputPort("output").Connection?.node as EventBaseNode)?.trigger();
+            DialogController.shared.hide();
         });
         return true;
     }

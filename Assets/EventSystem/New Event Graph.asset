@@ -45,8 +45,8 @@ MonoBehaviour:
       _dynamic: 0
   input: 0
   output: 0
-  nick: 
-  content: 
+  nick: "\u5BF9\u8BDD2"
+  content: "\u8FDB\u5165\u53D8\u91CF\u8BBE\u7F6E\u5668"
 --- !u!114 &-7043318595766846326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,7 +65,6 @@ MonoBehaviour:
     keys:
     - options
     - input
-    - output
     - options 0
     - options 1
     values:
@@ -89,15 +88,6 @@ MonoBehaviour:
         reroutePoints: []
       _direction: 0
       _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: output
-      _node: {fileID: -7043318595766846326}
-      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 1
-      _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: options 0
@@ -125,10 +115,11 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   input: 0
-  output: 0
+  content: "\u8BF7\u9009\u62E9\u5206\u503C"
   options:
-  - test1
-  - test2
+  - "\u53D8\u91CF\u8BBE\u7F6E"
+  - "\u6761\u4EF6\u5224\u65AD"
+  canCancel: 0
 --- !u!114 &-5995051200711915447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,8 +231,8 @@ MonoBehaviour:
       _dynamic: 0
   input: 0
   output: 0
-  nick: 
-  content: 
+  nick: "\u5BF9\u8BDD1"
+  content: "\u6D4B\u8BD5\u4E8B\u4EF6\u7CFB\u7EDF... \n..........................\n\n\u8FDB\u5165\u5206\u652F\u9009\u62E9"
 --- !u!114 &-3465903760992293123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,7 +246,7 @@ MonoBehaviour:
   m_Name: Variable Condition Setter
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -136, y: 24}
+  position: {x: -168, y: -40}
   ports:
     keys:
     - intput
@@ -317,7 +308,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 0
-  triggerType: 0
+  triggerType: 3
   priority: 0
   conditions: 
   output: 0
@@ -421,7 +412,10 @@ MonoBehaviour:
       _node: {fileID: -2113514290160226964}
       _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: input
+        node: {fileID: 3016950628611647398}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -481,6 +475,7 @@ MonoBehaviour:
   - {fileID: -2918727753704150310}
   - {fileID: 7626256541090474403}
   - {fileID: 4393292758178175252}
+  - {fileID: 3016950628611647398}
 --- !u!114 &148222460502251735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,7 +489,7 @@ MonoBehaviour:
   m_Name: Switch Condition
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -696, y: 296}
+  position: {x: -696, y: 360}
   ports:
     keys:
     - output
@@ -528,7 +523,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -184, y: 200}
+  position: {x: -168, y: 280}
   ports:
     keys:
     - input
@@ -566,8 +561,8 @@ MonoBehaviour:
       _dynamic: 0
   input: 0
   output: 0
-  nick: 
-  content: 
+  nick: "\u5BF9\u8BDD4"
+  content: "\u6761\u4EF6\u5224\u65AD\u6210\u529F"
 --- !u!114 &1063714489178964923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -581,7 +576,7 @@ MonoBehaviour:
   m_Name: Variable Condition
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -696, y: 408}
+  position: {x: -696, y: 472}
   ports:
     keys:
     - output
@@ -636,6 +631,50 @@ MonoBehaviour:
   comparisonOperator: 1
   count: 0
   output: 0
+--- !u!114 &3016950628611647398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae77b7e1078764a94b654627f9dfd14c, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -168, y: 456}
+  ports:
+    keys:
+    - input
+    - output
+    values:
+    - _fieldName: input
+      _node: {fileID: 3016950628611647398}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: fail
+        node: {fileID: -2113514290160226964}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 3016950628611647398}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  input: 0
+  output: 0
+  nick: "\u5BF9\u8BDD5"
+  content: "\u6761\u4EF6\u5224\u65AD\u5931\u8D25"
 --- !u!114 &4393292758178175252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -683,7 +722,7 @@ MonoBehaviour:
   m_Name: Switch Condition
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -696, y: 184}
+  position: {x: -696, y: 248}
   ports:
     keys:
     - output
@@ -752,7 +791,7 @@ MonoBehaviour:
   m_Name: Item Condition
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -696, y: 552}
+  position: {x: -696, y: 616}
   ports:
     keys:
     - output

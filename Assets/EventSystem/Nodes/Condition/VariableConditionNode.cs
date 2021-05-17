@@ -5,7 +5,7 @@ using XNode;
 
 [CreateNodeMenu("Condition/VariableCondition")]
 [NodeWidth(240)]
-public class VariableConditionNode : Node
+public class VariableConditionNode : EventBaseNode
 {
     public string conditionKey;
     public ComparisonOperator comparisonOperator = ComparisonOperator.equal;
@@ -23,5 +23,9 @@ public class VariableConditionNode : Node
     public override object GetValue(NodePort port)
     {
         return null; // Replace this
+    }
+    public override bool trigger()
+    {
+        return true;
     }
 }

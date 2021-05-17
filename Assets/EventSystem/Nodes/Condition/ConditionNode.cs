@@ -5,7 +5,7 @@ using XNode;
 
 [NodeTint("#7b113a")]
 [CreateNodeMenu("Condition/Condition")]
-public class ConditionNode : Node
+public class ConditionNode : EventBaseNode
 {
 
     [Input(backingValue = ShowBackingValue.Never, connectionType = ConnectionType.Override)]
@@ -27,6 +27,30 @@ public class ConditionNode : Node
     public override object GetValue(NodePort port)
     {
         return null; // Replace this
+    }
+    public override bool trigger()
+    {
+        var success = true;
+        foreach (var item in this.DynamicInputs)
+        {
+            var nodes = item.GetConnections().ConvertAll<EventBaseNode>((connection) => connection.node as EventBaseNode);
+            foreach (var node in nodes)
+            {
+                if (!node.trigger())
+                {
+                    success = false;
+                    break;
+                }
+            }
+        }
+        if (success)
+        {
+            (this.GetOutputPort("pass").Connection?.node as EventBaseNode)?.trigger();
+        }
+        else{
+            (this.GetOutputPort("fail").Connection?.node as EventBaseNode)?.trigger();
+        }
+        return true;
     }
 }
 
