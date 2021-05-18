@@ -7,7 +7,7 @@ public enum TriggerType
     //按键触发
     KeyTrigger,
     //碰撞
-    Collide,
+    CollideEnter,
     //Trigger
     TriggerEnter,
     //自动开始

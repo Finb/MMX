@@ -26,6 +26,21 @@ public class VariableConditionNode : EventBaseNode
     }
     public override bool trigger()
     {
-        return true;
+        switch (comparisonOperator)
+        {
+            case ComparisonOperator.equal:
+                return VariableManager.shared[conditionKey] == conditionValue;
+            case ComparisonOperator.greaterThan:
+                return VariableManager.shared[conditionKey] > conditionValue;
+            case ComparisonOperator.greaterThanOrEqua:
+                return VariableManager.shared[conditionKey] >= conditionValue;
+            case ComparisonOperator.lessThan:
+                return VariableManager.shared[conditionKey] < conditionValue;
+            case ComparisonOperator.lessThanOrEqual:
+                return VariableManager.shared[conditionKey] <= conditionValue;
+            case ComparisonOperator.notEqual:
+                return VariableManager.shared[conditionKey] != conditionValue;
+        }
+        return false;
     }
 }

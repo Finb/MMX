@@ -96,7 +96,6 @@ public class DialogController : BaseUIInputController
             this.showReferenceCount = 0;
             gameObject.SetActive(false);
             MMX.GameManager.Input.popTarget();
-            print("tttttt" + MMX.GameManager.Input.currentTarget.name);
         }
     }
     public void continueDiglog()
