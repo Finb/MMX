@@ -68,12 +68,12 @@ public class VariableSetterEditor : NodeEditor
     }
 }
 
-[CustomNodeEditor(typeof(ItemConditionNode))]
+[CustomNodeEditor(typeof(HumanItemConditionNode))]
 public class ItemConditionEditor : NodeEditor
 {
     public override void OnBodyGUI()
     {
-        var node = target as ItemConditionNode;
+        var node = target as HumanItemConditionNode;
 
         EditorGUIUtility.labelWidth = 60;
         NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("itemId"));
@@ -97,12 +97,12 @@ public class ItemConditionEditor : NodeEditor
     }
 }
 
-[CustomNodeEditor(typeof(ItemSetterNode))]
+[CustomNodeEditor(typeof(HumanItemSetterNode))]
 public class ItemSetterEditor : NodeEditor
 {
     public override void OnBodyGUI()
     {
-        var node = target as ItemSetterNode;
+        var node = target as HumanItemSetterNode;
 
         EditorGUIUtility.labelWidth = 60;
         NodeEditorGUILayout.PortField(target.GetInputPort("input"));

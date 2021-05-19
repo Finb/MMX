@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
-[CreateNodeMenu("Setter/ItemSetter", 100)]
-public class ItemSetterNode : Node
+[CreateNodeMenu("Setter/HumanItemSetter", 100)]
+public class HumanItemSetterNode : EventBaseNode
 {
     [Input]
     public bool input;
@@ -24,4 +24,34 @@ public class ItemSetterNode : Node
     {
         return null; // Replace this
     }
+
+    public override bool trigger()
+    {
+        var selectedItem = ItemPack.shared.findItem<MMX.HumanItem>(itemId);
+        var selectedCount = selectedItem != null ? selectedItem.count : 0;
+        switch (operation)
+        {
+            case VariableOperation.set:
+                selectedCount = count;
+                break;
+            case VariableOperation.add:
+                selectedCount += count;
+                break;
+            case VariableOperation.sub:
+                selectedCount -= count;
+                break;
+            case VariableOperation.mul:
+                selectedCount *= count;
+                break;
+            case VariableOperation.div:
+                selectedCount /= count;
+                break;
+            case VariableOperation.mod:
+                selectedCount %= count;
+                break;
+        }
+        ItemPack.shared.setItem(itemId, selectedCount);
+        return true;
+    }
+
 }

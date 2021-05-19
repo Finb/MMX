@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 using MMX;
+using System.Linq;
+
 class ItemPack
 {
     static public ItemPack shared = new ItemPack();
@@ -44,5 +46,83 @@ class ItemPack
                 equipmentItems.Add(item as HumanArmorEquipment);
             }
         }
+    }
+
+    public T findItem<T>(string itemId) where T : HumanItem
+    {
+        IEnumerable<T> allItems = null;
+        if (typeof(T) == typeof(HumanItem))
+        {
+            allItems = new[]
+            {
+                ItemPack.shared.toolItems.Cast<T>(),
+                ItemPack.shared.medicineItems.Cast<T>(),
+                ItemPack.shared.battleItems.Cast<T>(),
+                ItemPack.shared.equipmentItems.Cast<T>()
+            }.SelectMany(item => item);
+        }
+        else if (typeof(T) == typeof(ToolItem))
+        {
+            allItems = ItemPack.shared.toolItems.Cast<T>();
+        }
+        else if (typeof(T) == typeof(MedicineItem))
+        {
+            allItems = ItemPack.shared.medicineItems.Cast<T>();
+        }
+        else if (typeof(T) == typeof(BattleItem))
+        {
+            allItems = ItemPack.shared.battleItems.Cast<T>();
+        }
+        else if (typeof(T) == typeof(HumanEquipment))
+        {
+            allItems = ItemPack.shared.equipmentItems.Cast<T>();
+        }
+
+        var selectedItem = allItems?.First((item) =>
+        {
+            return item.id == itemId;
+        });
+
+        return selectedItem;
+    }
+
+    public HumanItem findItem(string itemId)
+    {
+        return this.findItem<HumanItem>(itemId);
+    }
+
+    public void setItem(string itemId, int count)
+    {
+        var selectItem = findItem(itemId);
+        if (selectItem == null)
+        {
+            var item = ItemStorage.shared.items[itemId] as HumanItem;
+            if (item == null)
+            {
+                return;
+            }
+            if (item is ToolItem)
+            {
+                toolItems.Add(item as ToolItem);
+            }
+            else if (item is MedicineItem)
+            {
+                medicineItems.Add(item as MedicineItem);
+            }
+            else if (item is BattleItem)
+            {
+                battleItems.Add(item as BattleItem);
+            }
+            else if (item is HumanWeaponEquipment)
+            {
+                equipmentItems.Add(item as HumanWeaponEquipment);
+            }
+            else if (item is HumanArmorEquipment)
+            {
+                equipmentItems.Add(item as HumanArmorEquipment);
+            }
+            selectItem = item;
+        }
+        selectItem.count = count;
     }
 }

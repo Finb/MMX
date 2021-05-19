@@ -422,6 +422,7 @@ MonoBehaviour:
   - {fileID: 972009714567481231}
   - {fileID: -287524207662462248}
   - {fileID: -5822532898758935297}
+  - {fileID: 0}
   eventId: 
 --- !u!114 &451093548792364425
 MonoBehaviour:
@@ -501,6 +502,37 @@ MonoBehaviour:
   variableKey: testkey
   variableOperation: 0
   value: 1
+--- !u!114 &1537567259090228021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2065b37f038834265aebb1502d27b6c5, type: 3}
+  m_Name: Item Condition
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 74.80768, y: 60.822266}
+  ports:
+    keys:
+    - output
+    values:
+    - _fieldName: output
+      _node: {fileID: 1537567259090228021}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  itemId: 
+  comparisonOperator: 1
+  count: 0
+  output: 0
 --- !u!114 &2314738734864158772
 MonoBehaviour:
   m_ObjectHideFlags: 0
