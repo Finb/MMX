@@ -6,6 +6,7 @@ using System.Linq;
 [CreateAssetMenu]
 public class EventGraph : NodeGraph
 {
+    public string eventId;
     public void trigger(TriggerType type)
     {
 

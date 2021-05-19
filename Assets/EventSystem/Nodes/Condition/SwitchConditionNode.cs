@@ -43,10 +43,18 @@ public class SwitchConditionNode : EventBaseNode
     {
         if (conditionType == SwitchConditionType.self)
         {
-            return true;
+            if (VariableManager.shared["switch.self." + (graph as EventGraph).eventId + "." + selfSwitchType.ToString()] >= 1)
+            {
+                return true;
+            }
         }
-        else{
-            return true;
+        else
+        {
+            if (VariableManager.shared["switch.global." + conditionKey] >= 1)
+            {
+                return true;
+            }
         }
+        return false;
     }
 }
