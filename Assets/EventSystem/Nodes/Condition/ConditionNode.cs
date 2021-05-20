@@ -47,19 +47,10 @@ public class ConditionNode : EventBaseNode
         {
             (this.GetOutputPort("pass").Connection?.node as EventBaseNode)?.trigger();
         }
-        else{
+        else
+        {
             (this.GetOutputPort("fail").Connection?.node as EventBaseNode)?.trigger();
         }
         return true;
     }
-}
-
-public enum ComparisonOperator
-{
-    greaterThan,
-    greaterThanOrEqua,
-    lessThan,
-    lessThanOrEqual,
-    notEqual,
-    equal,
 }

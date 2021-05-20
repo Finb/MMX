@@ -44,7 +44,8 @@ public class VariableManager
     {
         if (key.StartsWith("special."))
         {
-
+            Enum.TryParse(key.Substring(8, key.Length - 8), out SpecialVariableKey specialVariableKey);
+            return specialVariableKey;
         }
         return null;
     }

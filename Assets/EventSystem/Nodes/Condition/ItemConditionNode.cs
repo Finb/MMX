@@ -31,23 +31,6 @@ public class HumanItemConditionNode : EventBaseNode
 
         var selectedItem = ItemPack.shared.findItem<MMX.HumanItem>(itemId);
         var selectedItemCount = selectedItem != null ? selectedItem.count : 0;
-
-        switch (comparisonOperator)
-        {
-            case ComparisonOperator.equal:
-                return selectedItemCount == count;
-            case ComparisonOperator.greaterThan:
-                return selectedItemCount > count;
-            case ComparisonOperator.greaterThanOrEqua:
-                return selectedItemCount >= count;
-            case ComparisonOperator.lessThan:
-                return selectedItemCount < count;
-            case ComparisonOperator.lessThanOrEqual:
-                return selectedItemCount <= count;
-            case ComparisonOperator.notEqual:
-                return selectedItemCount != count;
-        }
-
-        return false;
+        return comparisonOperator.comparison(selectedItemCount, count);
     }
 }
