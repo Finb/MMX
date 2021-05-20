@@ -45,6 +45,9 @@ MonoBehaviour:
       - fieldName: input
         node: {fileID: -5908460597597412808}
         reroutePoints: []
+      - fieldName: input
+        node: {fileID: -1046770634859903980}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -170,7 +173,7 @@ MonoBehaviour:
   m_Name: Human Item Setter
   m_EditorClassIdentifier: Assembly-CSharp::HumanItemSetterNode
   graph: {fileID: 11400000}
-  position: {x: 94.5, y: 35.5}
+  position: {x: 72, y: -8}
   ports:
     keys:
     - input
@@ -402,6 +405,96 @@ MonoBehaviour:
   conditions: 00
   pass: 0
   fail: 0
+--- !u!114 &-1046770634859903980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40906a4b027914fbd808e82f2f5d735b, type: 3}
+  m_Name: Wait
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 72, y: 152}
+  ports:
+    keys:
+    - input
+    - output
+    values:
+    - _fieldName: input
+      _node: {fileID: -1046770634859903980}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: output
+        node: {fileID: -7945731847991034001}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: -1046770634859903980}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: input
+        node: {fileID: -243733359974101355}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  input: 0
+  output: 0
+  duration: 3
+--- !u!114 &-243733359974101355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae77b7e1078764a94b654627f9dfd14c, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 312, y: 152}
+  ports:
+    keys:
+    - input
+    - output
+    values:
+    - _fieldName: input
+      _node: {fileID: -243733359974101355}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: output
+        node: {fileID: -1046770634859903980}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: -243733359974101355}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  input: 0
+  output: 0
+  nick: "\u6D4B\u8BD5\u5EF6\u8FDF"
+  content: "\u6D4B\u8BD5\u5EF6\u8FDF\u6D4B\u8BD5\u5EF6\u8FDF\u6D4B\u8BD5\u5EF6\u8FDF\n\u6D4B\u8BD5\u5EF6\u8FDF\n\u6D4B\u8BD5\u5EF6\u8FDF\u6D4B\u8BD5\u5EF6\u8FDF\n\u6D4B\u8BD5\u5EF6\u8FDF\u6D4B\u8BD5\u5EF6\u8FDF\n\u6D4B\u8BD5\u5EF6\u8FDF"
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,6 +519,8 @@ MonoBehaviour:
   - {fileID: -5822532898758935297}
   - {fileID: -5908460597597412808}
   - {fileID: 2348690041489368565}
+  - {fileID: -243733359974101355}
+  - {fileID: -1046770634859903980}
   eventId: 
 --- !u!114 &451093548792364425
 MonoBehaviour:
