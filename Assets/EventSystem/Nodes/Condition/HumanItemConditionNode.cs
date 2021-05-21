@@ -28,7 +28,6 @@ public class HumanItemConditionNode : EventBaseNode
 
     public override bool trigger()
     {
-
         var selectedItem = ItemPack.shared.findItem<MMX.HumanItem>(itemId);
         var selectedItemCount = selectedItem != null ? selectedItem.count : 0;
         return comparisonOperator.comparison(selectedItemCount, count);
