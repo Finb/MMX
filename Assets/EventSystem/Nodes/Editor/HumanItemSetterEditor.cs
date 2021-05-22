@@ -10,6 +10,8 @@ public class HumanItemSetterEditor : NodeEditor
 {
     public override void OnBodyGUI()
     {
+        serializedObject.Update();
+
         var node = target as HumanItemSetterNode;
 
         EditorGUIUtility.labelWidth = 60;
@@ -31,5 +33,6 @@ public class HumanItemSetterEditor : NodeEditor
         NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("operation"), new GUIContent("Operator"));
         NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("count"));
 
+        serializedObject.ApplyModifiedProperties();
     }
 }

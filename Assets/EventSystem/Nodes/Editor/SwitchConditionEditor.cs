@@ -8,6 +8,8 @@ public class SwitchConditionEditor : NodeEditor
 {
     public override void OnBodyGUI()
     {
+        serializedObject.Update();
+
         EditorGUIUtility.labelWidth = 100;
         SwitchConditionNode node = target as SwitchConditionNode;
 
@@ -21,5 +23,7 @@ public class SwitchConditionEditor : NodeEditor
             NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("conditionKey"));
         }
         NodeEditorGUILayout.PortField(target.GetOutputPort("output"));
+
+        serializedObject.ApplyModifiedProperties();
     }
 }

@@ -10,6 +10,8 @@ public class HumanItemConditionEditor : NodeEditor
 {
     public override void OnBodyGUI()
     {
+        serializedObject.Update();
+
         var node = target as HumanItemConditionNode;
 
         EditorGUIUtility.labelWidth = 60;
@@ -31,5 +33,6 @@ public class HumanItemConditionEditor : NodeEditor
         NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("count"));
         NodeEditorGUILayout.PortField(target.GetOutputPort("output"));
 
+        serializedObject.ApplyModifiedProperties();
     }
 }

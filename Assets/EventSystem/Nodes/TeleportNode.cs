@@ -9,10 +9,10 @@ public class TeleportNode : EventBaseNode
     [Input]
     public int input;
 
-    public string mapName;
-    public string roomName;
-    public string teleporterName;
-    public Vector2 teleportPosition;
+    public string mapName = "";
+    public string roomName = "";
+    public string teleporterName = "";
+    public Vector2 teleportPosition = Vector2.zero;
     // Use this for initialization
     protected override void Init()
     {

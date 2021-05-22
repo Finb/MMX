@@ -10,6 +10,8 @@ public class SwitchSetterEditor : NodeEditor
 {
     public override void OnBodyGUI()
     {
+        serializedObject.Update();
+
         EditorGUIUtility.labelWidth = 100;
         SwitchSetterNode node = target as SwitchSetterNode;
 
@@ -25,5 +27,6 @@ public class SwitchSetterEditor : NodeEditor
         }
         NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("switchValue"));
 
+        serializedObject.ApplyModifiedProperties();
     }
 }

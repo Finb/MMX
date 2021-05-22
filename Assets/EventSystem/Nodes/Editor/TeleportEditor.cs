@@ -9,6 +9,7 @@ public class TeleportEditor : NodeEditor
 {
     public override void OnBodyGUI()
     {
+        serializedObject.Update();
         EditorGUIUtility.labelWidth = 100;
         TeleportNode node = target as TeleportNode;
 
@@ -24,5 +25,7 @@ public class TeleportEditor : NodeEditor
         {
             NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("teleportPosition"));
         }
+
+        serializedObject.ApplyModifiedProperties();
     }
 }
