@@ -6,7 +6,7 @@ using XNode;
 using XNodeEditor;
 
 [CustomNodeEditor(typeof(HumanItemSetterNode))]
-public class ItemSetterEditor : NodeEditor
+public class HumanItemSetterEditor : NodeEditor
 {
     public override void OnBodyGUI()
     {

@@ -71,7 +71,6 @@ public class PackageMenuController : BaseUIInputController
         var obj = Instantiate(Resources.Load<GameObject>("UI/PackageMenu"), new Vector3(0, 0, 0), Quaternion.identity, GameObject.Find("UI").GetComponent<Transform>());
         return obj.GetComponent<PackageMenuController>();
     }
-    bool first = true;
     public void show()
     {
         MMX.GameManager.Input.pushTarget(gameObject);

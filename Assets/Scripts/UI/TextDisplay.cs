@@ -10,7 +10,6 @@ public class TextDisplay : MonoBehaviour
     private string contentText;
     private List<string> sentences;
     private int currentDisplaySentenceIndex = 0;
-    private float letterPause = 0.01f;
     public GameObject arrowImage;
 
     private DialogController dialogController;
