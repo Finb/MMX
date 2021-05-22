@@ -29,28 +29,7 @@ public class HumanItemSetterNode : EventBaseNode
     {
         var selectedItem = ItemPack.shared.findItem<MMX.HumanItem>(itemId);
         var selectedCount = selectedItem != null ? selectedItem.count : 0;
-        switch (operation)
-        {
-            case VariableOperation.set:
-                selectedCount = count;
-                break;
-            case VariableOperation.add:
-                selectedCount += count;
-                break;
-            case VariableOperation.sub:
-                selectedCount -= count;
-                break;
-            case VariableOperation.mul:
-                selectedCount *= count;
-                break;
-            case VariableOperation.div:
-                selectedCount /= count;
-                break;
-            case VariableOperation.mod:
-                selectedCount %= count;
-                break;
-        }
-        ItemPack.shared.setItem(itemId, selectedCount);
+        ItemPack.shared.setItem(itemId, operation.operation(selectedCount, count));
         return true;
     }
 
