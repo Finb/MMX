@@ -13409,7 +13409,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   lookDirection: {x: 0, y: -1}
   followedBody: {fileID: 0}
---- !u!114 &6837641679957222321
+--- !u!114 &6884533765883152460
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13418,10 +13418,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5450939943536254026}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb7b69ff6d85e4b489e887e07dfccb12, type: 3}
+  m_Script: {fileID: 11500000, guid: ce3c6577e74494a66b0a5246c07cab06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000, guid: ecde3be302d6c4307a05e8b1c9ecac41, type: 2}
+  graph: {fileID: 0}
+  eventId: 
+  nick: test
+  content: test2
 --- !u!114 &1018202536731501203
 MonoBehaviour:
   m_ObjectHideFlags: 0

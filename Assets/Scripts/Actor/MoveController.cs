@@ -20,14 +20,22 @@ public class MoveController : Movement, InputEventInterface
         inputs.Player.A.performed += ctx =>
         {
             var hit = Physics2D.Raycast(gameObject.transform.position, GetComponent<Movement>().lookDirection, 1, 1 << 10 | 1 << 8);
-            
+
             if (hit.collider == null)
             {
                 return;
             }
+            var sceneEventGraphs = hit.collider.gameObject.GetComponents<BaseSceneGraph>();
+            foreach (var eventGraph in sceneEventGraphs)
+            {
+                eventGraph.graph.trigger(TriggerType.KeyTrigger);
+            }
+
             var eventActions = hit.collider.gameObject.GetComponents<EventAction>();
-            foreach (var action in eventActions) {
-                if (action.startCondition == StartConditions.KeyTrigger){
+            foreach (var action in eventActions)
+            {
+                if (action.startCondition == StartConditions.KeyTrigger)
+                {
                     action.execute();
                     break;
                 }

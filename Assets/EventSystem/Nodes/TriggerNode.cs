@@ -44,14 +44,17 @@ public class TriggerNode : EventBaseNode
         foreach (var item in this.DynamicInputs)
         {
             var nodes = item.GetConnections().ConvertAll<EventBaseNode>((connection) => connection.node as EventBaseNode);
-            foreach(var node in nodes){
-                if (!node.trigger()){
+            foreach (var node in nodes)
+            {
+                if (!node.trigger())
+                {
                     success = false;
                     break;
                 }
             }
         }
-        if(success){
+        if (success)
+        {
             (this.GetOutputPort("output").Connection?.node as EventBaseNode)?.trigger();
         }
 

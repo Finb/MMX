@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Trigger
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -1144, y: -200}
+  position: {x: -1176, y: -280}
   ports:
     keys:
     - conditions
