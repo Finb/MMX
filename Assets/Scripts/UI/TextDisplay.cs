@@ -41,6 +41,7 @@ public class TextDisplay : MonoBehaviour
             else
             {
                 sentences.Add(line);
+                continue;
             }
             if (i > 0 && (i + 1) % 3 == 0)
             {

@@ -9,6 +9,7 @@ public class SwitchNode : EventBaseNode
     [Input(backingValue = ShowBackingValue.Never, connectionType = ConnectionType.Override)]
     public int input;
 
+    public string nick;
     [TextArea(3, 10)]
     public string content;
     [Output(dynamicPortList = true, typeConstraint = TypeConstraint.None, connectionType = ConnectionType.Override)]
@@ -31,7 +32,7 @@ public class SwitchNode : EventBaseNode
     {
         if (options.Count > 0)
         {
-            DialogController.shared.showText(content, null, () =>
+            DialogController.shared.showText(content, nick, () =>
             {
                 var boxController = SelectButtonBoxController.Create();
                 foreach (var item in options.Select((value, i) => (value, i)))
