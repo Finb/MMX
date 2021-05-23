@@ -5,13 +5,22 @@ using MMX.Input;
 
 public class TeleportPortal
 {
+    // 传送音效
     public AudioClip soundEffect;
 
+    // 传送目标点
     public Transform dropZone;
+
+    // 传送后偏移量
     public Vector2 dropZoneOffset;
+
+    //传送点自身位置
     public GameObject gameObject;
+
+    // 没有传送点时，动态在运行时去寻找的传送信息
     public TeleportInfo teleportInfo;
 
+    // 传送目标点事件
     public EventAction dropZoneEventAction
     {
         get

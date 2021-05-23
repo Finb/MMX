@@ -1,49 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6574695365320702780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae77b7e1078764a94b654627f9dfd14c, type: 3}
-  m_Name: Dialogue
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: -600, y: -152}
-  ports:
-    keys:
-    - input
-    - output
-    values:
-    - _fieldName: input
-      _node: {fileID: -6574695365320702780}
-      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: output
-        node: {fileID: -1583254964314878088}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: output
-      _node: {fileID: -6574695365320702780}
-      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  input: 0
-  output: 0
-  nick: 
-  content: "\u6D4B\u8BD5"
 --- !u!114 &-1583254964314878088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,7 +13,7 @@ MonoBehaviour:
   m_Name: Trigger
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -872, y: -184}
+  position: {x: -1144, y: -200}
   ports:
     keys:
     - conditions
@@ -80,7 +36,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: input
-        node: {fileID: -6574695365320702780}
+        node: {fileID: 8954861553492634953}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -116,10 +72,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: -1583254964314878088}
-  - {fileID: -6574695365320702780}
-  - {fileID: 5040674131377319517}
+  - {fileID: 2261678922192835296}
+  - {fileID: 8954861553492634953}
   eventId: 
---- !u!114 &5040674131377319517
+--- !u!114 &2261678922192835296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 002b9c5a43df746eb8befd033ce38831, type: 3}
+  m_Name: Teleport
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -664, y: -200}
+  ports:
+    keys:
+    - input
+    values:
+    - _fieldName: input
+      _node: {fileID: 2261678922192835296}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: options 0
+        node: {fileID: 8954861553492634953}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  input: 0
+  mapName: "\u62C9\u591A"
+  roomName: "\u6218\u8F66\u5E97"
+  teleporterName: "\u4F20\u9001\u70B9-\u5BB6"
+  teleportPosition: {x: 0, y: 0}
+  soundEffect: {fileID: 0}
+--- !u!114 &8954861553492634953
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,23 +124,28 @@ MonoBehaviour:
   m_Name: Switch
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -840, y: -40}
+  position: {x: -920, y: -200}
   ports:
     keys:
     - input
     - options
+    - options 0
+    - options 1
     values:
     - _fieldName: input
-      _node: {fileID: 5040674131377319517}
+      _node: {fileID: 8954861553492634953}
       _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: output
+        node: {fileID: -1583254964314878088}
+        reroutePoints: []
       _direction: 0
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: options
-      _node: {fileID: 5040674131377319517}
+      _node: {fileID: 8954861553492634953}
       _typeQualifiedName: System.Collections.Generic.List`1[[System.String, mscorlib,
         Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib,
         Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
@@ -157,7 +154,30 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: options 0
+      _node: {fileID: 8954861553492634953}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: input
+        node: {fileID: 2261678922192835296}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: options 1
+      _node: {fileID: 8954861553492634953}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
   input: 0
-  content: 
-  options: []
+  content: "\u6D4B\u8BD5"
+  options:
+  - "\u4F20\u9001"
+  - "\u53D6\u6D88"
   canCancel: 0

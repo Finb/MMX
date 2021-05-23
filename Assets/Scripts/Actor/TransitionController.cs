@@ -6,7 +6,7 @@ public class TransitionController : MonoBehaviour
 {
     public System.Action transitionInCompletion;
     public System.Action transitionOutCompletion;
-
+    public bool isReady = true;
     public void OnTransitionInAnimationComplete()
     {
         Debug.Log("屏幕黑了");
@@ -21,6 +21,7 @@ public class TransitionController : MonoBehaviour
     public void OnTransitionOutAnimationComplete()
     {
         Debug.Log("屏幕亮了");
+        isReady = true;
         if (transitionOutCompletion != null)
         {
             transitionOutCompletion();
@@ -31,6 +32,7 @@ public class TransitionController : MonoBehaviour
 
     public void startScreenFade()
     {
+        isReady = false;
         var screenFader = GameObject.FindWithTag("ScreenFader");
         var screenFaderAnimator = screenFader.GetComponent<Animator>();
         screenFaderAnimator.SetTrigger("FadeInTrigger");

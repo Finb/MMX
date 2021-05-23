@@ -9,20 +9,30 @@ public class TeleportNode : EventBaseNode
     [Input]
     public int input;
 
-    public string mapName = "";
-    public string roomName = "";
-    public string teleporterName = "";
+    public string mapName;
+    public string roomName;
+    public string teleporterName;
     public Vector2 teleportPosition = Vector2.zero;
-    // Use this for initialization
-    protected override void Init()
-    {
-        base.Init();
 
-    }
+    public AudioClip soundEffect;
 
-    // Return the correct value of an output port when requested
-    public override object GetValue(NodePort port)
+
+    public override bool trigger()
     {
-        return null; // Replace this
+        if (soundEffect == null)
+        {
+            soundEffect = Resources.Load<AudioClip>("MetalMax-SFX/0x3B-Stairs");
+        }
+        TeleportTargetInfo teleportInfo;
+        if (teleporterName?.Length > 0)
+        {
+            teleportInfo = new TeleportTargetInfo(mapName, roomName, teleporterName, soundEffect);
+        }
+        else
+        {
+            teleportInfo = new TeleportTargetInfo(mapName, roomName, teleportPosition, soundEffect);
+        }
+        TeleportManager.shared.teleport(teleportInfo);
+        return true;
     }
 }

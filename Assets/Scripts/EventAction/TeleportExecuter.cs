@@ -3,30 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using MMX;
+using System;
 
 public class TeleportExecuter : IExecute
 {
-    EventAction eventAction;
-    private TeleportTargetInfo teleportTargetInfo;
-
-    public bool isTeleporting
-    {
-        get
-        {
-            return teleportTargetInfo != null;
-        }
-    }
-
     public void execute(EventAction eventAction)
     {
-        if (isTeleporting)
-        {
-            Debug.Log("传送中");
-            return;
-        }
-
         TeleportPortal teleport = TeleportPortal.ConvertEventActionToTeleportPortal(eventAction);
+        this.teleport(teleport);
 
+    }
+    public void teleport(TeleportPortal teleport)
+    {
         if (teleport == null || teleport.dropZone == null && teleport.teleportInfo.mapName.Length <= 0)
         {
             return;
@@ -52,96 +40,13 @@ public class TeleportExecuter : IExecute
                 var postion = teleport.teleportInfo.teleportPoint;
                 this.teleport(new TeleportTargetInfo(mapName, roomName, postion, teleport.soundEffect));
             }
-
         }
     }
 
 
     public void teleport(TeleportTargetInfo teleportTargetInfo)
     {
-        if (teleportTargetInfo != null)
-        {
-            MMX.GameManager.transition.transitionInCompletion = () =>
-            {
-                teleport();
-            };
-            MMX.GameManager.transition.transitionOutCompletion = () =>
-            {
-                teleportFinished();
-            };
-            MMX.GameManager.transition.startScreenFade();
-        }
-        this.teleportTargetInfo = teleportTargetInfo;
-    }
-    public void teleportFinished()
-    {
-        teleportTargetInfo = null;
-    }
-
-    public void teleport()
-    {
-        if (teleportTargetInfo == null)
-        {
-            MMX.GameManager.transition.endScreenFade();
-            return;
-        }
-        TeleportTargetInfo targetInfo = teleportTargetInfo;
-        //切换地图
-        if (MMX.GameManager.map == null || targetInfo.mapName != MMX.GameManager.map.name)
-        {
-            var tempMap = MMX.GameManager.map;
-            if (MMX.GameManager.map != null)
-            {
-                MonoBehaviour.Destroy(tempMap);
-            }
-            MMX.GameManager.map = MonoBehaviour.Instantiate(targetInfo.map.gameObject, new Vector3(0, 0, 0), Quaternion.identity);
-            //跨地图传送时，将所有人一起传送
-            foreach (var item in MMX.GameManager.Queue.queue)
-            {
-                item.transform.position = targetInfo.position;
-            }
-        }
-        else
-        {
-            MMX.GameManager.Queue.captain.gameObject.transform.position = targetInfo.position;
-        }
-
-        //播放传送音效
-        if (targetInfo.soundEffect != null)
-        {
-            GameManager.Audio.PlaySfx(targetInfo.soundEffect);
-        }
-
-
-        //播放目标场景背景音乐
-        if (targetInfo.backgroundMusic != null)
-        {
-            if (GameManager.Audio.BgmChannel.clip == null || targetInfo.backgroundMusic.name != GameManager.Audio.BgmChannel.clip.name)
-            {
-                GameManager.Audio.PlayBgm(targetInfo.backgroundMusic);
-            }
-        }
-
-        //设置摄像机边界
-        var cameraConfiner = targetInfo.cameraConfiner;
-        var mainCamera = GameObject.FindWithTag("MainCamera");
-        var cinemachineConfiner = mainCamera.GetComponent<CinemachineConfiner>();
-        var shape2D = (PolygonCollider2D)cinemachineConfiner.m_BoundingShape2D;
-
-        shape2D.points = cameraConfiner;
-        cinemachineConfiner.InvalidatePathCache();
-
-        //设置边界碰撞
-        var edgeCollider = GameObject.FindWithTag("EdgeCollider");
-        var collider = edgeCollider.GetComponent<EdgeCollider2D>();
-
-        List<Vector2> pointsList = new List<Vector2>();
-        pointsList.AddRange(shape2D.points);
-        pointsList.Add(shape2D.points[0]);
-        collider.points = pointsList.ToArray();
-
-        //亮屏
-        MMX.GameManager.transition.endScreenFade();
+        TeleportManager.shared.teleport(teleportTargetInfo);
     }
 }
 
@@ -240,4 +145,105 @@ public class TeleportTargetInfo
     }
 
 
+}
+
+
+public class TeleportManager
+{
+    private TeleportManager() { }
+    private static readonly Lazy<TeleportManager> Instancelock = new Lazy<TeleportManager>(() => new TeleportManager());
+    public static TeleportManager shared
+    {
+        get
+        {
+            return Instancelock.Value;
+        }
+    }
+
+    public void teleport(TeleportTargetInfo teleportTargetInfo)
+    {
+        if (teleportTargetInfo == null)
+        {
+            return;
+        }
+
+        //屏幕还是黑的,没准备好不允许传送。
+        if (!MMX.GameManager.transition.isReady)
+        {
+            return;
+        }
+
+        MMX.GameManager.transition.transitionInCompletion = () =>
+        {
+            doTeleport(teleportTargetInfo);
+        };
+        MMX.GameManager.transition.startScreenFade();
+    }
+
+    private void doTeleport(TeleportTargetInfo teleportTargetInfo)
+    {
+
+
+        TeleportTargetInfo targetInfo = teleportTargetInfo;
+
+        //切换地图
+        if (MMX.GameManager.map == null || targetInfo.mapName != MMX.GameManager.map.name)
+        {
+            Debug.Log("ttt " + targetInfo.mapName + "  " + MMX.GameManager.map?.name);
+
+            var tempMap = MMX.GameManager.map;
+            if (MMX.GameManager.map != null)
+            {
+                MonoBehaviour.Destroy(tempMap.gameObject);
+            }
+            MMX.GameManager.map = MonoBehaviour.Instantiate(targetInfo.map.gameObject, new Vector3(0, 0, 0), Quaternion.identity);
+            MMX.GameManager.map.name = targetInfo.mapName;
+            //跨地图传送时，将所有人一起传送
+            foreach (var item in MMX.GameManager.Queue.queue)
+            {
+                item.transform.position = targetInfo.position;
+            }
+        }
+        else
+        {
+            MMX.GameManager.Queue.captain.gameObject.transform.position = targetInfo.position;
+        }
+
+        //播放传送音效
+        if (targetInfo.soundEffect != null)
+        {
+            GameManager.Audio.PlaySfx(targetInfo.soundEffect);
+        }
+
+
+        //播放目标场景背景音乐
+        if (targetInfo.backgroundMusic != null)
+        {
+            if (GameManager.Audio.BgmChannel.clip == null || targetInfo.backgroundMusic.name != GameManager.Audio.BgmChannel.clip.name)
+            {
+                GameManager.Audio.PlayBgm(targetInfo.backgroundMusic);
+            }
+        }
+
+        //设置摄像机边界
+        var cameraConfiner = targetInfo.cameraConfiner;
+        var mainCamera = GameObject.FindWithTag("MainCamera");
+        var cinemachineConfiner = mainCamera.GetComponent<CinemachineConfiner>();
+        var shape2D = (PolygonCollider2D)cinemachineConfiner.m_BoundingShape2D;
+
+        shape2D.points = cameraConfiner;
+        cinemachineConfiner.InvalidatePathCache();
+
+        //设置边界碰撞
+        var edgeCollider = GameObject.FindWithTag("EdgeCollider");
+        var collider = edgeCollider.GetComponent<EdgeCollider2D>();
+
+        List<Vector2> pointsList = new List<Vector2>();
+        pointsList.AddRange(shape2D.points);
+        pointsList.Add(shape2D.points[0]);
+        collider.points = pointsList.ToArray();
+
+        //亮屏
+        MMX.GameManager.transition.endScreenFade();
+    }
 }
