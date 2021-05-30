@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Trigger
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -1176, y: -280}
+  position: {x: -1160, y: -200}
   ports:
     keys:
     - conditions
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: Switch
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -920, y: -200}
+  position: {x: -904, y: -200}
   ports:
     keys:
     - input
@@ -176,6 +176,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   input: 0
+  nick: 
   content: "\u6D4B\u8BD5"
   options:
   - "\u4F20\u9001"
