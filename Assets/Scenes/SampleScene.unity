@@ -342,7 +342,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 10000
+  far clip plane: 100
   field of view: 40
   orthographic: 1
   orthographic size: 6
@@ -1277,7 +1277,7 @@ PrefabInstance:
     - target: {fileID: 5311111918941769280, guid: 98544c5beaaf043b79bd824ad3446ec5,
         type: 3}
       propertyPath: m_Lens.FarClipPlane
-      value: 10000
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5311111918941769280, guid: 98544c5beaaf043b79bd824ad3446ec5,
         type: 3}
